@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35327.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GTAutoWeb", "GTAutoWeb\GTAutoWeb.csproj", "{3ACB988C-BC6C-4AD1-99E4-EDB5EA3F3145}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GTAuto.Data", "GTAuto.Data\GTAuto.Data.csproj", "{96D91123-E7CB-40B4-9F83-6A3F6A4CA0AF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3ACB988C-BC6C-4AD1-99E4-EDB5EA3F3145}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3ACB988C-BC6C-4AD1-99E4-EDB5EA3F3145}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3ACB988C-BC6C-4AD1-99E4-EDB5EA3F3145}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3ACB988C-BC6C-4AD1-99E4-EDB5EA3F3145}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96D91123-E7CB-40B4-9F83-6A3F6A4CA0AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96D91123-E7CB-40B4-9F83-6A3F6A4CA0AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96D91123-E7CB-40B4-9F83-6A3F6A4CA0AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96D91123-E7CB-40B4-9F83-6A3F6A4CA0AF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {98632F96-500E-4369-85D9-89E1834A8788}
+	EndGlobalSection
+EndGlobal

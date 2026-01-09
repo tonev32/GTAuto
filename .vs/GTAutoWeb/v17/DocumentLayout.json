@@ -1,0 +1,85 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Student10\\Desktop\\GTAuto\\GTAutoWeb\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{96D91123-E7CB-40B4-9F83-6A3F6A4CA0AF}|GTAuto.Data\\GTAuto.Data.csproj|c:\\users\\student10\\desktop\\gtauto\\gtautoweb\\gtauto.data\\migrations\\20260109082239_gtauto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{96D91123-E7CB-40B4-9F83-6A3F6A4CA0AF}|GTAuto.Data\\GTAuto.Data.csproj|solutionrelative:gtauto.data\\migrations\\20260109082239_gtauto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{96D91123-E7CB-40B4-9F83-6A3F6A4CA0AF}|GTAuto.Data\\GTAuto.Data.csproj|c:\\users\\student10\\desktop\\gtauto\\gtautoweb\\gtauto.data\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{96D91123-E7CB-40B4-9F83-6A3F6A4CA0AF}|GTAuto.Data\\GTAuto.Data.csproj|solutionrelative:gtauto.data\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3ACB988C-BC6C-4AD1-99E4-EDB5EA3F3145}|GTAutoWeb\\GTAutoWeb.csproj|c:\\users\\student10\\desktop\\gtauto\\gtautoweb\\gtautoweb\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3ACB988C-BC6C-4AD1-99E4-EDB5EA3F3145}|GTAutoWeb\\GTAutoWeb.csproj|solutionrelative:gtautoweb\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{96D91123-E7CB-40B4-9F83-6A3F6A4CA0AF}|GTAuto.Data\\GTAuto.Data.csproj|c:\\users\\student10\\desktop\\gtauto\\gtautoweb\\gtauto.data\\gtautodbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{96D91123-E7CB-40B4-9F83-6A3F6A4CA0AF}|GTAuto.Data\\GTAuto.Data.csproj|solutionrelative:gtauto.data\\gtautodbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "20260109082239_GTAuto.cs",
+              "DocumentMoniker": "C:\\Users\\Student10\\Desktop\\GTAuto\\GTAutoWeb\\GTAuto.Data\\Migrations\\20260109082239_GTAuto.cs",
+              "RelativeDocumentMoniker": "GTAuto.Data\\Migrations\\20260109082239_GTAuto.cs",
+              "ToolTip": "C:\\Users\\Student10\\Desktop\\GTAuto\\GTAutoWeb\\GTAuto.Data\\Migrations\\20260109082239_GTAuto.cs",
+              "RelativeToolTip": "GTAuto.Data\\Migrations\\20260109082239_GTAuto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-09T08:22:39.17Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\Student10\\Desktop\\GTAuto\\GTAutoWeb\\GTAuto.Data\\Models\\User.cs",
+              "RelativeDocumentMoniker": "GTAuto.Data\\Models\\User.cs",
+              "ToolTip": "C:\\Users\\Student10\\Desktop\\GTAuto\\GTAutoWeb\\GTAuto.Data\\Models\\User.cs",
+              "RelativeToolTip": "GTAuto.Data\\Models\\User.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAsAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-09T08:20:44.428Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Student10\\Desktop\\GTAuto\\GTAutoWeb\\GTAutoWeb\\Program.cs",
+              "RelativeDocumentMoniker": "GTAutoWeb\\Program.cs",
+              "ToolTip": "C:\\Users\\Student10\\Desktop\\GTAuto\\GTAutoWeb\\GTAutoWeb\\Program.cs",
+              "RelativeToolTip": "GTAutoWeb\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-09T08:19:16.075Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "GTAutoDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\Student10\\Desktop\\GTAuto\\GTAutoWeb\\GTAuto.Data\\GTAutoDbContext.cs",
+              "RelativeDocumentMoniker": "GTAuto.Data\\GTAutoDbContext.cs",
+              "ToolTip": "C:\\Users\\Student10\\Desktop\\GTAuto\\GTAutoWeb\\GTAuto.Data\\GTAutoDbContext.cs",
+              "RelativeToolTip": "GTAuto.Data\\GTAutoDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-09T06:44:26.254Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
