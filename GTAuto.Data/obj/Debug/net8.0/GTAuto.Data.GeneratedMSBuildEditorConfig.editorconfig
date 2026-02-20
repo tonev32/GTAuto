@@ -16,6 +16,6 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = GTAuto.Data
-build_property.ProjectDir = C:\Users\Student10\Desktop\GTAuto\GTAutoWeb\GTAuto.Data\
+build_property.ProjectDir = C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAuto.Data\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

@@ -10,6 +10,8 @@ namespace GTAuto.Data.Models
 {
     public class User : IdentityUser<Guid>
     {
-        public ICollection<Order> Orders { get; set; }
+        public string FullName { get; set; }
+
+        public Order Orders { get; set; }
     }
 }

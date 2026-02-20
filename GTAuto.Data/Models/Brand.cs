@@ -12,8 +12,11 @@ namespace GTAuto.Data.Models
         public Guid Id { get; set; }
 
         [Required]
+        [MaxLength(100)]
         public string Name { get; set; }
+        public Guid ModelID { get; set; }
+        public Model Model { get; set; }
 
-        public ICollection<Car> Cars { get; set; }
+        public ICollection<Model> Models { get; set; } = new List<Model>();
     }
 }
