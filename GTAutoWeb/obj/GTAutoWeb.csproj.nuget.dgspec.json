@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Student10\\Desktop\\GTAuto\\GTAutoWeb\\GTAutoWeb\\GTAutoWeb.csproj": {}
+    "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\GTAutoWeb.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Student10\\Desktop\\GTAuto\\GTAutoWeb\\GTAuto.Data\\GTAuto.Data.csproj": {
+    "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAuto.Data\\GTAuto.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Student10\\Desktop\\GTAuto\\GTAutoWeb\\GTAuto.Data\\GTAuto.Data.csproj",
+        "projectUniqueName": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAuto.Data\\GTAuto.Data.csproj",
         "projectName": "GTAuto.Data",
-        "projectPath": "C:\\Users\\Student10\\Desktop\\GTAuto\\GTAutoWeb\\GTAuto.Data\\GTAuto.Data.csproj",
+        "projectPath": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAuto.Data\\GTAuto.Data.csproj",
         "packagesPath": "C:\\Users\\Student10\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Student10\\Desktop\\GTAuto\\GTAutoWeb\\GTAuto.Data\\obj\\",
+        "outputPath": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAuto.Data\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Student10\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -93,14 +93,14 @@
         }
       }
     },
-    "C:\\Users\\Student10\\Desktop\\GTAuto\\GTAutoWeb\\GTAutoWeb\\GTAutoWeb.csproj": {
+    "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\GTAutoWeb.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Student10\\Desktop\\GTAuto\\GTAutoWeb\\GTAutoWeb\\GTAutoWeb.csproj",
+        "projectUniqueName": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\GTAutoWeb.csproj",
         "projectName": "GTAutoWeb",
-        "projectPath": "C:\\Users\\Student10\\Desktop\\GTAuto\\GTAutoWeb\\GTAutoWeb\\GTAutoWeb.csproj",
+        "projectPath": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\GTAutoWeb.csproj",
         "packagesPath": "C:\\Users\\Student10\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Student10\\Desktop\\GTAuto\\GTAutoWeb\\GTAutoWeb\\obj\\",
+        "outputPath": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Student10\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -118,8 +118,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\Student10\\Desktop\\GTAuto\\GTAutoWeb\\GTAuto.Data\\GTAuto.Data.csproj": {
-                "projectPath": "C:\\Users\\Student10\\Desktop\\GTAuto\\GTAutoWeb\\GTAuto.Data\\GTAuto.Data.csproj"
+              "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAuto.Data\\GTAuto.Data.csproj": {
+                "projectPath": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAuto.Data\\GTAuto.Data.csproj"
               }
             }
           }

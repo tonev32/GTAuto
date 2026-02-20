@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "JmsE5/WqovM=",
+  "dgSpecHash": "pVLll9M6sYM=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Student10\\Desktop\\GTAuto\\GTAutoWeb\\GTAutoWeb\\GTAutoWeb.csproj",
+  "projectFilePath": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\GTAutoWeb.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Student10\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\Student10\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",
