@@ -16,6 +16,9 @@ public class GTAutoDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
     public DbSet<Order> Orders { get; set; }
     public DbSet<Feature> Features { get; set; }
     public DbSet<CarFeature> CarFeatures { get; set; }
+    public DbSet<Fuel> Fuels { get; set; }
+    public DbSet<Model> Models { get; set; }
+    public DbSet<OrderStatus> OrderStatuses { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

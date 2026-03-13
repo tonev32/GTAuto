@@ -29,7 +29,8 @@ namespace GTAuto.Data.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
 
@@ -42,25 +43,53 @@ namespace GTAuto.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("BrandId")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("BrandId1")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool>("IsAvailable")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Model")
+                    b.Property<string>("Color")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FuelType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("HorsePower")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsAutomatic")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsReserved")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsSold")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Mileage")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("ModelId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<string>("Transmission")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Year")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("BrandId1");
+                    b.HasIndex("ModelId");
 
                     b.ToTable("Cars");
                 });
@@ -95,6 +124,46 @@ namespace GTAuto.Data.Migrations
                     b.ToTable("Features");
                 });
 
+            modelBuilder.Entity("GTAuto.Data.Models.Fuel", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("FuelConsumption")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Fuels");
+                });
+
+            modelBuilder.Entity("GTAuto.Data.Models.Model", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("BrandID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BrandID");
+
+                    b.ToTable("Models");
+                });
+
             modelBuilder.Entity("GTAuto.Data.Models.Order", b =>
                 {
                     b.Property<Guid>("Id")
@@ -104,8 +173,14 @@ namespace GTAuto.Data.Migrations
                     b.Property<Guid>("CarId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("OrderDate")
+                    b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
+
+                    b.Property<decimal>("DepositAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<Guid>("StatusId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
@@ -114,9 +189,31 @@ namespace GTAuto.Data.Migrations
 
                     b.HasIndex("CarId");
 
+                    b.HasIndex("StatusId");
+
                     b.HasIndex("UserId");
 
                     b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("GTAuto.Data.Models.OrderStatus", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Approved")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Cancelled")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Pending")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("OrderStatuses");
                 });
 
             modelBuilder.Entity("GTAuto.Data.Models.User", b =>
@@ -138,6 +235,10 @@ namespace GTAuto.Data.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -264,12 +365,10 @@ namespace GTAuto.Data.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderKey")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -305,12 +404,10 @@ namespace GTAuto.Data.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
@@ -322,13 +419,13 @@ namespace GTAuto.Data.Migrations
 
             modelBuilder.Entity("GTAuto.Data.Models.Car", b =>
                 {
-                    b.HasOne("GTAuto.Data.Models.Brand", "Brand")
+                    b.HasOne("GTAuto.Data.Models.Model", "Model")
                         .WithMany("Cars")
-                        .HasForeignKey("BrandId1")
+                        .HasForeignKey("ModelId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Brand");
+                    b.Navigation("Model");
                 });
 
             modelBuilder.Entity("GTAuto.Data.Models.CarFeature", b =>
@@ -350,6 +447,17 @@ namespace GTAuto.Data.Migrations
                     b.Navigation("Feature");
                 });
 
+            modelBuilder.Entity("GTAuto.Data.Models.Model", b =>
+                {
+                    b.HasOne("GTAuto.Data.Models.Brand", "Brand")
+                        .WithMany("Models")
+                        .HasForeignKey("BrandID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Brand");
+                });
+
             modelBuilder.Entity("GTAuto.Data.Models.Order", b =>
                 {
                     b.HasOne("GTAuto.Data.Models.Car", "Car")
@@ -358,13 +466,21 @@ namespace GTAuto.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("GTAuto.Data.Models.OrderStatus", "Status")
+                        .WithMany()
+                        .HasForeignKey("StatusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("GTAuto.Data.Models.User", "User")
-                        .WithMany("Orders")
+                        .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Car");
+
+                    b.Navigation("Status");
 
                     b.Navigation("User");
                 });
@@ -422,7 +538,7 @@ namespace GTAuto.Data.Migrations
 
             modelBuilder.Entity("GTAuto.Data.Models.Brand", b =>
                 {
-                    b.Navigation("Cars");
+                    b.Navigation("Models");
                 });
 
             modelBuilder.Entity("GTAuto.Data.Models.Car", b =>
@@ -437,9 +553,9 @@ namespace GTAuto.Data.Migrations
                     b.Navigation("CarFeatures");
                 });
 
-            modelBuilder.Entity("GTAuto.Data.Models.User", b =>
+            modelBuilder.Entity("GTAuto.Data.Models.Model", b =>
                 {
-                    b.Navigation("Orders");
+                    b.Navigation("Cars");
                 });
 #pragma warning restore 612, 618
         }

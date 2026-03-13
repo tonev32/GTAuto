@@ -12,3 +12,18 @@ C:\Users\Student10\Desktop\GTAuto\GTAutoWeb\GTAuto.Data\obj\Debug\net8.0\refint\
 C:\Users\Student10\Desktop\GTAuto\GTAutoWeb\GTAuto.Data\obj\Debug\net8.0\GTAuto.Data.pdb
 C:\Users\Student10\Desktop\GTAuto\GTAutoWeb\GTAuto.Data\obj\Debug\net8.0\GTAuto.Data.genruntimeconfig.cache
 C:\Users\Student10\Desktop\GTAuto\GTAutoWeb\GTAuto.Data\obj\Debug\net8.0\ref\GTAuto.Data.dll
+C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAuto.Data\bin\Debug\net8.0\GTAuto.Data.deps.json
+C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAuto.Data\bin\Debug\net8.0\GTAuto.Data.runtimeconfig.json
+C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAuto.Data\bin\Debug\net8.0\GTAuto.Data.dll
+C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAuto.Data\bin\Debug\net8.0\GTAuto.Data.pdb
+C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAuto.Data\obj\Debug\net8.0\GTAuto.Data.csproj.AssemblyReference.cache
+C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAuto.Data\obj\Debug\net8.0\GTAuto.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAuto.Data\obj\Debug\net8.0\GTAuto.Data.AssemblyInfoInputs.cache
+C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAuto.Data\obj\Debug\net8.0\GTAuto.Data.AssemblyInfo.cs
+C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAuto.Data\obj\Debug\net8.0\GTAuto.Data.csproj.CoreCompileInputs.cache
+C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAuto.Data\obj\Debug\net8.0\GTAuto.Data.sourcelink.json
+C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAuto.Data\obj\Debug\net8.0\GTAuto.Data.dll
+C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAuto.Data\obj\Debug\net8.0\refint\GTAuto.Data.dll
+C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAuto.Data\obj\Debug\net8.0\GTAuto.Data.pdb
+C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAuto.Data\obj\Debug\net8.0\GTAuto.Data.genruntimeconfig.cache
+C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAuto.Data\obj\Debug\net8.0\ref\GTAuto.Data.dll

@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using GTAuto.Data.Models;
+using Hospital.WebProject.Seed;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,14 +11,40 @@ builder.Services.AddDbContext<GTAutoDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<GTAutoDbContext>();
 
+builder.Services.AddIdentity<User, IdentityRole<Guid>>(options =>
+{
+    options.SignIn.RequireConfirmedAccount = false;
+    options.SignIn.RequireConfirmedEmail = false;
+    options.Password.RequireDigit = true;
+    options.Password.RequiredLength = 5;
+    options.Password.RequireLowercase = true;
+    options.Password.RequireUppercase = true;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Lockout.AllowedForNewUsers = false;
+
+})
+.AddRoles<IdentityRole<Guid>>()
+.AddEntityFrameworkStores<GTAutoDbContext>()
+.AddDefaultTokenProviders();
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
+using (var scope = app.Services.CreateScope())
 
+{
+
+    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole<Guid>>>();
+
+    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
+
+    await IdentitySeeder.SeedRolesAsync(roleManager);
+
+    await IdentitySeeder.SeedAdminAsync(userManager, roleManager);
+
+}
+ 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

@@ -12,6 +12,6 @@ namespace GTAuto.Data.Models
     {
         public string FullName { get; set; }
 
-        public Order Orders { get; set; }
+       // public Order Orders { get; set; }
     }
 }
