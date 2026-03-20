@@ -13,6 +13,30 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\wwwroot\\images\\Owner.jpg",
+      "PackagePath": "staticwebassets\\images\\Owner.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\wwwroot\\images\\audi.jpg",
+      "PackagePath": "staticwebassets\\images\\audi.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\wwwroot\\images\\bmwe39.jpg",
+      "PackagePath": "staticwebassets\\images\\bmwe39.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\wwwroot\\images\\gta.jpg",
+      "PackagePath": "staticwebassets\\images\\gta.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\wwwroot\\images\\house.jpg",
+      "PackagePath": "staticwebassets\\images\\house.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\wwwroot\\images\\mercedes.jpg",
+      "PackagePath": "staticwebassets\\images\\mercedes.jpg"
+    },
+    {
       "Id": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

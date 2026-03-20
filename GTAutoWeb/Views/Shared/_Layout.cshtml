@@ -7,46 +7,52 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/GTAutoWeb.styles.css" asp-append-version="true" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">GTAutoWeb</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-black shadow-lg">
+            <div class="container">
+
+                <!-- Лого -->
+                <a class="navbar-brand d-flex align-items-center fw-bold" asp-controller="Home" asp-action="Index">
+                    <img src="/images/gta.jpg" width="102" height="65" class="me-2" />
+                  
+                </a>
+
+                <!-- Mobile бутон -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+
+                <!-- Меню -->
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link active" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
+
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link" asp-controller="Home" asp-action="AboutUs">About Us</a>
                         </li>
+
                         @if (User.IsInRole("Admin"))
                         {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Cars" asp-action="Index">Cars</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Brands" asp-action="Index">Brands</a>
-                            </li><li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Fuels" asp-action="Index">Fuels</a>
-                            </li><li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Features" asp-action="Index">Features</a>
-                            </li><li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Models" asp-action="Index">Models</a>
-                            </li><li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Orders" asp-action="Index">Orders</a>
-                            </li>
-
-                            
+                            <li class="nav-item"><a class="nav-link" asp-controller="Cars" asp-action="Index">Cars</a></li>
+                            <li class="nav-item"><a class="nav-link" asp-controller="Brands" asp-action="Index">Brands</a></li>
+                            <li class="nav-item"><a class="nav-link" asp-controller="Fuels" asp-action="Index">Fuels</a></li>
+                            <li class="nav-item"><a class="nav-link" asp-controller="Features" asp-action="Index">Features</a></li>
+                            <li class="nav-item"><a class="nav-link" asp-controller="Models" asp-action="Index">Models</a></li>
+                            <li class="nav-item"><a class="nav-link" asp-controller="Orders" asp-action="Index">Orders</a></li>
                         }
+
                     </ul>
+
+                    <!-- Login -->
                     <partial name="_LoginPartial" />
                 </div>
+
             </div>
         </nav>
     </header>
@@ -55,12 +61,6 @@
             @RenderBody()
         </main>
     </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2026 - GTAutoWeb - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

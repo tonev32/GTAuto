@@ -1,17 +1,143 @@
-﻿@{
+﻿
+
+@{
     ViewData["Title"] = "Home Page";
 }
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-    @if (User.IsInRole("Admin"))
-    {
-        <p>Hello Admin</p>
-    }
-
-    @if (User.IsInRole("Client"))
-    {
-        <p>Hello Client</p>
-    }
+<!-- Хедър с фон -->
+<div class="p-5 mb-4 bg-dark text-white rounded-3 shadow-lg" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1600&q=80'); background-size: cover; background-position: center;">
+    <div class="container-fluid py-5 text-center">
+        <h1 class="display-4 fw-bold">Добре дошли в GTAuto</h1>
+        <p class="fs-4">Намерете своята мечтана кола сред най-добрите предложения на пазара.</p>
+        <a href="#topOffers" class="btn btn-lg px-5" style="background-color: #19719c; color: white;">Разгледай инвентара</a>
+    </div>
 </div>
+
+<!-- Топ оферти -->
+<div class="container my-5" id="topOffers">
+    <h2 class="text-center mb-4">Топ оферти</h2>
+    <div class="row g-4">
+        <!-- Porsche 911 -->
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100">
+                <img src="https://mobistatic3.focus.bg/mobile/photosorg/896/1/big1/11771344274769896_KT.webp" class="card-img-top" alt="Porsche 911">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title fw-bold">Porsche 911 Carrera</h5>
+                    <p class="text-muted mb-2">Година: 2022 | Гориво: Бензин</p>
+                    <div class="d-flex flex-column align-items-start mb-3">
+                        <span class="text-muted"><del>200,000 €.</del></span>
+                        <span class="h5 text-danger fw-bold">185,000 €, .</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BMW M4 -->
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100">
+                <img src="https://images.ctfassets.net/c9t6u0qhbv9e/0VMDjyffUuWwyCP3eOJuP/e060dc1d4be602ecfc64baed026ca3ce/2023_BMW_M4_Review_Lead_In.jpeg" class="card-img-top" alt="BMW M4">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title fw-bold">BMW M4 Competition</h5>
+                    <p class="text-muted mb-2">Година: 2023 | Гориво: Бензин</p>
+                    <div class="d-flex flex-column align-items-start mb-3">
+                        <span class="text-muted"><del>195,000 €.</del></span>
+                        <span class="h5 text-danger fw-bold">170,000 €.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Audi RS7 -->
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100">
+                <img src="https://mobistatic1.focus.bg/mobile/photosorg/682/1/big/11536518663929682_bZ.webp" class="card-img-top" alt="Audi RS7">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title fw-bold">Audi RS7</h5>
+                    <p class="text-muted mb-2">Година: 2022 | Гориво: Бензин</p>
+                    <div class="d-flex flex-column align-items-start mb-3">
+                        <span class="text-muted"><del>175,000 €.</del></span> <!-- стара цена -->
+                        <span class="h5 text-danger fw-bold">160,000 €.</span> <!-- нова цена -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Модални прозорци -->
+<!-- Porsche 911 -->
+<div class="modal fade" id="modalPorsche" tabindex="-1" aria-labelledby="modalPorscheLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalPorscheLabel">Porsche 911 Carrera</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <ul>
+                    <li>Година: 2022</li>
+                    <li>Гориво: Бензин</li>
+                    <li>Мощност: 450 к.с.</li>
+                    <li>Цвят: Червен</li>
+                    <li>Пробег: 5,000 км</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- BMW M4 -->
+
+<div class="modal fade" id="modalBMW" tabindex="-1" aria-labelledby="modalBMWLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalBMWLabel">BMW M4 Competition</h5>
+            </div>
+            <div class="modal-body">
+                <ul>
+                    <li>Година: 2023</li>
+                    <li>Гориво: Бензин</li>
+                    <li>Мощност: 510 к.с.</li>
+                    <li>Цвят: Син</li>
+                    <li>Пробег: 2,000 км</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Audi RS7 -->
+<div class="modal fade" id="modalAudi" tabindex="-1" aria-labelledby="modalAudiLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalAudiLabel">Audi RS7</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <ul>
+                    <li>Година: 2022</li>
+                    <li>Гориво: Бензин</li>
+                    <li>Мощност: 600 к.с.</li>
+                    <li>Цвят: Черен</li>
+                    <li>Пробег: 4,000 км</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+
+    .card {
+        transition: transform 0.2s;
+        border: none;
+    }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+</style>
