@@ -310,19 +310,6 @@ C:\Users\Student10\Desktop\GTAuto\GTAutoWeb\GTAutoWeb\bin\Debug\net8.0\runtimes\
 C:\Users\Student10\Desktop\GTAuto\GTAutoWeb\GTAutoWeb\bin\Debug\net8.0\runtimes\win-arm64\native\e_sqlite3.dll
 C:\Users\Student10\Desktop\GTAuto\GTAutoWeb\GTAutoWeb\bin\Debug\net8.0\runtimes\win-x64\native\e_sqlite3.dll
 C:\Users\Student10\Desktop\GTAuto\GTAutoWeb\GTAutoWeb\bin\Debug\net8.0\runtimes\win-x86\native\e_sqlite3.dll
-C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAutoWeb\obj\Debug\net8.0\GTAutoWeb.csproj.AssemblyReference.cache
-C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAutoWeb\obj\Debug\net8.0\GTAutoWeb.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAutoWeb\obj\Debug\net8.0\GTAutoWeb.AssemblyInfoInputs.cache
-C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAutoWeb\obj\Debug\net8.0\GTAutoWeb.AssemblyInfo.cs
-C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAutoWeb\obj\Debug\net8.0\GTAutoWeb.csproj.CoreCompileInputs.cache
-C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAutoWeb\obj\Debug\net8.0\GTAutoWeb.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAutoWeb\obj\Debug\net8.0\GTAutoWeb.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAutoWeb\obj\Debug\net8.0\GTAutoWeb.RazorAssemblyInfo.cache
-C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAutoWeb\obj\Debug\net8.0\GTAutoWeb.RazorAssemblyInfo.cs
-C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAutoWeb\obj\Debug\net8.0\GTAutoWeb.sourcelink.json
-C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAutoWeb\obj\Debug\net8.0\GTAutoWeb.dll
-C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAutoWeb\obj\Debug\net8.0\refint\GTAutoWeb.dll
-C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAutoWeb\obj\Debug\net8.0\GTAutoWeb.pdb
 C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAutoWeb\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAutoWeb\bin\Debug\net8.0\appsettings.json
 C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAutoWeb\bin\Debug\net8.0\GTAutoWeb.staticwebassets.runtime.json
@@ -610,6 +597,16 @@ C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAutoWeb\bin\Debug\net8.0\run
 C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAutoWeb\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
 C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAutoWeb\bin\Debug\net8.0\GTAuto.Data.dll
 C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAutoWeb\bin\Debug\net8.0\GTAuto.Data.pdb
+C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAutoWeb\obj\Debug\net8.0\GTAutoWeb.csproj.AssemblyReference.cache
+C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAutoWeb\obj\Debug\net8.0\GTAutoWeb.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAutoWeb\obj\Debug\net8.0\GTAutoWeb.AssemblyInfoInputs.cache
+C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAutoWeb\obj\Debug\net8.0\GTAutoWeb.AssemblyInfo.cs
+C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAutoWeb\obj\Debug\net8.0\GTAutoWeb.csproj.CoreCompileInputs.cache
+C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAutoWeb\obj\Debug\net8.0\GTAutoWeb.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAutoWeb\obj\Debug\net8.0\GTAutoWeb.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAutoWeb\obj\Debug\net8.0\GTAutoWeb.RazorAssemblyInfo.cache
+C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAutoWeb\obj\Debug\net8.0\GTAutoWeb.RazorAssemblyInfo.cs
+C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAutoWeb\obj\Debug\net8.0\GTAutoWeb.sourcelink.json
 C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAutoWeb\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAutoWeb\obj\Debug\net8.0\staticwebassets.development.json
 C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAutoWeb\obj\Debug\net8.0\staticwebassets\msbuild.GTAutoWeb.Microsoft.AspNetCore.StaticWebAssets.props
@@ -621,5 +618,8 @@ C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAutoWeb\obj\Debug\net8.0\sco
 C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAutoWeb\obj\Debug\net8.0\scopedcss\bundle\GTAutoWeb.styles.css
 C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAutoWeb\obj\Debug\net8.0\scopedcss\projectbundle\GTAutoWeb.bundle.scp.css
 C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAutoWeb\obj\Debug\net8.0\GTAutoWeb.csproj.Up2Date
+C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAutoWeb\obj\Debug\net8.0\GTAutoWeb.dll
+C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAutoWeb\obj\Debug\net8.0\refint\GTAutoWeb.dll
+C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAutoWeb\obj\Debug\net8.0\GTAutoWeb.pdb
 C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAutoWeb\obj\Debug\net8.0\GTAutoWeb.genruntimeconfig.cache
 C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAutoWeb\obj\Debug\net8.0\ref\GTAutoWeb.dll

@@ -14,7 +14,7 @@ namespace GTAuto.Data.Models
         [MaxLength(100)]
         public string Name { get; set; }
 
-        public Guid BrandID { get; set; }
+        public Guid BrandId { get; set; }
         public Brand Brand { get; set; }
         public ICollection<Car> Cars { get; set; } = new List<Car>();
     }

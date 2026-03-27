@@ -12,7 +12,7 @@
 <table class="table">
     <thead>
         <tr>
-            <th>
+            <th style="color:white">
                 @Html.DisplayNameFor(model => model.Name)
             </th>
             <th></th>
@@ -21,13 +21,17 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
+                <td style="color:white">
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.Id"
+                       class="btn btn-white"
+                       style="background-color:#19719c; border:none;">
+                        Edit
+                    </a> |
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-warning">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
             </td>
         </tr>
 }

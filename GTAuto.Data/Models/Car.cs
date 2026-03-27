@@ -15,7 +15,6 @@ namespace GTAuto.Data.Models
 
         [Required]
         public Guid ModelId { get; set; }
-        [Required]
         public Model Model { get; set; }
         [Required]
 
@@ -41,12 +40,9 @@ namespace GTAuto.Data.Models
         public string Description { get; set; }
         [Required]
         public string ImageUrl { get; set; }
-        [Required]
-        public bool IsReserved { get; set; } = false;
-        [Required]
-        public bool IsSold { get; set; } = false;
-        [Required]
-        public bool IsAutomatic { get; set; } = false;
+        public bool IsReserved { get; set; }
+        public bool IsSold { get; set; }
+        public bool IsAutomatic { get; set; }
 
         public ICollection<CarFeature> CarFeatures { get; set; } = new List<CarFeature>();
 

@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GTAuto.Data.Models;
+using GTAutoWeb.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GTAutoWeb.Controllers
 {
@@ -21,10 +23,9 @@ namespace GTAutoWeb.Controllers
         // GET: Cars
         public async Task<IActionResult> Index()
         {
-            var gTAutoDbContext = _context.Cars.Include(c => c.Model);
-            return View(await gTAutoDbContext.ToListAsync());
+            var gTAutoDbContext = await _context.Cars.Include(c => c.Model).ToListAsync();
+            return View(gTAutoDbContext);
         }
-
         // GET: Cars/Details/5
         public async Task<IActionResult> Details(Guid? id)
         {
@@ -44,11 +45,13 @@ namespace GTAutoWeb.Controllers
             return View(car);
         }
 
+     
         // GET: Cars/Create
         public IActionResult Create()
         {
-            ViewData["ModelId"] = new SelectList(_context.Models, "Id", "Name");
-            return View();
+            var vm = new CarViewModel();
+            ViewBag.Models = new SelectList(_context.Models, "Id", "Name");
+            return View(vm);
         }
 
         // POST: Cars/Create
@@ -56,50 +59,98 @@ namespace GTAutoWeb.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ModelId,Year,HorsePower,Price,Mileage,FuelType,Transmission,Color,Description,ImageUrl,IsReserved,IsSold,IsAutomatic")] Car car)
+        public async Task<IActionResult> Create(CarViewModel vm)
         {
+            ViewData["Models"] = new SelectList(_context.Models, "Id", "Name", vm.ModelId);
+
             if (ModelState.IsValid)
             {
-                car.Id = Guid.NewGuid();
-                _context.Add(car);
+                var car = new Car
+                {
+                    Id = Guid.NewGuid(),
+                    ModelId = vm.ModelId,
+                    Year = vm.Year,
+                    HorsePower = vm.HorsePower,
+                    Price = vm.Price,
+                    Mileage = vm.Mileage,
+                    FuelType = vm.FuelType,
+                    Transmission = vm.Transmission,
+                    Color = vm.Color,
+                    Description = vm.Description,
+                    ImageUrl = vm.ImageUrl,
+                    IsReserved = vm.IsReserved,
+                    IsSold = vm.IsSold,
+                    IsAutomatic = vm.IsAutomatic  
+                };
+
+                _context.Cars.Add(car);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ModelId"] = new SelectList(_context.Models, "Id", "Name", car.ModelId);
-            return View(car);
+
+            return View(vm);
         }
 
         // GET: Cars/Edit/5
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null)
-            {
                 return NotFound();
-            }
 
             var car = await _context.Cars.FindAsync(id);
             if (car == null)
-            {
                 return NotFound();
-            }
-            ViewData["ModelId"] = new SelectList(_context.Models, "Id", "Name", car.ModelId);
-            return View(car);
+
+            var vm = new CarViewModel
+            {
+                Id = car.Id,
+                ModelId = car.ModelId,
+                Year = car.Year,
+                HorsePower = car.HorsePower,
+                Price = car.Price,
+                Mileage = car.Mileage,
+                FuelType = car.FuelType,
+                Transmission = car.Transmission,
+                Color = car.Color,
+                Description = car.Description,
+                ImageUrl = car.ImageUrl,
+                IsReserved = car.IsReserved,
+                IsSold = car.IsSold,
+                IsAutomatic = car.IsAutomatic
+            };
+
+            ViewData["Models"] = new SelectList(_context.Models, "Id", "Name", car.ModelId);
+            return View(vm);
         }
 
         // POST: Cars/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id,ModelId,Year,HorsePower,Price,Mileage,FuelType,Transmission,Color,Description,ImageUrl,IsReserved,IsSold,IsAutomatic")] Car car)
+        public async Task<IActionResult> Edit(Guid id, CarViewModel vm)
         {
-            if (id != car.Id)
-            {
+            if (id != vm.Id)
                 return NotFound();
-            }
 
             if (ModelState.IsValid)
             {
+                var car = await _context.Cars.FindAsync(id);
+                if (car == null)
+                    return NotFound();
+
+                car.ModelId = vm.ModelId;
+                car.Year = vm.Year;
+                car.HorsePower = vm.HorsePower;
+                car.Price = vm.Price;
+                car.Mileage = vm.Mileage;
+                car.FuelType = vm.FuelType;
+                car.Transmission = vm.Transmission;
+                car.Color = vm.Color;
+                car.Description = vm.Description;
+                car.ImageUrl = vm.ImageUrl;
+                car.IsReserved = vm.IsReserved;
+                car.IsSold = vm.IsSold;
+                car.IsAutomatic = vm.IsAutomatic;
+
                 try
                 {
                     _context.Update(car);
@@ -108,18 +159,15 @@ namespace GTAutoWeb.Controllers
                 catch (DbUpdateConcurrencyException)
                 {
                     if (!CarExists(car.Id))
-                    {
                         return NotFound();
-                    }
                     else
-                    {
                         throw;
-                    }
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ModelId"] = new SelectList(_context.Models, "Id", "Name", car.ModelId);
-            return View(car);
+
+            ViewData["Models"] = new SelectList(_context.Models, "Id", "Name", vm.ModelId);
+            return View(vm);
         }
 
         // GET: Cars/Delete/5

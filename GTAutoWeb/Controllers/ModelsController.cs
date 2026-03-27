@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GTAuto.Data.Models;
+using GTAutoWeb.ViewModel;
 
 namespace GTAutoWeb.Controllers
 {
@@ -45,6 +46,7 @@ namespace GTAutoWeb.Controllers
         // GET: Models/Create
         public IActionResult Create()
         {
+            ViewData["Brands"] = new SelectList(_context.Brands, "Id", "Name");
             return View();
         }
 
@@ -53,15 +55,25 @@ namespace GTAutoWeb.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name")] Model model)
+        public async Task<IActionResult> Create(ModelViewModel model)
         {
             if (ModelState.IsValid)
             {
                 model.Id = Guid.NewGuid();
-                _context.Add(model);
+
+                Model model1 = new Model
+                {
+                    Id = model.Id,
+                    BrandId = model.BrandId,
+                    Name = model.Name
+                };
+
+                _context.Add(model1);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
+            ViewData["Brands"] = new SelectList(_context.Brands, "Id", "Name", model.BrandId);
             return View(model);
         }
 

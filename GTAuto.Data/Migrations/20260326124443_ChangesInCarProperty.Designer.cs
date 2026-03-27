@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GTAuto.Data.Migrations
 {
     [DbContext(typeof(GTAutoDbContext))]
-    partial class GTAutoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260326124443_ChangesInCarProperty")]
+    partial class ChangesInCarProperty
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -62,13 +65,13 @@ namespace GTAuto.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsAutomatic")
+                    b.Property<bool?>("IsAutomatic")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("IsReserved")
+                    b.Property<bool?>("IsReserved")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("IsSold")
+                    b.Property<bool?>("IsSold")
                         .HasColumnType("bit");
 
                     b.Property<int>("Mileage")

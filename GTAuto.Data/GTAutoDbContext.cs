@@ -1,4 +1,5 @@
-﻿using GTAuto.Data.Models;
+﻿using GTAuto.Data.Configurations;
+using GTAuto.Data.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -23,6 +24,8 @@ public class GTAutoDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+
+        modelBuilder.ApplyConfiguration(new CarsConfiguration());
 
         modelBuilder.Entity<CarFeature>()
             .HasKey(cf => new { cf.CarId, cf.FeatureId });

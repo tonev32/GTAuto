@@ -1,107 +1,43 @@
 ﻿@model IEnumerable<GTAuto.Data.Models.Car>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Cars";
 }
 
-<h1>Index</h1>
+<h1>Cars</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Model)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Year)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.HorsePower)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Mileage)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FuelType)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Transmission)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Color)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ImageUrl)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsReserved)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsSold)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsAutomatic)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Model.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Year)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HorsePower)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Mileage)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FuelType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Transmission)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Color)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImageUrl)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsReserved)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsSold)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsAutomatic)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+
+<div class="row">
+    @foreach (var car in Model)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                @if (!string.IsNullOrEmpty(car.ImageUrl))
+                {
+                    <img src="@car.ImageUrl" class="card-img-top" alt="@car.Model.Name" style="height:200px; object-fit:cover;">
+                }
+                <div class="card-body">
+                    <h5 class="card-title">@car.Model.Name</h5>
+                   
+                </div>
+                <div class="card-footer text-center">
+                    @if (User.IsInRole("Admin"))
+                    {
+
+                <a asp-action="Edit" asp-route-id="@car.Id" class="btn btn-sm btn-warning">Edit</a>
+
+                        <a asp-action="Delete" asp-route-id="@car.Id" class="btn btn-sm btn-danger">Delete</a>
+                    }
+                    <a asp-action="Details" asp-route-id="@car.Id"
+                       class="btn btn-sm text-white"
+                       style="background-color:#19719c; border:none;">
+                        Details
+                    </a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

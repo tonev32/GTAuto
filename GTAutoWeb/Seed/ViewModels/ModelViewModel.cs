@@ -12,7 +12,7 @@ namespace GTAutoWeb.ViewModel
         public string Name { get; set; }
 
         public Guid BrandId { get; set; }
-        public Brand Brand { get; set; }
+        //public Brand Brand { get; set; }
 
         public ICollection<Car> Cars { get; set; } = new List<Car>();
     }
