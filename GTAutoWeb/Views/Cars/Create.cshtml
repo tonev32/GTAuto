@@ -1,90 +1,169 @@
 ﻿@model GTAutoWeb.ViewModel.CarViewModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Create Car Ad";
 }
 
-<h1>Create</h1>
+<style>
+    /* Дизайн на фона и контейнера */
+    body {
+        background-color: #121212;
+        color: white;
+    }
 
-<h4>Car</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create" method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <select asp-for="ModelId" class="form-control" asp-items="ViewBag.Models">
-                <option value="">-- Select Model --</option>
-            </select>
-            <div class="form-group">
-                <label asp-for="Year" class="control-label"></label>
-                <input asp-for="Year" class="form-control" />
-                <span asp-validation-for="Year" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="HorsePower" class="control-label"></label>
-                <input asp-for="HorsePower" class="form-control" />
-                <span asp-validation-for="HorsePower" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Price" class="control-label"></label>
-                <input asp-for="Price" class="form-control" />
-                <span asp-validation-for="Price" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Mileage" class="control-label"></label>
-                <input asp-for="Mileage" class="form-control" />
-                <span asp-validation-for="Mileage" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FuelType" class="control-label"></label>
-                <input asp-for="FuelType" class="form-control" />
-                <span asp-validation-for="FuelType" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Transmission" class="control-label"></label>
-                <input asp-for="Transmission" class="form-control" />
-                <span asp-validation-for="Transmission" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Color" class="control-label"></label>
-                <input asp-for="Color" class="form-control" />
-                <span asp-validation-for="Color" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ImageUrl" class="control-label"></label>
-                <input asp-for="ImageUrl" class="form-control" />
-                <span asp-validation-for="ImageUrl" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <input class="form-check-input" asp-for="IsReserved" />
-                <label class="form-check-label" asp-for="IsReserved"></label>
-            </div>
+    .create-card {
+        background-color: #1e1e1e;
+        border: 1px solid #333;
+        border-radius: 15px;
+        padding: 35px;
+        margin-top: 30px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
 
-            <div class="form-group form-check">
-                <input class="form-check-input" asp-for="IsSold" />
-                <label class="form-check-label" asp-for="IsSold"></label>
-            </div>
+    /* Стилизиране на полетата за писане */
+    .form-control, .form-select {
+        background-color: #2a2a2a;
+        border: 1px solid #444;
+        color: white;
+        border-radius: 8px;
+        padding: 10px 15px;
+    }
 
-            <div class="form-group form-check">
-                <input class="form-check-input" asp-for="IsAutomatic" />
-                <label class="form-check-label" asp-for="IsAutomatic"></label>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+        .form-control:focus {
+            background-color: #2a2a2a;
+            color: white;
+            border-color: #e63946;
+            box-shadow: 0 0 10px rgba(230, 57, 70, 0.2);
+        }
+
+    /* Етикети (Labels) */
+    .form-label {
+        color: #8c8c8c;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        letter-spacing: 1px;
+        font-weight: bold;
+        margin-bottom: 5px;
+        display: block;
+    }
+
+    /* Бутонът */
+    .btn-submit {
+        background-color: #e63946;
+        border: none;
+        padding: 12px 50px;
+        font-weight: bold;
+        text-transform: uppercase;
+        border-radius: 8px;
+        transition: 0.3s;
+    }
+
+        .btn-submit:hover {
+            background-color: #c92a36;
+            transform: translateY(-2px);
+        }
+</style>
+
+<div class="container pb-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-9 create-card">
+            <h2 class="text-white fw-bold mb-4">Create New Advertisement</h2>
+            <hr style="border-color: #333;" />
+
+            <form asp-action="Create" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <div class="mb-4">
+                    <label class="form-label">Vehicle Model</label>
+                    <select asp-for="ModelId" class="form-control" asp-items="ViewBag.Models">
+                        <option value="">-- Select Brand and Model --</option>
+                    </select>
+                    <span asp-validation-for="ModelId" class="text-danger"></span>
+                </div>
+
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <label asp-for="Year" class="form-label">Year</label>
+                        <input asp-for="Year" class="form-control" />
+                        <span asp-validation-for="Year" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-4">
+                        <label asp-for="HorsePower" class="form-label">HorsePower</label>
+                        <input asp-for="HorsePower" class="form-control" />
+                        <span asp-validation-for="HorsePower" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-4">
+                        <label asp-for="Price" class="form-label">Price (€)</label>
+                        <input asp-for="Price" class="form-control" />
+                        <span asp-validation-for="Price" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label asp-for="Mileage" class="form-label">Mileage (km)</label>
+                        <input asp-for="Mileage" class="form-control" />
+                        <span asp-validation-for="Mileage" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-4">
+                        <label asp-for="FuelType" class="form-label">Fuel Type</label>
+                        <input asp-for="FuelType" class="form-control" placeholder="e.g. Petrol" />
+                        <span asp-validation-for="FuelType" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-4">
+                        <label asp-for="Transmission" class="form-label">Transmission</label>
+                        <input asp-for="Transmission" class="form-control" placeholder="Automatic" />
+                        <span asp-validation-for="Transmission" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label asp-for="Color" class="form-label">Color</label>
+                        <input asp-for="Color" class="form-control" />
+                        <span asp-validation-for="Color" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <label asp-for="ImageUrl" class="form-label">Image URL</label>
+                        <input asp-for="ImageUrl" class="form-control" placeholder="Link to photo..." />
+                        <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-12">
+                        <label asp-for="Description" class="form-label">Description</label>
+                        <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-check pt-2">
+                            <input class="form-check-input" asp-for="IsReserved" />
+                            <label class="form-check-label text-muted" asp-for="IsReserved">Reserved</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-check pt-2">
+                            <input class="form-check-input" asp-for="IsSold" />
+                            <label class="form-check-label text-muted" asp-for="IsSold">Sold</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-check pt-2">
+                            <input class="form-check-input" asp-for="IsAutomatic" />
+                            <label class="form-check-label text-muted" asp-for="IsAutomatic">Automatic</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-5">
+                    <button type="submit" class="btn btn-submit text-white">Create Listing</button>
+                    <div class="mt-3">
+                        <a asp-action="Index" class="text-info text-decoration-none small">Back to List</a>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

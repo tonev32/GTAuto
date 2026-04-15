@@ -1,76 +1,238 @@
 ﻿@model GTAuto.Data.Models.Car
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Vehicle Details";
 }
 
-<h1>Details</h1>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
-<div>
-    <h4>Car</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Model)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Year)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Year)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.HorsePower)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.HorsePower)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Mileage)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Mileage)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FuelType)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FuelType)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Transmission)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Transmission)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Color)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Color)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-       
-    </dl>
-</div>
-<div class="mt-3 text-start">
-    <a asp-controller="Cars" asp-action="Index"
-       class="btn text-white px-3 py-1"
-       style="background-color:#19719c; border:none;">
-        Назад
-    </a>
+<style>
+    body {
+        background-color: #121212;
+    }
+
+    .details-container {
+        margin-top: 40px;
+        margin-bottom: 60px;
+    }
+
+    .spec-card {
+        background-color: #1e1e1e;
+        border: 1px solid #333;
+        border-radius: 10px;
+        padding: 15px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        height: 100%;
+    }
+
+        .spec-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 191, 255, 0.15);
+            border-color: rgba(0, 191, 255, 0.4);
+        }
+
+    .spec-icon {
+        color: #00bfff;
+        font-size: 1.2rem;
+        margin-right: 10px;
+    }
+
+    .spec-label {
+        color: #8c8c8c;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 5px;
+    }
+
+    .spec-value {
+        color: #ffffff;
+        font-size: 1.2rem;
+        font-weight: 700;
+    }
+
+    .price-card {
+        background: linear-gradient(145deg, #1e1e1e, #2a1114);
+        border: 1px solid #e63946;
+        border-radius: 10px;
+        padding: 20px;
+        margin-top: 20px;
+    }
+
+    .price-value {
+        color: #e63946;
+        font-size: 2rem;
+        font-weight: 900;
+        margin-bottom: 0;
+    }
+
+    .desc-card {
+        background-color: #1e1e1e;
+        border: 1px solid #333;
+        border-radius: 10px;
+        padding: 20px;
+        margin-top: 20px;
+    }
+
+    .gallery-container {
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid #333;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .carousel-item img {
+        height: 500px;
+        object-fit: cover;
+        width: 100%;
+    }
+
+    .btn-back {
+        background-color: transparent;
+        color: #ffffff;
+        border: 1px solid #555;
+        padding: 10px 30px;
+        border-radius: 50px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+        .btn-back:hover {
+            background-color: #333;
+            color: #00bfff;
+            border-color: #00bfff;
+        }
+</style>
+
+<div class="container details-container">
+    <div class="row mb-5">
+        <div class="col-12">
+            <h1 class="text-white fw-bold mb-1" style="font-size: 2.5rem;">@Model.Model.Name</h1>
+            <p style="color: #00bfff; font-size: 1.1rem; letter-spacing: 2px; text-transform: uppercase;">Premium Listing</p>
+        </div>
+    </div>
+
+    <div class="row g-5">
+
+        <div class="col-lg-5">
+            <h3 class="text-white mb-4 fw-bold border-bottom border-secondary pb-2">Vehicle Specifications</h3>
+
+            <div class="row g-3">
+                <div class="col-6">
+                    <div class="spec-card">
+                        <div class="spec-label">
+                            <i class="bi bi-calendar-event spec-icon"></i> Year
+                        </div>
+                        <div class="spec-value">@Model.Year</div>
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <div class="spec-card">
+                        <div class="spec-label">
+                            <i class="bi bi-speedometer2 spec-icon"></i> Mileage
+                        </div>
+                        <div class="spec-value">@Model.Mileage km</div>
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <div class="spec-card">
+                        <div class="spec-label">
+                            <i class="bi bi-lightning-charge spec-icon"></i> Horsepower
+                        </div>
+                        <div class="spec-value">@Model.HorsePower HP</div>
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <div class="spec-card">
+                        <div class="spec-label">
+                            <i class="bi bi-fuel-pump spec-icon"></i> Fuel Type
+                        </div>
+                        <div class="spec-value">@Model.FuelType</div>
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <div class="spec-card">
+                        <div class="spec-label">
+                            <i class="bi bi-gear-wide-connected spec-icon"></i> Transmission
+                        </div>
+                        <div class="spec-value">@Model.Transmission</div>
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <div class="spec-card">
+                        <div class="spec-label">
+                            <i class="bi bi-palette spec-icon"></i> Color
+                        </div>
+                        <div class="spec-value">@Model.Color</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="price-card">
+                <div class="spec-label text-white mb-1"><i class="bi bi-tag-fill me-2"></i> Asking Price</div>
+                <h2 class="price-value">@Model.Price.ToString("N0", System.Globalization.CultureInfo.InvariantCulture) €</h2>
+            </div>
+
+            <div class="desc-card">
+                <div class="spec-label mb-2"><i class="bi bi-card-text spec-icon"></i> Description</div>
+                <p class="text-white" style="line-height: 1.6;">
+                    @Model.Description
+                </p>
+            </div>
+        </div>
+
+        <div class="col-lg-7">
+            <h3 class="text-white mb-4 fw-bold border-bottom border-secondary pb-2">Photo Gallery</h3>
+
+            <div class="gallery-container">
+                <div id="carGalleryControls" class="carousel slide carousel-fade" data-bs-ride="carousel">
+
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carGalleryControls" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carGalleryControls" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carGalleryControls" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    </div>
+
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="@Model.ImageUrl" class="d-block w-100" alt="Main View">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?q=80&w=1920&auto=format&fit=crop" class="d-block w-100" alt="Interior View">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?q=80&w=1920&auto=format&fit=crop" class="d-block w-100" alt="Rear View">
+                        </div>
+                    </div>
+
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carGalleryControls" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carGalleryControls" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row mt-5 pt-4 border-top border-secondary">
+        <div class="col-12 text-center">
+            <a asp-action="Index" class="btn-back">
+                <i class="bi bi-arrow-left"></i> Back to Inventory
+            </a>
+        </div>
+    </div>
 </div>

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using GTAuto.Data.Models;
+using GTAuto.Data;
 
 namespace GTAutoWeb.Controllers
 {

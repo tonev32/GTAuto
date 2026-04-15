@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using GTAuto.Data.Models;
 using Hospital.WebProject.Seed;
 using GTAutoWeb.Seed;
+using GTAuto.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 

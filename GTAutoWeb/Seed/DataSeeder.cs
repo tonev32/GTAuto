@@ -1,4 +1,6 @@
 ﻿using GTAuto.WebApp.Seed;
+using GTAutoWeb.Seed;
+using GTAuto.Data;
 
 namespace GTAutoWeb.Seed
 {

@@ -1,42 +1,17 @@
-﻿@using GTAutoWeb.ViewModel
-@model ModelViewModel
+﻿@model GTAutoWeb.ViewModel.ModelViewModel
 
-@{
-    ViewData["Title"] = "Create";
-}
-
-<h1>Create</h1>
-
-<h4>Model</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
+<div class="container mt-5">
+    <div class="card bg-dark text-white p-4">
+        <h2>Add Vehicle (Brand & Model)</h2>
         <form asp-action="Create" method="post">
-            @Html.AntiForgeryToken()
-
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-            <div class="form-group">
-                <label asp-for="Name"></label>
-                <input asp-for="Name" class="form-control" />
+            <div class="mb-3">
+                <label class="form-label">Enter Brand and Model (e.g. Audi RS6)</label>
+                <input asp-for="Name" class="form-control bg-secondary text-white" placeholder="Write here..." />
             </div>
 
-            <div class="form-group">
-                <label>Brand</label>
-                <select asp-for="BrandId" asp-items="ViewBag.Brands" class="form-control"></select>
-            </div>
+            <input type="hidden" name="BrandId" value="@ViewBag.BrandId" />
 
-            <br />
-
-            <input type="submit" value="Create" class="btn btn-primary" />
+            <button type="submit" class="btn btn-danger">Save Vehicle</button>
         </form>
     </div>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

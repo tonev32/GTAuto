@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GTAuto.Data.Models;
 using GTAutoWeb.ViewModel;
+using GTAuto.Data;
 
 namespace GTAutoWeb.Controllers
 {
@@ -44,9 +45,23 @@ namespace GTAutoWeb.Controllers
         }
 
         // GET: Models/Create
+        [HttpGet]
         public IActionResult Create()
         {
-            ViewData["Brands"] = new SelectList(_context.Brands, "Id", "Name");
+            var brand = _context.Brands.FirstOrDefault();
+
+            if (brand == null)
+            {
+                brand = new Brand
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "General"
+                };
+                _context.Brands.Add(brand);
+                _context.SaveChanges();
+            }
+
+            ViewBag.BrandId = brand.Id;
             return View();
         }
 

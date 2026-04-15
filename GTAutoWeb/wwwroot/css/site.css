@@ -127,3 +127,58 @@ html {
     .about-content p {
         font-size: 1.2rem;
     }
+/* Дефиниране на светкащата анимация */
+@keyframes led-flash {
+    0% {
+        box-shadow: 0 0 5px rgba(0, 191, 255, 0.4);
+    }
+
+    50% {
+        box-shadow: 0 0 25px rgba(0, 191, 255, 0.9);
+    }
+
+    100% {
+        box-shadow: 0 0 5px rgba(0, 191, 255, 0.4);
+    }
+}
+
+/* 1. Дефиниране на светкащата анимация (остава същото) */
+@keyframes led-flash {
+    0% {
+        box-shadow: 0 0 5px rgba(0, 191, 255, 0.4);
+    }
+
+    50% {
+        box-shadow: 0 0 25px rgba(0, 191, 255, 0.9);
+    }
+
+    100% {
+        box-shadow: 0 0 5px rgba(0, 191, 255, 0.4);
+    }
+}
+
+/* 2. Основната карта (вече НЕ светка постоянно) */
+.led-card {
+    border-radius: 10px;
+    background-color: #1e1e1e;
+    border: none;
+    cursor: pointer;
+    /* Плавен преход за повдигането, за да не "скача" рязко */
+    transition: transform 0.3s ease;
+}
+
+    /* 3. Ефектът се включва САМО при посочване (hover) */
+    .led-card:hover {
+        transform: translateY(-8px) scale(1.01); /* Леко повдигане и уголемяване */
+        animation: led-flash 1.5s infinite; /* Тук стартира светкащият LED ефект */
+    }
+
+/* 4. Заглавието (остава както преди) */
+.main-title-thick {
+    font-weight: 900;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: center;
+    margin-bottom: 30px;
+}
