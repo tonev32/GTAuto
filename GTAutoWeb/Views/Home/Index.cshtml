@@ -1,196 +1,115 @@
-﻿
-
-@{
-    ViewData["Title"] = "Home Page";
-}
-<!-- Хедър с фон -->
-<div class="p-5 mb-4 bg-dark text-white rounded-3 shadow-lg" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1600&q=80'); background-size: cover; background-position: center;">
-    <div class="container-fluid py-5 text-center">
-        <h1 class="display-4 fw-bold">Добре дошли в GTAuto</h1>
-        <p class="fs-4">Намерете своята мечтана кола сред най-добрите предложения на пазара.</p>
-        <a href="#topOffers" class="btn btn-lg px-5" style="background-color: #19719c; color: white;">Разгледай инвентара</a>
-    </div>
-</div>
-
-<!-- Топ оферти -->
-<div class="container my-5" id="topOffers">
-    <h2 class="text-center mb-4 fw-bold">Топ оферти</h2>
-    <div class="row g-4">
-        <!-- Porsche -->
-        <div class="col-md-4">
-            <div class="card shadow-sm h-100">
-                <img src="https://mobistatic3.focus.bg/mobile/photosorg/896/1/big1/11771344274769896_KT.webp" class="card-img-top">
-                <div class="card-body d-flex flex-column">
-                    <h5 class="fw-bold">Porsche 911 Carrera</h5>
-                    <p class="text-muted mb-2">Година: 2022 | Гориво: Бензин</p>
-                    <div class="d-flex flex-column mt-auto">
-                        <span class="text-muted"><del>200,000 €</del></span>
-                        <span class="h5 text-danger fw-bold">185,000 €</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- BMW M4 -->
-        <div class="col-md-4">
-            <div class="card shadow-sm h-100">
-                <img src="https://images.ctfassets.net/c9t6u0qhbv9e/0VMDjyffUuWwyCP3eOJuP/e060dc1d4be602ecfc64baed026ca3ce/2023_BMW_M4_Review_Lead_In.jpeg" class="card-img-top">
-                <div class="card-body d-flex flex-column">
-                    <h5 class="fw-bold">BMW M4 Competition</h5>
-                    <p class="text-muted mb-2">Година: 2023 | Гориво: Бензин</p>
-                    <div class="d-flex flex-column mt-auto">
-                        <span class="text-muted"><del>195,000 €</del></span>
-                        <span class="h5 text-danger fw-bold">170,000 €</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Audi RS7 -->
-        <div class="col-md-4">
-            <div class="card shadow-sm h-100">
-                <img src="https://mobistatic1.focus.bg/mobile/photosorg/682/1/big/11536518663929682_bZ.webp" class="card-img-top">
-                <div class="card-body d-flex flex-column">
-                    <h5 class="fw-bold">Audi RS7</h5>
-                    <p class="text-muted mb-2">Година: 2022 | Гориво: Бензин</p>
-                    <div class="d-flex flex-column mt-auto">
-                        <span class="text-muted"><del>175,000 €</del></span>
-                        <span class="h5 text-danger fw-bold">160,000 €</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Mercedes -->
-        <div class="col-md-4">
-            <div class="card shadow-sm h-100">
-                <img src="https://wieck-mbusa-production.s3.amazonaws.com/photos/5490f6d098096fdb20f708a9632ff04b95787725/preview-928x522.jpg" class="card-img-top">
-                <div class="card-body d-flex flex-column">
-                    <h5 class="fw-bold">Mercedes AMG GT</h5>
-                    <p class="text-muted mb-2">Година: 2021 | Гориво: Бензин</p>
-                    <div class="d-flex flex-column mt-auto">
-                        <span class="text-muted"><del>180,000 €</del></span>
-                        <span class="h5 text-danger fw-bold">165,000 €</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- VW -->
-        <div class="col-md-4">
-            <div class="card shadow-sm h-100">
-                <img src="https://cdn.avo.africa/cdn-cgi/image/width=1400,height=933/https://cdn.avo.africa/auto/party/RGVhbGVyOjUy/listings/TGlzdGluZzozNzU0MDM/images/2020-volkswagen-vw-golf-7-gti-2.0-tsi-dsg-tcr-kwazulu-natal-0.jpeg" class="card-img-top">
-                <div class="card-body d-flex flex-column">
-                    <h5 class="fw-bold">VW Golf 6 GTI</h5>
-                    <p class="text-muted mb-2">Година: 2020 | Гориво: Бензин</p>
-                    <div class="d-flex flex-column mt-auto">
-                        <span class="text-muted"><del>45,000 €</del></span>
-                        <span class="h5 text-danger fw-bold">39,000 €</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Tesla -->
-        <div class="col-md-4">
-            <div class="card shadow-sm h-100">
-                <img src="https://s.list.am/f/479/78261479.webp" class="card-img-top">
-                <div class="card-body d-flex flex-column">
-                    <h5 class="fw-bold">Tesla Model S</h5>
-                    <p class="text-muted mb-2">Година: 2022 | Гориво: Електрически</p>
-                    <div class="d-flex flex-column mt-auto">
-                        <span class="text-muted"><del>120,000 €</del></span>
-                        <span class="h5 text-danger fw-bold">110,000 €</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- BMW X5 -->
-        <div class="col-md-4">
-            <div class="card shadow-sm h-100">
-                <img src="https://media.ed.edmunds-media.com/bmw/x5/2021/oem/2021_bmw_x5_4dr-suv_xdrive45e_fq_oem_2_1600.jpg" class="card-img-top">
-                <div class="card-body d-flex flex-column">
-                    <h5 class="fw-bold">BMW X5</h5>
-                    <p class="text-muted mb-2">Година: 2021 | Гориво: Дизел</p>
-                    <div class="d-flex flex-column mt-auto">
-                        <span class="text-muted"><del>95,000 €</del></span>
-                        <span class="h5 text-danger fw-bold">85,000 €</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Audi A6 -->
-        <div class="col-md-4">
-            <div class="card shadow-sm h-100">
-                <img src="https://i.gaw.to/vehicles/photos/40/19/401933-2020-audi-a6.jpg?640x400" class="card-img-top">
-                <div class="card-body d-flex flex-column">
-                    <h5 class="fw-bold">Audi A6</h5>
-                    <p class="text-muted mb-2">Година: 2020 | Гориво: Дизел</p>
-                    <div class="d-flex flex-column mt-auto">
-                        <span class="text-muted"><del>55,000 €</del></span>
-                        <span class="h5 text-danger fw-bold">49,000 €</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Toyota -->
-        <div class="col-md-4">
-            <div class="card shadow-sm h-100">
-                <img src="https://cdn.jdpower.com/Models/640x480/2019-Toyota-Corolla-L.jpg" class="card-img-top">
-                <div class="card-body d-flex flex-column">
-                    <h5 class="fw-bold">Toyota Corolla</h5>
-                    <p class="text-muted mb-2">Година: 2019 | Гориво: Хибрид</p>
-                    <div class="d-flex flex-column mt-auto">
-                        <span class="text-muted"><del>28,000 €</del></span>
-                        <span class="h5 text-danger fw-bold">24,500 €</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-</div>
+﻿@model IEnumerable<GTAuto.Data.Models.Car>
 
 <style>
-    body {
-        background-color: #f8f9fa;
+    .hero-e39 {
+        height: 75vh;
+        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)), url('https://external-preview.redd.it/e39-night-gaze-v0-Ll4MTr-gO9BAwYcc3b2TYS5g-hXgk08754fKOCvkkmU.jpg?auto=webp&s=a96aaeacfa965028ac50fd76aaeab70a28b073f0');
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
-    .card {
-        border: none;
-        transition: 0.2s;
-    }
-
-        .card:hover {
-            transform: translateY(-5px);
+        .hero-e39 h1 {
+            font-size: 7rem;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: -3px;
         }
 
-    /* УЕДНАКВЯВА ВСИЧКИ СНИМКИ */
-    .card-img-top {
-        height: 200px;
-        object-fit: cover;
-    }
-</style>
-<style>
-    .custom-btn {
-        background-color: #19719c;
-        color: white;
-        border: none;
-        transition: 0.3s;
+            .hero-e39 h1 span {
+                color: #00d4ff;
+                text-shadow: 0 0 30px #00d4ff, 0 0 60px rgba(0, 212, 255, 0.5);
+            }
+
+    .stats-bar {
+        background-color: #080808;
+        padding: 15px 0;
+        border-bottom: 1px solid #151515;
     }
 
-        .custom-btn:hover {
-            background-color: #155d80;
-            transform: scale(1.05);
+    .stat-text span {
+        color: #00d4ff;
+    }
+
+    .offers-section {
+        background-color: #000000 !important;
+        padding: 100px 0;
+    }
+
+    .car-card-noir {
+        background: #0d0d0d;
+        border: 1px solid #1a1a1a;
+        border-radius: 12px;
+        transition: 0.4s;
+    }
+
+        .car-card-noir:hover {
+            border-color: #00d4ff;
+            transform: translateY(-10px);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.15);
+        }
+
+    .price-blue {
+        color: #00d4ff;
+        font-size: 1.8rem;
+        font-weight: 800;
+    }
+
+    .btn-blue {
+        background: #00d4ff;
+        color: #000; /* Черно върху синьо за по-добър контраст */
+        font-weight: 800;
+        text-transform: uppercase;
+        padding: 12px;
+        width: 100%;
+        display: block;
+        text-align: center;
+        text-decoration: none;
+    }
+
+        .btn-blue:hover {
+            background: #00aacc;
+            box-shadow: 0 0 15px #00d4ff;
+            color: #000;
         }
 </style>
 
-<div class="text-center mt-5">
-    <a asp-controller="Cars" asp-action="Index"
-       class="btn btn-lg px-5 py-3 custom-btn">
-        Купи сега
-    </a>
+<div class="hero-e39 text-center">
+    <div>
+        <p class="text-uppercase tracking-widest text-muted small mb-0">Built for the elite</p>
+        <h1>GT<span>AUTO</span></h1>
+    </div>
+</div>
+
+<div class="stats-bar">
+    <div class="container">
+        <div class="row text-center text-white">
+            <div class="col-md-4 stat-text text-uppercase fw-bold">Max Single Order: <span>€1.2M</span></div>
+            <div class="col-md-4 stat-text text-uppercase fw-bold">VIP Deliveries: <span>150+</span></div>
+            <div class="col-md-4 stat-text text-uppercase fw-bold">Fastest Delivery: <span>48H</span></div>
+        </div>
+    </div>
+</div>
+
+<div class="offers-section">
+    <div class="container text-white">
+        <h2 class="display-4 fw-800 text-uppercase mb-5">Flash <span style="color: #00d4ff;">Offers</span></h2>
+        <div class="row g-4">
+            @foreach (var car in Model)
+            {
+                <div class="col-lg-4">
+                    <div class="car-card-noir">
+                        <img src="@car.ImageUrl" class="w-100" style="height: 260px; object-fit: cover; filter: brightness(0.8);">
+                        <div class="p-4">
+                            <h3 class="h4 fw-bold mb-3">@car.Model?.Name</h3>
+                            <div class="price-blue mb-4">€@car.Price.ToString("N0")</div>
+                            <a asp-action="Details" asp-route-id="@car.Id" class="btn-blue">Inspect Asset</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
 </div>

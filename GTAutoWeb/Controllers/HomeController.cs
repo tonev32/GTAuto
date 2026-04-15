@@ -1,25 +1,37 @@
-using GTAutoWeb.Models;
-using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using GTAuto.Data;
+using GTAutoWeb.ViewModel;
+using GTAutoWeb.Models; // Увери се, че това е твоят namespace за ErrorViewModel
 
 namespace GTAutoWeb.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly GTAutoDbContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(GTAutoDbContext context)
         {
-            _logger = logger;
+            _context = context;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
+        {
+            var featuredCars = await _context.Cars
+                .Include(c => c.Model)
+                .Take(3)
+                .ToListAsync();
+
+            return View(featuredCars);
+        }
+
+        public IActionResult Privacy()
         {
             return View();
         }
 
-        public IActionResult AboutUs()
+        public IActionResult About()
         {
             return View();
         }

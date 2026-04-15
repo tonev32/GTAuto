@@ -1,138 +1,183 @@
 ﻿@model IEnumerable<GTAuto.Data.Models.Car>
 
 @{
-    ViewData["Title"] = "Vehicle Inventory";
+    ViewData["Title"] = "Premium Inventory";
 }
 
 <style>
-    .led-card {
-        border-radius: 12px;
-        background-color: #1e1e1e;
-        border: 1px solid transparent;
-        cursor: pointer;
-        transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    /* ГЛАВЕН КОНТЕЙНЕР - ЧИСТО ЧЕРНО */
+    .inventory-wrapper {
+        background-color: #000000 !important;
+        min-height: 100vh;
+        padding: 60px 0;
     }
 
-        .led-card:hover {
-            transform: translateY(-8px) scale(1.01);
-            border: 1px solid rgba(0, 191, 255, 0.9);
-            box-shadow: 0 0 10px rgba(0, 191, 255, 0.6);
-        }
+    .inventory-title {
+        font-size: 4rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: -2px;
+        color: #ffffff;
+        margin-bottom: 10px;
+    }
 
-    .btn-details-custom {
-        background-color: #19719c;
+    .inventory-subtitle {
+        color: #94a3b8;
+        font-style: italic;
+        margin-bottom: 50px;
+    }
+
+    /* БУТОН ЗА СЪЗДАВАНЕ (АДМИН) */
+    .btn-create-blue {
+        background-color: #00d4ff;
+        color: #000000; /* Черно за по-добър контраст */
         border: none;
-        padding: 12px 50px;
-        font-size: 1.1rem;
-        font-weight: 600;
-        border-radius: 8px;
-        transition: background-color 0.2s;
+        padding: 15px 35px;
+        font-weight: 800;
+        text-transform: uppercase;
+        border-radius: 4px;
+        transition: 0.3s;
         text-decoration: none;
         display: inline-block;
     }
 
-        .btn-details-custom:hover {
-            background-color: #1c86bd;
-            color: white;
+        .btn-create-blue:hover {
+            background-color: #00aacc;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+            color: #000000;
         }
 
-    .main-title-thick {
-        font-weight: 900;
-        font-size: 2.8rem;
-        color: #fff;
-        text-transform: uppercase;
-        letter-spacing: 3px;
-        text-align: center;
+    /* КАРТИТЕ НА КОЛИТЕ */
+    .car-card-noir {
+        background: #0d0d0d;
+        border: 1px solid #1a1a1a;
+        transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        border-radius: 12px;
+        overflow: hidden;
+        cursor: pointer;
     }
+
+        .car-card-noir:hover {
+            transform: translateY(-10px);
+            border-color: #00d4ff;
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.15);
+        }
+
+    .price-text-blue {
+        color: #00d4ff;
+        font-weight: 800;
+        font-size: 1.6rem;
+    }
+
+    /* БУТОН DETAILS */
+    .btn-details-blue {
+        border: 2px solid #00d4ff;
+        color: #00d4ff;
+        font-weight: 800;
+        text-transform: uppercase;
+        padding: 8px 25px;
+        transition: 0.3s;
+        border-radius: 4px;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+        .btn-details-blue:hover {
+            background: #00d4ff;
+            color: #000000; /* Черно при ховър */
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
+        }
 </style>
 
-<div class="text-center mb-5 pb-4 mt-4" style="border-bottom: 1px solid #333;">
-    <h2 class="main-title-thick mb-2">Premium Vehicle Inventory</h2>
-    <p style="color: #8c8c8c; font-size: 1.1rem; font-style: italic;">Explore our curated collection of high-performance automobiles</p>
+<div class="inventory-wrapper">
+    <div class="container text-center">
+        @* HEADER СЕКЦИЯ *@
+        <h1 class="inventory-title">Premium <span style="color: #00d4ff; text-shadow: 0 0 20px rgba(0, 212, 255, 0.4);">Inventory</span></h1>
+        <p class="inventory-subtitle">Explore our curated collection of high-performance automobiles</p>
 
-    @if (User.IsInRole("Admin"))
-    {
-        <a asp-action="Create" class="btn text-white fw-bold shadow-lg" style="background-color: #e63946; border: none; padding: 12px 35px; font-size: 1.15rem; border-radius: 8px;">
-            + Create New Listing
-        </a>
-    }
-</div>
-
-<div class="row row-cols-1 row-cols-md-3 g-4">
-    @foreach (var car in Model)
-    {
-        <div class="col">
-            <div class="card h-100 led-card shadow-sm" data-bs-toggle="modal" data-bs-target="#modal-@car.Id">
-
-                @if (!string.IsNullOrEmpty(car.ImageUrl))
-                {
-                    <img src="@car.ImageUrl" class="card-img-top" alt="@car.Model.Name" style="height: 250px; object-fit: cover; border-top-left-radius: 12px; border-top-right-radius: 12px;">
-                }
-
-                <div class="card-body">
-                    <h5 class="card-title text-white fw-bold mb-1" style="font-size: 1.25rem;">@car.Model.Name</h5>
-
-                    <p class="card-text mb-3" style="color: #8c8c8c; font-size: 0.9rem;">
-                        Year: @car.Year | Fuel: @car.FuelType
-                    </p>
-
-                    <div style="color: #e63946; font-weight: bold; font-size: 1.4rem;">
-                        @car.Price.ToString("N0", System.Globalization.CultureInfo.InvariantCulture) €
-                    </div>
-                </div>
-
-                <div class="card-footer d-flex flex-column align-items-center bg-transparent border-0 pb-4" onclick="event.stopPropagation();">
-
-                    <a asp-action="Details" asp-route-id="@car.Id" class="btn btn-details-custom text-white mb-3">
-                        Details
-                    </a>
-
-                    @if (User.IsInRole("Admin"))
-                    {
-                        <div class="d-flex gap-2">
-                            <a asp-action="Edit" asp-route-id="@car.Id" class="btn btn-sm btn-outline-warning">Edit</a>
-                            <a asp-action="Delete" asp-route-id="@car.Id" class="btn btn-sm btn-outline-danger">Delete</a>
-                        </div>
-                    }
-                </div>
+        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+        {
+            <div class="mb-5">
+                <a asp-action="Create" class="btn-create-blue">+ Create New Listing</a>
             </div>
-        </div>
+        }
 
-        <div class="modal fade" id="modal-@car.Id" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-dialog-centered">
-                <div class="modal-content" style="background-color: #1e1e1e; color: white; border: 1px solid #333;">
-                    <div class="modal-header border-secondary">
-                        <h5 class="modal-title fw-bold">@car.Model.Name</h5>
-                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
+        @* ГРИД С КОЛИ *@
+        <div class="row row-cols-1 row-cols-md-3 g-4 text-start">
+            @foreach (var car in Model)
+            {
+                <div class="col">
+                    <div class="card car-card-noir h-100" data-bs-toggle="modal" data-bs-target="#modal-@car.Id">
+
                         @if (!string.IsNullOrEmpty(car.ImageUrl))
                         {
-                            <img src="@car.ImageUrl" class="img-fluid rounded mb-4 shadow" style="width: 100%; height: 450px; object-fit: cover;">
+                            <img src="@car.ImageUrl" class="card-img-top" alt="@car.Model.Name" style="height: 250px; object-fit: cover;">
                         }
-                        <div class="row text-center g-3">
-                            <div class="col-4">
-                                <div class="p-3 border rounded border-secondary">
-                                    <small class="text-uppercase" style="color: #8c8c8c; letter-spacing: 1px;">Year</small><br />
-                                    <strong class="fs-5">@car.Year</strong>
-                                </div>
+
+                        <div class="card-body">
+                            <h5 class="card-title text-white fw-bold mb-1" style="font-size: 1.4rem;">@car.Model.Name</h5>
+                            <p class="card-text mb-3" style="color: #8c8c8c; font-size: 0.9rem;">
+                                Year: @car.Year | Fuel: @car.FuelType
+                            </p>
+                            <div class="price-text-blue">
+                                @car.Price.ToString("N0") €
                             </div>
-                            <div class="col-4">
-                                <div class="p-3 border rounded border-secondary">
-                                    <small class="text-uppercase" style="color: #8c8c8c; letter-spacing: 1px;">Fuel Type</small><br />
-                                    <strong class="fs-5">@car.FuelType</strong>
+                        </div>
+
+                        <div class="card-footer bg-transparent border-0 pb-4 text-center" onclick="event.stopPropagation();">
+                            <a asp-action="Details" asp-route-id="@car.Id" class="btn-details-blue mb-3">
+                                Details
+                            </a>
+
+                            @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                            {
+                                <div class="d-flex gap-2 justify-content-center mt-2">
+                                    <a asp-action="Edit" asp-route-id="@car.Id" class="btn btn-sm btn-outline-warning">Edit</a>
+                                    <a asp-action="Delete" asp-route-id="@car.Id" class="btn btn-sm btn-outline-danger">Delete</a>
                                 </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                @* MODAL ЗА ВСЯКА КОЛА *@
+                <div class="modal fade" id="modal-@car.Id" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered">
+                        <div class="modal-content" style="background-color: #0a0a0a; color: white; border: 1px solid #1a1a1a; box-shadow: 0 0 30px rgba(0,0,0,0.8);">
+                            <div class="modal-header border-secondary" style="border-bottom: 1px solid #1a1a1a !important;">
+                                <h5 class="modal-title fw-bold text-uppercase">@car.Model.Name</h5>
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <div class="col-4">
-                                <div class="p-3 border rounded border-secondary">
-                                    <small class="text-uppercase" style="color: #8c8c8c; letter-spacing: 1px;">Price</small><br />
-                                    <strong class="fs-5" style="color: #e63946;">@car.Price.ToString("N0", System.Globalization.CultureInfo.InvariantCulture) €</strong>
+                            <div class="modal-body">
+                                @if (!string.IsNullOrEmpty(car.ImageUrl))
+                                {
+                                    <img src="@car.ImageUrl" class="img-fluid rounded mb-4 shadow" style="width: 100%; height: 450px; object-fit: cover;">
+                                }
+                                <div class="row text-center g-3">
+                                    <div class="col-4">
+                                        <div class="p-3 border rounded" style="background-color: #0d0d0d; border-color: #1a1a1a !important;">
+                                            <small class="text-uppercase text-muted" style="letter-spacing: 1px;">Year</small><br />
+                                            <strong class="fs-5 text-white">@car.Year</strong>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="p-3 border rounded" style="background-color: #0d0d0d; border-color: #1a1a1a !important;">
+                                            <small class="text-uppercase text-muted" style="letter-spacing: 1px;">Fuel</small><br />
+                                            <strong class="fs-5 text-white">@car.FuelType</strong>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="p-3 border rounded" style="background-color: #0d0d0d; border-color: #1a1a1a !important;">
+                                            <small class="text-uppercase text-muted" style="letter-spacing: 1px;">Price</small><br />
+                                            <strong class="fs-5" style="color: #00d4ff;">@car.Price.ToString("N0") €</strong>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            }
         </div>
-    }
+    </div>
 </div>

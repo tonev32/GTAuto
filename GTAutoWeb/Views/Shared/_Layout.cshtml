@@ -3,65 +3,123 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - GTAutoWeb</title>
+    <title>@ViewData["Title"] - GTAuto</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/GTAutoWeb.styles.css" asp-append-version="true" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-black: #000000;
+            --bg-dark-gray: #0a0a0a;
+            --accent-blue: #00d4ff; /* НОВОТО ЕЛЕКТРИКОВО СИНЬО */
+            --text-white: #ffffff;
+        }
+
+        body {
+            background-color: var(--bg-black) !important;
+            color: var(--text-white);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            background-color: var(--bg-dark-gray) !important;
+            border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+            padding: 15px 0;
+            position: relative;
+            z-index: 10000 !important;
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.7rem;
+            color: #fff !important;
+        }
+
+            .navbar-brand span {
+                color: var(--accent-blue);
+                text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+            }
+
+        .nav-link {
+            color: var(--text-white) !important;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin: 0 10px;
+            font-size: 0.8rem;
+            transition: 0.3s;
+            letter-spacing: 1px;
+        }
+
+            .nav-link:hover {
+                color: var(--accent-blue) !important;
+                text-shadow: 0 0 8px var(--accent-blue);
+            }
+
+        /* Сини бутони за Админа */
+        .admin-link {
+            color: var(--accent-blue) !important;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 4px;
+            padding: 5px 15px !important;
+            margin-left: 8px;
+            transition: 0.3s;
+        }
+
+            .admin-link:hover {
+                background: rgba(0, 212, 255, 0.1);
+                border-color: var(--accent-blue);
+            }
+
+        footer {
+            background-color: var(--bg-dark-gray);
+            border-top: 1px solid #1a1a1a;
+            padding: 30px 0;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-black shadow-lg">
+        <nav class="navbar navbar-expand-sm navbar-dark sticky-top">
             <div class="container">
-
-                <!-- Лого -->
-                <a class="navbar-brand d-flex align-items-center fw-bold" asp-controller="Home" asp-action="Index">
-                    <img src="/images/gta.jpg" width="102" height="65" class="me-2" />
-                  
+                <a class="navbar-brand" asp-controller="Home" asp-action="Index">
+                    GT<span>AUTO</span>
                 </a>
 
-                <!-- Mobile бутон -->
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <!-- Меню -->
-                <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="navbar-collapse collapse d-sm-inline-flex">
                     <ul class="navbar-nav me-auto">
+                        <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="About">About Us</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Cars" asp-action="Index">Inventory</a></li>
 
-                        <li class="nav-item">
-                            <a class="nav-link active" asp-controller="Home" asp-action="Index">Начална страница</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Home" asp-action="AboutUs">За нас</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Cars" asp-action="Index">Обяви</a>
-                        </li>
-
-                        @if (User.IsInRole("Admin"))
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                         {
-                            <li class="nav-item"><a class="nav-link" asp-controller="Cars" asp-action="Create">Направи обява</a></li>
-                                <li class="nav-item"><a class="nav-link" asp-controller="Models" asp-action="Index">Данни за обяви</a></li>
-                           
+                            <li class="nav-item">
+                                <a class="nav-link admin-link" asp-controller="Cars" asp-action="Create">Create Listing</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link admin-link" asp-controller="Models" asp-action="Index">Listing Data</a>
+                            </li>
                         }
-
                     </ul>
-
-                    <!-- Login -->
                     <partial name="_LoginPartial" />
                 </div>
-
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+
+    <main role="main">
+        @RenderBody()
+    </main>
+
+    <footer class="footer text-center">
+        <div class="container">
+            <p class="text-muted small mb-0">&copy; 2026 - GTAuto Prestige - Power in Blue</p>
+        </div>
+    </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

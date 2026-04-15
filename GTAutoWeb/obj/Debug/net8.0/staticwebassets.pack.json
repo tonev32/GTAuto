@@ -29,12 +29,12 @@
       "PackagePath": "staticwebassets\\images\\gta.jpg"
     },
     {
-      "Id": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\wwwroot\\images\\house.jpg",
-      "PackagePath": "staticwebassets\\images\\house.jpg"
-    },
-    {
       "Id": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\wwwroot\\images\\mercedes.jpg",
       "PackagePath": "staticwebassets\\images\\mercedes.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\wwwroot\\images\\outside.png",
+      "PackagePath": "staticwebassets\\images\\outside.png"
     },
     {
       "Id": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\wwwroot\\js\\site.js",
