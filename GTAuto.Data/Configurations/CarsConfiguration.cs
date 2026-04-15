@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using GTAuto.Data.Models;
+using System;
 
 namespace GTAuto.Data.Configurations
 {
@@ -20,8 +21,8 @@ namespace GTAuto.Data.Configurations
                     FuelType = "Petrol",
                     Transmission = "Automatic",
                     Color = "Green",
-                    Description = "M-Track Package, Carbon Seats, Laser Lights.",
-                    ImageUrl = "https://images.unsplash.com/photo-1617531653332-bd46c24f2068",
+                    Description = "M-Track Package, Carbon Seats, Laser Lights, Like new!",
+                    ImageUrl = "/images/m4.jpg", // Свързано с m4.jpg
                     IsAutomatic = true
                 },
                 new Car
@@ -36,7 +37,7 @@ namespace GTAuto.Data.Configurations
                     Transmission = "Automatic",
                     Color = "Grey",
                     Description = "Ceramic Brakes, RS Dynamic Plus, Bang & Olufsen.",
-                    ImageUrl = "https://images.unsplash.com/photo-1606152421702-427b4584554d",
+                    ImageUrl = "/images/rs7.jpg", // Свързано с rs7.jpg
                     IsAutomatic = true
                 },
                 new Car
@@ -51,7 +52,7 @@ namespace GTAuto.Data.Configurations
                     Transmission = "Automatic",
                     Color = "Black",
                     Description = "AMG Night Package, Performance Exhaust.",
-                    ImageUrl = "https://images.unsplash.com/photo-1552519507-da3b142c6e3d",
+                    ImageUrl = "/images/gt63.jpg", // Свързано с gt63.jpg
                     IsAutomatic = true
                 },
                 new Car
@@ -66,7 +67,7 @@ namespace GTAuto.Data.Configurations
                     Transmission = "Manual",
                     Color = "White",
                     Description = "Stage 1, Akrapovic tips, Edition 35 wheels.",
-                    ImageUrl = "https://images.unsplash.com/photo-1541899481282-d53bffe3c35d",
+                    ImageUrl = "/images/golf6.jpg", // Свързано с golf6.jpg
                     IsAutomatic = false
                 },
                 new Car
@@ -81,7 +82,7 @@ namespace GTAuto.Data.Configurations
                     Transmission = "Automatic",
                     Color = "Red",
                     Description = "Plaid version, Ludicrous mode, Full self-driving.",
-                    ImageUrl = "https://images.unsplash.com/photo-1617788138017-80ad40651399",
+                    ImageUrl = "/images/tesla.jpg", // Свързано с tesla.jpg
                     IsAutomatic = true
                 },
                 new Car
@@ -96,7 +97,7 @@ namespace GTAuto.Data.Configurations
                     Transmission = "Automatic",
                     Color = "Blue",
                     Description = "M-Sport, Sky Lounge, Harman Kardon.",
-                    ImageUrl = "https://images.unsplash.com/photo-1555215695-3004980ad54e",
+                    ImageUrl = "/images/x5.jpg", // Свързано с x5.jpg
                     IsAutomatic = true
                 },
                 new Car
@@ -111,7 +112,7 @@ namespace GTAuto.Data.Configurations
                     Transmission = "Automatic",
                     Color = "Silver",
                     Description = "S-line, Matrix lights, Virtual cockpit.",
-                    ImageUrl = "https://images.unsplash.com/photo-1605515298946-d062f2e9da53",
+                    ImageUrl = "/images/a6.jpg", // Свързано с a6.jpg
                     IsAutomatic = true
                 },
                 new Car
@@ -126,7 +127,7 @@ namespace GTAuto.Data.Configurations
                     Transmission = "Automatic",
                     Color = "Blue",
                     Description = "Brand new, 10 years warranty, Hybrid system.",
-                    ImageUrl = "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb",
+                    ImageUrl = "/images/toyota.jpg", // Свързано с toyota.jpg
                     IsAutomatic = true
                 },
                 new Car
@@ -141,7 +142,7 @@ namespace GTAuto.Data.Configurations
                     Transmission = "Automatic",
                     Color = "Matte Black",
                     Description = "G63 AMG, Night Package, Carbon interior.",
-                    ImageUrl = "https://images.unsplash.com/photo-1520031441872-265e4ff70366",
+                    ImageUrl = "/images/gclass.jpg", // Свързано с gclass.jpg
                     IsAutomatic = true
                 },
                 new Car
@@ -154,9 +155,9 @@ namespace GTAuto.Data.Configurations
                     Mileage = 180000,
                     FuelType = "Petrol",
                     Transmission = "Manual",
-                    Color = "LeMans Blue",
+                    Color = "Red",
                     Description = "Collector's car, Perfect condition, V8 Manual.",
-                    ImageUrl = "https://images.unsplash.com/photo-1607853202273-797f1c22a38e",
+                    ImageUrl = "/images/e39.jpg", // Свързано с e39.jpg
                     IsAutomatic = false
                 },
                 new Car
@@ -171,7 +172,7 @@ namespace GTAuto.Data.Configurations
                     Transmission = "Automatic",
                     Color = "White",
                     Description = "AMG Performance, Panoramic roof, Full service history.",
-                    ImageUrl = "https://images.unsplash.com/photo-1511702771955-42b52e1cd168",
+                    ImageUrl = "/images/ml63.jpg", // Свързано с ml63.jpg
                     IsAutomatic = true
                 },
                 new Car
@@ -186,7 +187,7 @@ namespace GTAuto.Data.Configurations
                     Transmission = "Automatic",
                     Color = "Orange",
                     Description = "Fox Shocks, 37 Performance Package, Off-road monster.",
-                    ImageUrl = "https://images.unsplash.com/photo-1591438122444-06b2c5838491",
+                    ImageUrl = "/images/f150.jpg", // Свързано с f150.jpg
                     IsAutomatic = true
                 },
                 new Car
@@ -201,7 +202,7 @@ namespace GTAuto.Data.Configurations
                     Transmission = "Automatic",
                     Color = "Yellow",
                     Description = "Lamborghini Urus Performante, Titanium Exhaust.",
-                    ImageUrl = "https://images.unsplash.com/photo-1580273916550-e323be2ae537",
+                    ImageUrl = "/images/urus.jpg", // Свързано с urus.jpg
                     IsAutomatic = true
                 },
                 new Car
@@ -216,7 +217,7 @@ namespace GTAuto.Data.Configurations
                     Transmission = "Manual",
                     Color = "Sunset Orange",
                     Description = "Widebody, Custom wheels, Drift setup.",
-                    ImageUrl = "https://images.unsplash.com/photo-1616422285623-13ff0167c95c",
+                    ImageUrl = "/images/350z.jpg", // Свързано с 350z.jpg
                     IsAutomatic = false
                 }
             );

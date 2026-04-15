@@ -13,8 +13,16 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\wwwroot\\images\\350z.jpg",
+      "PackagePath": "staticwebassets\\images\\350z.jpg"
+    },
+    {
       "Id": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\wwwroot\\images\\Owner.jpg",
       "PackagePath": "staticwebassets\\images\\Owner.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\wwwroot\\images\\a6.jpg",
+      "PackagePath": "staticwebassets\\images\\a6.jpg"
     },
     {
       "Id": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\wwwroot\\images\\audi.jpg",
@@ -25,16 +33,64 @@
       "PackagePath": "staticwebassets\\images\\bmwe39.jpg"
     },
     {
+      "Id": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\wwwroot\\images\\e39.jpg",
+      "PackagePath": "staticwebassets\\images\\e39.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\wwwroot\\images\\f150.jpg",
+      "PackagePath": "staticwebassets\\images\\f150.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\wwwroot\\images\\gclass.jpg",
+      "PackagePath": "staticwebassets\\images\\gclass.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\wwwroot\\images\\golf6.jpg",
+      "PackagePath": "staticwebassets\\images\\golf6.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\wwwroot\\images\\gt63.jpg",
+      "PackagePath": "staticwebassets\\images\\gt63.jpg"
+    },
+    {
       "Id": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\wwwroot\\images\\gta.jpg",
       "PackagePath": "staticwebassets\\images\\gta.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\wwwroot\\images\\m4.jpg",
+      "PackagePath": "staticwebassets\\images\\m4.jpg"
     },
     {
       "Id": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\wwwroot\\images\\mercedes.jpg",
       "PackagePath": "staticwebassets\\images\\mercedes.jpg"
     },
     {
+      "Id": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\wwwroot\\images\\ml63.jpg",
+      "PackagePath": "staticwebassets\\images\\ml63.jpg"
+    },
+    {
       "Id": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\wwwroot\\images\\outside.png",
       "PackagePath": "staticwebassets\\images\\outside.png"
+    },
+    {
+      "Id": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\wwwroot\\images\\rs7.jpg",
+      "PackagePath": "staticwebassets\\images\\rs7.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\wwwroot\\images\\tesla.jpg",
+      "PackagePath": "staticwebassets\\images\\tesla.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\wwwroot\\images\\toyota.jpg",
+      "PackagePath": "staticwebassets\\images\\toyota.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\wwwroot\\images\\urus.jpg",
+      "PackagePath": "staticwebassets\\images\\urus.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\wwwroot\\images\\x5.jpg",
+      "PackagePath": "staticwebassets\\images\\x5.jpg"
     },
     {
       "Id": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\wwwroot\\js\\site.js",
