@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "al9bRVEWzPaojs1vbwY2pvhHDsE2cW5MSLOgdNGWqcM=",
+  "Hash": "8gQN34U8f17GJEUdHZZ2ICZBJQs+RanXpmw/p2znVJk=",
   "Source": "GTAutoWeb",
   "BasePath": "_content/GTAutoWeb",
   "Mode": "Default",
@@ -1537,6 +1537,25 @@
       "OriginalItemSpec": "wwwroot\\images\\rs7.jpg"
     },
     {
+      "Identity": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\wwwroot\\images\\stalone.jpg",
+      "SourceId": "GTAutoWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\wwwroot\\",
+      "BasePath": "_content/GTAutoWeb",
+      "RelativePath": "images/stalone.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\stalone.jpg"
+    },
+    {
       "Identity": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\wwwroot\\images\\tesla.jpg",
       "SourceId": "GTAutoWeb",
       "SourceType": "Discovered",
@@ -1554,6 +1573,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\tesla.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\wwwroot\\images\\therock.jpg",
+      "SourceId": "GTAutoWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\wwwroot\\",
+      "BasePath": "_content/GTAutoWeb",
+      "RelativePath": "images/therock.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\therock.jpg"
     },
     {
       "Identity": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\wwwroot\\images\\toyota.jpg",

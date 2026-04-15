@@ -77,8 +77,16 @@
       "PackagePath": "staticwebassets\\images\\rs7.jpg"
     },
     {
+      "Id": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\wwwroot\\images\\stalone.jpg",
+      "PackagePath": "staticwebassets\\images\\stalone.jpg"
+    },
+    {
       "Id": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\wwwroot\\images\\tesla.jpg",
       "PackagePath": "staticwebassets\\images\\tesla.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\wwwroot\\images\\therock.jpg",
+      "PackagePath": "staticwebassets\\images\\therock.jpg"
     },
     {
       "Id": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\wwwroot\\images\\toyota.jpg",
