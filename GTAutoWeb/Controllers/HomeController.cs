@@ -22,7 +22,6 @@ namespace GTAutoWeb.Controllers
             var flashOffers = await _context.Cars
                 .Include(c => c.Model)
                 .Where(c => c.IsFlashOffer == true && c.IsSold == false)
-                .Take(3) // Взимаме само първите 3 (или колкото искаш), за да не се счупи дизайна на началната страница
                 .ToListAsync();
 
             return View(flashOffers);

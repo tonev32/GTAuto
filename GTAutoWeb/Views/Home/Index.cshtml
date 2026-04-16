@@ -43,6 +43,12 @@
         border: 1px solid #1a1a1a;
         border-radius: 12px;
         transition: 0.4s;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        /* 🔥 ДОБАВЕНО ЗА ЛЕНТАТА: Това задържа лентата вътре в картата */
+        position: relative;
+        overflow: hidden; 
     }
 
         .car-card-noir:hover {
@@ -74,7 +80,6 @@
             box-shadow: 0 0 15px #00d4ff;
             color: #000;
         }
-
 </style>
 
 <div class="hero-e39 text-center">
@@ -103,6 +108,8 @@
             {
                 <div class="col-lg-4">
                     <div class="car-card-noir">
+                        
+                        <div class="corner-ribbon">SALE</div>
 
                         <img src="@car.ImageUrl" class="w-100" style="height: 260px; object-fit: cover; filter: brightness(0.8);" alt="@car.Model?.Name">
 
@@ -113,7 +120,8 @@
                                 <span class="text-muted text-decoration-line-through fs-5 d-block mb-1">
                                     €@((car.Price + 15000).ToString("N0"))
                                 </span>
-                                <span class="fw-bold fs-3" style="color: #00d4ff;">
+                                
+                                <span class="fw-bold fs-3" style="color: #ff0000;">
                                     €@car.Price.ToString("N0")
                                 </span>
                             </div>
