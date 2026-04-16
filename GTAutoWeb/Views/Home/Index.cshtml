@@ -74,6 +74,7 @@
             box-shadow: 0 0 15px #00d4ff;
             color: #000;
         }
+
 </style>
 
 <div class="hero-e39 text-center">
@@ -96,17 +97,35 @@
 <div class="offers-section">
     <div class="container text-white">
         <h2 class="display-4 fw-800 text-uppercase mb-5">Flash <span style="color: #00d4ff;">Offers</span></h2>
+
         <div class="row g-4">
             @foreach (var car in Model)
             {
                 <div class="col-lg-4">
                     <div class="car-card-noir">
-                        <img src="@car.ImageUrl" class="w-100" style="height: 260px; object-fit: cover; filter: brightness(0.8);">
-                        <div class="p-4">
+
+                        <img src="@car.ImageUrl" class="w-100" style="height: 260px; object-fit: cover; filter: brightness(0.8);" alt="@car.Model?.Name">
+
+                        <div class="p-4 d-flex flex-column" style="flex-grow: 1;">
                             <h3 class="h4 fw-bold mb-3">@car.Model?.Name</h3>
-                            <div class="price-blue mb-4">€@car.Price.ToString("N0")</div>
-                            <a asp-action="Details" asp-route-id="@car.Id" class="btn-blue">Inspect Asset</a>
+
+                            <div class="mb-4">
+                                <span class="text-muted text-decoration-line-through fs-5 d-block mb-1">
+                                    €@((car.Price + 15000).ToString("N0"))
+                                </span>
+                                <span class="fw-bold fs-3" style="color: #00d4ff;">
+                                    €@car.Price.ToString("N0")
+                                </span>
+                            </div>
+
+                            <div class="mt-auto">
+                                <a asp-controller="Cars" asp-action="Details" asp-route-id="@car.Id"
+                                   class="btn-blue d-block text-center fw-bold rounded-0 py-3">
+                                    Inspect Asset
+                                </a>
+                            </div>
                         </div>
+
                     </div>
                 </div>
             }
