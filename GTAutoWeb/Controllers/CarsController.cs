@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Authorization; // НОВО: Нужно за заключване на страниците
+using Microsoft.AspNetCore.Authorization; 
 using GTAuto.Data;
 using GTAuto.Data.Models;
 using GTAutoWeb.ViewModel;
@@ -21,16 +21,28 @@ namespace GTAutoWeb.Controllers
             _context = context;
         }
 
+
         // GET: Cars
-        public async Task<IActionResult> Index()
+        // GET: Cars
+        public async Task<IActionResult> Index(string searchString)
         {
-            var cars = await _context.Cars
-                .Include(c => c.Model)
+            var carsQuery = _context.Cars.Include(c => c.Model).AsQueryable();
+
+            ViewData["CurrentSearch"] = searchString;
+            if (!string.IsNullOrWhiteSpace(searchString))
+            {
+                var exactSearch = searchString.Trim().ToLower();
+                carsQuery = carsQuery.Where(c => c.Model.Name.ToLower().Contains(exactSearch));
+            }
+
+            var cars = await carsQuery
+                .OrderByDescending(c => c.IsFlashOffer)
+                .ThenByDescending(c => c.Year)
                 .ToListAsync();
+
             return View(cars);
         }
 
-        // GET: Cars/Details/5
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null) return NotFound();
@@ -193,10 +205,6 @@ namespace GTAutoWeb.Controllers
         {
             return _context.Cars.Any(e => e.Id == id);
         }
-
-        // ==========================================
-        // МЕТОДИ ЗА РЕЗЕРВАЦИЯ (CHECKOUT)
-        // ==========================================
 
         [Authorize]
         public async Task<IActionResult> Checkout(Guid id)
