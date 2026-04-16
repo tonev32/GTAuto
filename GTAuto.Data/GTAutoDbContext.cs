@@ -23,18 +23,30 @@ namespace GTAuto.Data
         public DbSet<Model> Models { get; set; }
         public DbSet<OrderStatus> OrderStatuses { get; set; }
 
+        // НОВИТЕ ТАБЛИЦИ
+        public DbSet<CarImage> CarImages { get; set; }
+        public DbSet<Reservation> Reservations { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            // 1. Първо зареждаме главната марка (General)
+            // --- SEED DATA CONFIGURATIONS ---
+
+            // 1. Първо зареждаме главната марка
             modelBuilder.ApplyConfiguration(new BrandsConfiguration());
 
-            // 2. След това зареждаме всички 14 модела (те се свързват с марката)
+            // 2. След това моделите
             modelBuilder.ApplyConfiguration(new ModelsConfiguration());
 
-            // 3. Накрая зареждаме готовите обяви/карти (те се свързват с моделите)
+            // 3. След това готовите обяви (Cars)
             modelBuilder.ApplyConfiguration(new CarsConfiguration());
+
+            // 4. НАКРАЯ: Зареждаме 3-те автоматични снимки за всяка кола
+            modelBuilder.ApplyConfiguration(new CarImagesConfiguration());
+
+
+            // --- ENTITY RELATIONSHIPS & CONSTRAINTS ---
 
             // Конфигурация за сложната връзка между коли и екстри
             modelBuilder.Entity<CarFeature>()
@@ -48,6 +60,18 @@ namespace GTAuto.Data
             modelBuilder.Entity<Order>()
                 .Property(o => o.DepositAmount)
                 .HasColumnType("decimal(18,2)");
+
+            // Ограничаваме точността за новата таблица за Резервации
+            modelBuilder.Entity<Reservation>()
+                .Property(r => r.DepositPaid)
+                .HasColumnType("decimal(18,2)");
+
+            // Настройка на връзката Car -> Images (One-to-Many)
+            modelBuilder.Entity<CarImage>()
+                .HasOne(ci => ci.Car)
+                .WithMany(c => c.Images)
+                .HasForeignKey(ci => ci.CarId)
+                .OnDelete(DeleteBehavior.Cascade); // Ако се изтрие кола, се трият и снимките ѝ
         }
     }
 }

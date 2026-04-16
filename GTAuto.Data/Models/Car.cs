@@ -38,8 +38,6 @@ namespace GTAuto.Data.Models
         public string Color { get; set; }
         [Required]
         public string Description { get; set; }
-        [Required]
-        public string ImageUrl { get; set; }
         public bool IsReserved { get; set; }
         public bool IsSold { get; set; }
         public bool IsAutomatic { get; set; }
@@ -47,5 +45,7 @@ namespace GTAuto.Data.Models
         public ICollection<CarFeature> CarFeatures { get; set; } = new List<CarFeature>();
 
         public ICollection<Order> Orders { get; set; } = new List<Order>();
+        public virtual ICollection<CarImage> Images { get; set; } = new HashSet<CarImage>();
+        public virtual ICollection<Reservation> Reservations { get; set; } = new HashSet<Reservation>();
     }
 }

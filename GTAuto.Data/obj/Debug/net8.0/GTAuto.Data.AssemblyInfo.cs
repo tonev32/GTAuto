@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GTAuto.Data")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+928027c7d6b4c593c6c46f18cf8a1f0a3aa160d3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a575835a6468316b9f6c1a8e1c160862bf48752d")]
 [assembly: System.Reflection.AssemblyProductAttribute("GTAuto.Data")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GTAuto.Data")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

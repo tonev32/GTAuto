@@ -7,162 +7,180 @@
 <style>
     /* Дизайн на фона и контейнера */
     body {
-        background-color: #121212;
+        background-color: #000000;
         color: white;
     }
 
     .create-card {
-        background-color: #1e1e1e;
-        border: 1px solid #333;
+        background-color: #0d0d0d;
+        border: 1px solid #1a1a1a;
         border-radius: 15px;
         padding: 35px;
         margin-top: 30px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.8);
     }
 
     /* Стилизиране на полетата за писане */
     .form-control, .form-select {
-        background-color: #2a2a2a;
-        border: 1px solid #444;
-        color: white;
+        background-color: #000000 !important;
+        border: 1px solid #222 !important;
+        color: white !important;
         border-radius: 8px;
         padding: 10px 15px;
     }
 
         .form-control:focus {
-            background-color: #2a2a2a;
-            color: white;
-            border-color: #e63946;
-            box-shadow: 0 0 10px rgba(230, 57, 70, 0.2);
+            border-color: #00d4ff !important;
+            box-shadow: 0 0 10px rgba(0, 212, 255, 0.2) !important;
         }
 
     /* Етикети (Labels) */
     .form-label {
-        color: #8c8c8c;
+        color: #00d4ff;
         text-transform: uppercase;
         font-size: 0.75rem;
-        letter-spacing: 1px;
-        font-weight: bold;
-        margin-bottom: 5px;
+        letter-spacing: 1.5px;
+        font-weight: 800;
+        margin-bottom: 8px;
         display: block;
+        text-align: left;
     }
 
     /* Бутонът */
     .btn-submit {
-        background-color: #e63946;
+        background-color: #00d4ff;
+        color: #000;
         border: none;
-        padding: 12px 50px;
-        font-weight: bold;
+        padding: 14px 50px;
+        font-weight: 800;
         text-transform: uppercase;
-        border-radius: 8px;
+        border-radius: 4px;
         transition: 0.3s;
     }
 
         .btn-submit:hover {
-            background-color: #c92a36;
+            background-color: #00aacc;
             transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
         }
+
+    /* Секция за снимки */
+    .image-upload-section {
+        background-color: #080808;
+        border: 1px dashed #222;
+        border-radius: 10px;
+        padding: 20px;
+        margin: 25px 0;
+    }
 </style>
 
 <div class="container pb-5">
     <div class="row justify-content-center">
-        <div class="col-lg-9 create-card">
-            <h2 class="text-white fw-bold mb-4">Create New Advertisement</h2>
-            <hr style="border-color: #333;" />
+        <div class="col-lg-10 create-card">
+            <h2 class="text-white fw-bold mb-4 text-uppercase" style="letter-spacing: 2px;">
+                Create New <span style="color: #00d4ff;">Advertisement</span>
+            </h2>
+            <hr style="border-color: #1a1a1a;" />
 
-            <form asp-action="Create" method="post">
+            @* ⚠️ enctype="multipart/form-data" е ЗАДЪЛЖИТЕЛЕН за качване на снимки *@
+            <form asp-action="Create" method="post" enctype="multipart/form-data">
                 <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
 
-                <div class="mb-4">
-                    <label class="form-label">Vehicle Model</label>
-                    <select asp-for="ModelId" class="form-control" asp-items="ViewBag.Models">
-                        <option value="">-- Select Brand and Model --</option>
-                    </select>
-                    <span asp-validation-for="ModelId" class="text-danger"></span>
-                </div>
+                <div class="row g-4 text-start">
+                    @* МОДЕЛ *@
+                    <div class="col-md-12">
+                        <label class="form-label">Vehicle Model</label>
+                        <select asp-for="ModelId" class="form-control" asp-items="ViewBag.Models">
+                            <option value="">-- Select Brand and Model --</option>
+                        </select>
+                        <span asp-validation-for="ModelId" class="text-danger"></span>
+                    </div>
 
-                <div class="row g-3">
-                    <div class="col-md-4">
-                        <label asp-for="Year" class="form-label">Year</label>
+                    @* ОСНОВНИ ДАННИ *@
+                    <div class="col-md-3">
+                        <label asp-for="Year" class="form-label">Production Year</label>
                         <input asp-for="Year" class="form-control" />
                         <span asp-validation-for="Year" class="text-danger"></span>
                     </div>
-                    <div class="col-md-4">
-                        <label asp-for="HorsePower" class="form-label">HorsePower</label>
+                    <div class="col-md-3">
+                        <label asp-for="HorsePower" class="form-label">HorsePower (HP)</label>
                         <input asp-for="HorsePower" class="form-control" />
                         <span asp-validation-for="HorsePower" class="text-danger"></span>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <label asp-for="Price" class="form-label">Price (€)</label>
                         <input asp-for="Price" class="form-control" />
                         <span asp-validation-for="Price" class="text-danger"></span>
                     </div>
-
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <label asp-for="Mileage" class="form-label">Mileage (km)</label>
                         <input asp-for="Mileage" class="form-control" />
                         <span asp-validation-for="Mileage" class="text-danger"></span>
                     </div>
+
+                    @* ТЕХНИЧЕСКИ ДАННИ *@
                     <div class="col-md-4">
                         <label asp-for="FuelType" class="form-label">Fuel Type</label>
                         <input asp-for="FuelType" class="form-control" placeholder="e.g. Petrol" />
-                        <span asp-validation-for="FuelType" class="text-danger"></span>
                     </div>
                     <div class="col-md-4">
                         <label asp-for="Transmission" class="form-label">Transmission</label>
-                        <input asp-for="Transmission" class="form-control" placeholder="Automatic" />
-                        <span asp-validation-for="Transmission" class="text-danger"></span>
+                        <input asp-for="Transmission" class="form-control" placeholder="e.g. Automatic" />
                     </div>
-
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <label asp-for="Color" class="form-label">Color</label>
                         <input asp-for="Color" class="form-control" />
-                        <span asp-validation-for="Color" class="text-danger"></span>
-                    </div>
-                    <div class="col-md-6">
-                        <label asp-for="ImageUrl" class="form-label">Image URL</label>
-                        <input asp-for="ImageUrl" class="form-control" placeholder="Link to photo..." />
-                        <span asp-validation-for="ImageUrl" class="text-danger"></span>
                     </div>
 
+                    @* 🔥 СЕКЦИЯ ЗА СНИМКИ (ЗАМЕСТВА ImageUrl) 🔥 *@
                     <div class="col-12">
-                        <label asp-for="Description" class="form-label">Description</label>
-                        <textarea asp-for="Description" class="form-control" rows="3"></textarea>
-                        <span asp-validation-for="Description" class="text-danger"></span>
+                        <div class="image-upload-section">
+                            <h5 class="text-white small fw-bold text-uppercase mb-4" style="letter-spacing: 1px;">Vehicle Photography (Local Upload)</h5>
+                            <div class="row g-3">
+                                <div class="col-md-4">
+                                    <label class="form-label" style="color: #888;">1. Front View</label>
+                                    <input type="file" asp-for="FrontImage" class="form-control" accept="image/*" />
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label" style="color: #888;">2. Rear View</label>
+                                    <input type="file" asp-for="BackImage" class="form-control" accept="image/*" />
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label" style="color: #888;">3. Interior</label>
+                                    <input type="file" asp-for="InteriorImage" class="form-control" accept="image/*" />
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="col-md-4">
-                        <div class="form-check pt-2">
-                            <input class="form-check-input" asp-for="IsReserved" />
-                            <label class="form-check-label text-muted" asp-for="IsReserved">Reserved</label>
-                        </div>
+                    @* ОПИСАНИЕ *@
+                    <div class="col-12">
+                        <label asp-for="Description" class="form-label">Technical Description</label>
+                        <textarea asp-for="Description" class="form-control" rows="4"></textarea>
                     </div>
-                    <div class="col-md-4">
-                        <div class="form-check pt-2">
-                            <input class="form-check-input" asp-for="IsSold" />
-                            <label class="form-check-label text-muted" asp-for="IsSold">Sold</label>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-check pt-2">
-                            <input class="form-check-input" type="checkbox" asp-for="IsFlashOffer">
-                            <label class="form-check-label text-white" asp-for="IsFlashOffer">
-                                🔥 Flash Offer (SALE Ribbon)
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-check pt-2">
-                            <input class="form-check-input" asp-for="IsAutomatic" />
-                            <label class="form-check-label text-muted" asp-for="IsAutomatic">Automatic</label>
+
+                    @* ОПЦИИ (FLASH OFFER и др.) *@
+                    <div class="col-12">
+                        <div class="d-flex flex-wrap gap-4 mt-2">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" asp-for="IsFlashOffer" style="border-color: #333;">
+                                <label class="form-check-label text-info fw-bold" asp-for="IsFlashOffer">🔥 FLASH OFFER</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" asp-for="IsAutomatic" style="border-color: #333;">
+                                <label class="form-check-label text-muted" asp-for="IsAutomatic">Automatic Gearbox</label>
+                            </div>
                         </div>
                     </div>
                 </div>
 
+                @* БУТОНИ *@
                 <div class="text-center mt-5">
-                    <button type="submit" class="btn btn-submit text-white">Create Listing</button>
-                    <div class="mt-3">
-                        <a asp-action="Index" class="text-info text-decoration-none small">Back to List</a>
+                    <button type="submit" class="btn btn-submit">Create Listing</button>
+                    <div class="mt-4">
+                        <a asp-action="Index" class="text-muted text-decoration-none small" onmouseover="this.style.color='#00d4ff'" onmouseout="this.style.color='#666'">
+                            Cancel and Back to List
+                        </a>
                     </div>
                 </div>
             </form>

@@ -21,6 +21,7 @@ namespace GTAutoWeb.Controllers
            
             var flashOffers = await _context.Cars
                 .Include(c => c.Model)
+                .Include(c => c.Images)
                 .Where(c => c.IsFlashOffer == true && c.IsSold == false)
                 .ToListAsync();
 

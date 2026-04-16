@@ -11,12 +11,16 @@ namespace GTAuto.WebApp.Seed
             if (context.Cars.Any())
                 return;
 
+            var bmwId = Guid.NewGuid();
+            var audiId = Guid.NewGuid();
+            var golfId = Guid.NewGuid();
+
             var cars = new List<Car>
             {
                 new Car
                 {
-                    Id = Guid.NewGuid(),
-                    ModelId = Guid.Parse("11111111-1111-1111-1111-111111111111"), 
+                    Id = bmwId,
+                    ModelId = Guid.Parse("11111111-1111-1111-1111-111111111111"),
                     Year = 2018,
                     HorsePower = 150,
                     Price = 18000,
@@ -25,14 +29,13 @@ namespace GTAuto.WebApp.Seed
                     Transmission = "Manual",
                     Color = "Black",
                     Description = "Well maintained car, no accidents, full service history.",
-                    ImageUrl = "/images/cars/bmw1.jpg",
                     IsReserved = false,
                     IsSold = false,
                     IsAutomatic = false
                 },
                 new Car
                 {
-                    Id = Guid.NewGuid(),
+                    Id = audiId,
                     ModelId = Guid.Parse("22222222-2222-2222-2222-222222222222"),
                     Year = 2020,
                     HorsePower = 190,
@@ -42,14 +45,13 @@ namespace GTAuto.WebApp.Seed
                     Transmission = "Automatic",
                     Color = "White",
                     Description = "Like new condition, fully loaded, automatic gearbox.",
-                    ImageUrl = "/images/audi.jpg",
                     IsReserved = false,
                     IsSold = false,
                     IsAutomatic = true
                 },
                 new Car
                 {
-                    Id = Guid.NewGuid(),
+                    Id = golfId,
                     ModelId = Guid.Parse("33333333-3333-3333-3333-333333333333"),
                     Year = 2015,
                     HorsePower = 110,
@@ -59,7 +61,6 @@ namespace GTAuto.WebApp.Seed
                     Transmission = "Manual",
                     Color = "Grey",
                     Description = "Reliable and economic car, perfect for daily driving.",
-                    ImageUrl = "/images/cars/vw_golf.jpg",
                     IsReserved = false,
                     IsSold = false,
                     IsAutomatic = false
@@ -67,6 +68,15 @@ namespace GTAuto.WebApp.Seed
             };
 
             await context.Cars.AddRangeAsync(cars);
+            await context.SaveChangesAsync();
+            var images = new List<CarImage>
+            {
+                new CarImage { Id = Guid.NewGuid(), CarId = bmwId, ImagePath = "/images/cars/bmw1.jpg", Order = 1 },
+                new CarImage { Id = Guid.NewGuid(), CarId = audiId, ImagePath = "/images/audi.jpg", Order = 1 },
+                new CarImage { Id = Guid.NewGuid(), CarId = golfId, ImagePath = "/images/cars/vw_golf.jpg", Order = 1 }
+            };
+
+            await context.CarImages.AddRangeAsync(images);
             await context.SaveChangesAsync();
         }
     }

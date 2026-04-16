@@ -66,10 +66,6 @@ namespace GTAuto.Data.Migrations
                     b.Property<int>("HorsePower")
                         .HasColumnType("int");
 
-                    b.Property<string>("ImageUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<bool>("IsAutomatic")
                         .HasColumnType("bit");
 
@@ -112,7 +108,6 @@ namespace GTAuto.Data.Migrations
                             Description = "M-Track Package, Carbon Seats, Laser Lights, Like new!",
                             FuelType = "Petrol",
                             HorsePower = 510,
-                            ImageUrl = "/images/m4.jpg",
                             IsAutomatic = true,
                             IsFlashOffer = false,
                             IsReserved = false,
@@ -130,7 +125,6 @@ namespace GTAuto.Data.Migrations
                             Description = "Ceramic Brakes, RS Dynamic Plus, Bang & Olufsen.",
                             FuelType = "Petrol",
                             HorsePower = 600,
-                            ImageUrl = "/images/rs7.jpg",
                             IsAutomatic = true,
                             IsFlashOffer = false,
                             IsReserved = false,
@@ -148,7 +142,6 @@ namespace GTAuto.Data.Migrations
                             Description = "AMG Night Package, Performance Exhaust.",
                             FuelType = "Petrol",
                             HorsePower = 530,
-                            ImageUrl = "/images/gt63.jpg",
                             IsAutomatic = true,
                             IsFlashOffer = false,
                             IsReserved = false,
@@ -166,7 +159,6 @@ namespace GTAuto.Data.Migrations
                             Description = "Stage 1, Akrapovic tips, Edition 35 wheels.",
                             FuelType = "Petrol",
                             HorsePower = 211,
-                            ImageUrl = "/images/golf6.jpg",
                             IsAutomatic = false,
                             IsFlashOffer = false,
                             IsReserved = false,
@@ -184,7 +176,6 @@ namespace GTAuto.Data.Migrations
                             Description = "Plaid version, Ludicrous mode, Full self-driving.",
                             FuelType = "Electric",
                             HorsePower = 1020,
-                            ImageUrl = "/images/tesla.jpg",
                             IsAutomatic = true,
                             IsFlashOffer = false,
                             IsReserved = false,
@@ -202,7 +193,6 @@ namespace GTAuto.Data.Migrations
                             Description = "M-Sport, Sky Lounge, Harman Kardon.",
                             FuelType = "Diesel",
                             HorsePower = 400,
-                            ImageUrl = "/images/x5.jpg",
                             IsAutomatic = true,
                             IsFlashOffer = false,
                             IsReserved = false,
@@ -220,7 +210,6 @@ namespace GTAuto.Data.Migrations
                             Description = "S-line, Matrix lights, Virtual cockpit.",
                             FuelType = "Diesel",
                             HorsePower = 286,
-                            ImageUrl = "/images/a6.jpg",
                             IsAutomatic = true,
                             IsFlashOffer = false,
                             IsReserved = false,
@@ -238,7 +227,6 @@ namespace GTAuto.Data.Migrations
                             Description = "Brand new, 10 years warranty, Hybrid system.",
                             FuelType = "Hybrid",
                             HorsePower = 140,
-                            ImageUrl = "/images/toyota.jpg",
                             IsAutomatic = true,
                             IsFlashOffer = false,
                             IsReserved = false,
@@ -256,7 +244,6 @@ namespace GTAuto.Data.Migrations
                             Description = "G63 AMG, Night Package, Carbon interior.",
                             FuelType = "Petrol",
                             HorsePower = 585,
-                            ImageUrl = "/images/gclass.jpg",
                             IsAutomatic = true,
                             IsFlashOffer = false,
                             IsReserved = false,
@@ -274,7 +261,6 @@ namespace GTAuto.Data.Migrations
                             Description = "Collector's car, Perfect condition, V8 Manual.",
                             FuelType = "Petrol",
                             HorsePower = 400,
-                            ImageUrl = "/images/e39.jpg",
                             IsAutomatic = false,
                             IsFlashOffer = false,
                             IsReserved = false,
@@ -292,7 +278,6 @@ namespace GTAuto.Data.Migrations
                             Description = "AMG Performance, Panoramic roof, Full service history.",
                             FuelType = "Petrol",
                             HorsePower = 525,
-                            ImageUrl = "/images/ml63.jpg",
                             IsAutomatic = true,
                             IsFlashOffer = false,
                             IsReserved = false,
@@ -310,7 +295,6 @@ namespace GTAuto.Data.Migrations
                             Description = "Fox Shocks, 37 Performance Package, Off-road monster.",
                             FuelType = "Petrol",
                             HorsePower = 450,
-                            ImageUrl = "/images/f150.jpg",
                             IsAutomatic = true,
                             IsFlashOffer = false,
                             IsReserved = false,
@@ -328,7 +312,6 @@ namespace GTAuto.Data.Migrations
                             Description = "Lamborghini Urus Performante, Titanium Exhaust.",
                             FuelType = "Petrol",
                             HorsePower = 666,
-                            ImageUrl = "/images/urus.jpg",
                             IsAutomatic = true,
                             IsFlashOffer = false,
                             IsReserved = false,
@@ -342,11 +325,10 @@ namespace GTAuto.Data.Migrations
                         new
                         {
                             Id = new Guid("c0000000-0000-0000-0000-000000000014"),
-                            Color = "Sunset Orange",
+                            Color = "Black",
                             Description = "Widebody, Custom wheels, Drift setup.",
                             FuelType = "Petrol",
                             HorsePower = 350,
-                            ImageUrl = "/images/350z.jpg",
                             IsAutomatic = false,
                             IsFlashOffer = false,
                             IsReserved = false,
@@ -372,6 +354,325 @@ namespace GTAuto.Data.Migrations
                     b.HasIndex("FeatureId");
 
                     b.ToTable("CarFeatures");
+                });
+
+            modelBuilder.Entity("GTAuto.Data.Models.CarImage", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CarId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ImagePath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Order")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CarId");
+
+                    b.ToTable("CarImages");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("f0000000-0000-0000-0000-000000000001"),
+                            CarId = new Guid("c0000000-0000-0000-0000-000000000001"),
+                            ImagePath = "/images/m4.jpg",
+                            Order = 1
+                        },
+                        new
+                        {
+                            Id = new Guid("f0000000-0000-0000-0000-000000000002"),
+                            CarId = new Guid("c0000000-0000-0000-0000-000000000001"),
+                            ImagePath = "/images/m4inside.jpg",
+                            Order = 2
+                        },
+                        new
+                        {
+                            Id = new Guid("f0000000-0000-0000-0000-000000000003"),
+                            CarId = new Guid("c0000000-0000-0000-0000-000000000001"),
+                            ImagePath = "/images/m4back.jpg",
+                            Order = 3
+                        },
+                        new
+                        {
+                            Id = new Guid("f0000000-0000-0000-0000-000000000004"),
+                            CarId = new Guid("c0000000-0000-0000-0000-000000000002"),
+                            ImagePath = "/images/rs7.jpg",
+                            Order = 1
+                        },
+                        new
+                        {
+                            Id = new Guid("f0000000-0000-0000-0000-000000000005"),
+                            CarId = new Guid("c0000000-0000-0000-0000-000000000002"),
+                            ImagePath = "/images/rs7inside.jpg",
+                            Order = 2
+                        },
+                        new
+                        {
+                            Id = new Guid("f0000000-0000-0000-0000-000000000006"),
+                            CarId = new Guid("c0000000-0000-0000-0000-000000000002"),
+                            ImagePath = "/images/rs7back.jpg",
+                            Order = 3
+                        },
+                        new
+                        {
+                            Id = new Guid("f0000000-0000-0000-0000-000000000007"),
+                            CarId = new Guid("c0000000-0000-0000-0000-000000000003"),
+                            ImagePath = "/images/gt63.jpg",
+                            Order = 1
+                        },
+                        new
+                        {
+                            Id = new Guid("f0000000-0000-0000-0000-000000000008"),
+                            CarId = new Guid("c0000000-0000-0000-0000-000000000003"),
+                            ImagePath = "/images/amggtinside.jpg",
+                            Order = 2
+                        },
+                        new
+                        {
+                            Id = new Guid("f0000000-0000-0000-0000-000000000009"),
+                            CarId = new Guid("c0000000-0000-0000-0000-000000000003"),
+                            ImagePath = "/images/amggtback.jpg",
+                            Order = 3
+                        },
+                        new
+                        {
+                            Id = new Guid("f0000000-0000-0000-0000-000000000010"),
+                            CarId = new Guid("c0000000-0000-0000-0000-000000000004"),
+                            ImagePath = "/images/golf6.jpg",
+                            Order = 1
+                        },
+                        new
+                        {
+                            Id = new Guid("f0000000-0000-0000-0000-000000000011"),
+                            CarId = new Guid("c0000000-0000-0000-0000-000000000004"),
+                            ImagePath = "/images/golf6inside.JPG",
+                            Order = 2
+                        },
+                        new
+                        {
+                            Id = new Guid("f0000000-0000-0000-0000-000000000012"),
+                            CarId = new Guid("c0000000-0000-0000-0000-000000000004"),
+                            ImagePath = "/images/golf6back.jpg",
+                            Order = 3
+                        },
+                        new
+                        {
+                            Id = new Guid("f0000000-0000-0000-0000-000000000013"),
+                            CarId = new Guid("c0000000-0000-0000-0000-000000000005"),
+                            ImagePath = "/images/tesla.jpg",
+                            Order = 1
+                        },
+                        new
+                        {
+                            Id = new Guid("f0000000-0000-0000-0000-000000000014"),
+                            CarId = new Guid("c0000000-0000-0000-0000-000000000005"),
+                            ImagePath = "/images/teslainside.jpg",
+                            Order = 2
+                        },
+                        new
+                        {
+                            Id = new Guid("f0000000-0000-0000-0000-000000000015"),
+                            CarId = new Guid("c0000000-0000-0000-0000-000000000005"),
+                            ImagePath = "/images/teslaback.jpg",
+                            Order = 3
+                        },
+                        new
+                        {
+                            Id = new Guid("f0000000-0000-0000-0000-000000000016"),
+                            CarId = new Guid("c0000000-0000-0000-0000-000000000006"),
+                            ImagePath = "/images/x5.jpg",
+                            Order = 1
+                        },
+                        new
+                        {
+                            Id = new Guid("f0000000-0000-0000-0000-000000000017"),
+                            CarId = new Guid("c0000000-0000-0000-0000-000000000006"),
+                            ImagePath = "/images/x5inside.jpg",
+                            Order = 2
+                        },
+                        new
+                        {
+                            Id = new Guid("f0000000-0000-0000-0000-000000000018"),
+                            CarId = new Guid("c0000000-0000-0000-0000-000000000006"),
+                            ImagePath = "/images/x5back.jpg",
+                            Order = 3
+                        },
+                        new
+                        {
+                            Id = new Guid("f0000000-0000-0000-0000-000000000019"),
+                            CarId = new Guid("c0000000-0000-0000-0000-000000000007"),
+                            ImagePath = "/images/a6.jpg",
+                            Order = 1
+                        },
+                        new
+                        {
+                            Id = new Guid("f0000000-0000-0000-0000-000000000020"),
+                            CarId = new Guid("c0000000-0000-0000-0000-000000000007"),
+                            ImagePath = "/images/a6inside.jpg",
+                            Order = 2
+                        },
+                        new
+                        {
+                            Id = new Guid("f0000000-0000-0000-0000-000000000021"),
+                            CarId = new Guid("c0000000-0000-0000-0000-000000000007"),
+                            ImagePath = "/images/a6back.jpg",
+                            Order = 3
+                        },
+                        new
+                        {
+                            Id = new Guid("f0000000-0000-0000-0000-000000000022"),
+                            CarId = new Guid("c0000000-0000-0000-0000-000000000008"),
+                            ImagePath = "/images/toyota.jpg",
+                            Order = 1
+                        },
+                        new
+                        {
+                            Id = new Guid("f0000000-0000-0000-0000-000000000023"),
+                            CarId = new Guid("c0000000-0000-0000-0000-000000000008"),
+                            ImagePath = "/images/toyotainside.jpg",
+                            Order = 2
+                        },
+                        new
+                        {
+                            Id = new Guid("f0000000-0000-0000-0000-000000000024"),
+                            CarId = new Guid("c0000000-0000-0000-0000-000000000008"),
+                            ImagePath = "/images/toyotaback.jpg",
+                            Order = 3
+                        },
+                        new
+                        {
+                            Id = new Guid("f0000000-0000-0000-0000-000000000025"),
+                            CarId = new Guid("c0000000-0000-0000-0000-000000000009"),
+                            ImagePath = "/images/gclass.jpg",
+                            Order = 1
+                        },
+                        new
+                        {
+                            Id = new Guid("f0000000-0000-0000-0000-000000000026"),
+                            CarId = new Guid("c0000000-0000-0000-0000-000000000009"),
+                            ImagePath = "/images/gclassinside.jpg",
+                            Order = 2
+                        },
+                        new
+                        {
+                            Id = new Guid("f0000000-0000-0000-0000-000000000027"),
+                            CarId = new Guid("c0000000-0000-0000-0000-000000000009"),
+                            ImagePath = "/images/gclassback.jpg",
+                            Order = 3
+                        },
+                        new
+                        {
+                            Id = new Guid("f0000000-0000-0000-0000-000000000028"),
+                            CarId = new Guid("c0000000-0000-0000-0000-000000000010"),
+                            ImagePath = "/images/e39.jpg",
+                            Order = 1
+                        },
+                        new
+                        {
+                            Id = new Guid("f0000000-0000-0000-0000-000000000029"),
+                            CarId = new Guid("c0000000-0000-0000-0000-000000000010"),
+                            ImagePath = "/images/e39inside.jpg",
+                            Order = 2
+                        },
+                        new
+                        {
+                            Id = new Guid("f0000000-0000-0000-0000-000000000030"),
+                            CarId = new Guid("c0000000-0000-0000-0000-000000000010"),
+                            ImagePath = "/images/e39back.jpg",
+                            Order = 3
+                        },
+                        new
+                        {
+                            Id = new Guid("f0000000-0000-0000-0000-000000000031"),
+                            CarId = new Guid("c0000000-0000-0000-0000-000000000011"),
+                            ImagePath = "/images/ml63.jpg",
+                            Order = 1
+                        },
+                        new
+                        {
+                            Id = new Guid("f0000000-0000-0000-0000-000000000032"),
+                            CarId = new Guid("c0000000-0000-0000-0000-000000000011"),
+                            ImagePath = "/images/ml63inside.jpg",
+                            Order = 2
+                        },
+                        new
+                        {
+                            Id = new Guid("f0000000-0000-0000-0000-000000000033"),
+                            CarId = new Guid("c0000000-0000-0000-0000-000000000011"),
+                            ImagePath = "/images/ml63back.jpg",
+                            Order = 3
+                        },
+                        new
+                        {
+                            Id = new Guid("f0000000-0000-0000-0000-000000000034"),
+                            CarId = new Guid("c0000000-0000-0000-0000-000000000012"),
+                            ImagePath = "/images/f150.jpg",
+                            Order = 1
+                        },
+                        new
+                        {
+                            Id = new Guid("f0000000-0000-0000-0000-000000000035"),
+                            CarId = new Guid("c0000000-0000-0000-0000-000000000012"),
+                            ImagePath = "/images/f150inside.jpg",
+                            Order = 2
+                        },
+                        new
+                        {
+                            Id = new Guid("f0000000-0000-0000-0000-000000000036"),
+                            CarId = new Guid("c0000000-0000-0000-0000-000000000012"),
+                            ImagePath = "/images/f150back.jpg",
+                            Order = 3
+                        },
+                        new
+                        {
+                            Id = new Guid("f0000000-0000-0000-0000-000000000037"),
+                            CarId = new Guid("c0000000-0000-0000-0000-000000000013"),
+                            ImagePath = "/images/urus.jpg",
+                            Order = 1
+                        },
+                        new
+                        {
+                            Id = new Guid("f0000000-0000-0000-0000-000000000038"),
+                            CarId = new Guid("c0000000-0000-0000-0000-000000000013"),
+                            ImagePath = "/images/urusinside.jpg",
+                            Order = 2
+                        },
+                        new
+                        {
+                            Id = new Guid("f0000000-0000-0000-0000-000000000039"),
+                            CarId = new Guid("c0000000-0000-0000-0000-000000000013"),
+                            ImagePath = "/images/urusback.jpg",
+                            Order = 3
+                        },
+                        new
+                        {
+                            Id = new Guid("f0000000-0000-0000-0000-000000000040"),
+                            CarId = new Guid("c0000000-0000-0000-0000-000000000014"),
+                            ImagePath = "/images/350z.jpg",
+                            Order = 1
+                        },
+                        new
+                        {
+                            Id = new Guid("f0000000-0000-0000-0000-000000000041"),
+                            CarId = new Guid("c0000000-0000-0000-0000-000000000014"),
+                            ImagePath = "/images/350zinside.jpg",
+                            Order = 2
+                        },
+                        new
+                        {
+                            Id = new Guid("f0000000-0000-0000-0000-000000000042"),
+                            CarId = new Guid("c0000000-0000-0000-0000-000000000014"),
+                            ImagePath = "/images/350zback.jpg",
+                            Order = 3
+                        });
                 });
 
             modelBuilder.Entity("GTAuto.Data.Models.Feature", b =>
@@ -565,6 +866,35 @@ namespace GTAuto.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("OrderStatuses");
+                });
+
+            modelBuilder.Entity("GTAuto.Data.Models.Reservation", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CarId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("DepositPaid")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("ExpiryDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("ReservationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CarId");
+
+                    b.ToTable("Reservations");
                 });
 
             modelBuilder.Entity("GTAuto.Data.Models.User", b =>
@@ -798,6 +1128,17 @@ namespace GTAuto.Data.Migrations
                     b.Navigation("Feature");
                 });
 
+            modelBuilder.Entity("GTAuto.Data.Models.CarImage", b =>
+                {
+                    b.HasOne("GTAuto.Data.Models.Car", "Car")
+                        .WithMany("Images")
+                        .HasForeignKey("CarId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Car");
+                });
+
             modelBuilder.Entity("GTAuto.Data.Models.Model", b =>
                 {
                     b.HasOne("GTAuto.Data.Models.Brand", "Brand")
@@ -834,6 +1175,17 @@ namespace GTAuto.Data.Migrations
                     b.Navigation("Status");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("GTAuto.Data.Models.Reservation", b =>
+                {
+                    b.HasOne("GTAuto.Data.Models.Car", "Car")
+                        .WithMany("Reservations")
+                        .HasForeignKey("CarId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Car");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
@@ -896,7 +1248,11 @@ namespace GTAuto.Data.Migrations
                 {
                     b.Navigation("CarFeatures");
 
+                    b.Navigation("Images");
+
                     b.Navigation("Orders");
+
+                    b.Navigation("Reservations");
                 });
 
             modelBuilder.Entity("GTAuto.Data.Models.Feature", b =>

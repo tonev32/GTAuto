@@ -5,7 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Authorization; 
+using Microsoft.AspNetCore.Authorization;
+using System.Text.RegularExpressions;
+using System.IO;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Http; // Задължително за IFormFile
 using GTAuto.Data;
 using GTAuto.Data.Models;
 using GTAutoWeb.ViewModel;
@@ -21,19 +25,37 @@ namespace GTAutoWeb.Controllers
             _context = context;
         }
 
-
         // GET: Cars
-        // GET: Cars
-        public async Task<IActionResult> Index(string searchString)
+        public async Task<IActionResult> Index(string searchString, decimal? minPrice, decimal? maxPrice, int? minHP, int? maxHP)
         {
-            var carsQuery = _context.Cars.Include(c => c.Model).AsQueryable();
+            var carsQuery = _context.Cars
+                .Include(c => c.Model)
+                .Include(c => c.Images)
+                .AsQueryable();
 
             ViewData["CurrentSearch"] = searchString;
+            ViewData["MinPrice"] = minPrice;
+            ViewData["MaxPrice"] = maxPrice;
+            ViewData["MinHP"] = minHP;
+            ViewData["MaxHP"] = maxHP;
+
             if (!string.IsNullOrWhiteSpace(searchString))
             {
-                var exactSearch = searchString.Trim().ToLower();
-                carsQuery = carsQuery.Where(c => c.Model.Name.ToLower().Contains(exactSearch));
+                bool isCyrillic = Regex.IsMatch(searchString, @"\p{IsCyrillic}");
+                if (isCyrillic)
+                {
+                    ViewData["ErrorMessage"] = "Invalid characters detected. Please use English only.";
+                    return View(new List<Car>());
+                }
+
+                var search = searchString.Trim().ToLower();
+                carsQuery = carsQuery.Where(c => c.Model.Name.ToLower().Contains(search));
             }
+
+            if (minPrice.HasValue) carsQuery = carsQuery.Where(c => c.Price >= minPrice.Value);
+            if (maxPrice.HasValue) carsQuery = carsQuery.Where(c => c.Price <= maxPrice.Value);
+            if (minHP.HasValue) carsQuery = carsQuery.Where(c => c.HorsePower >= minHP.Value);
+            if (maxHP.HasValue) carsQuery = carsQuery.Where(c => c.HorsePower <= maxHP.Value);
 
             var cars = await carsQuery
                 .OrderByDescending(c => c.IsFlashOffer)
@@ -43,21 +65,26 @@ namespace GTAutoWeb.Controllers
             return View(cars);
         }
 
+        // GET: Cars/Details/5
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null) return NotFound();
 
             var car = await _context.Cars
                 .Include(c => c.Model)
+                .Include(c => c.Images)
                 .FirstOrDefaultAsync(m => m.Id == id);
 
             if (car == null) return NotFound();
+
+            car.Images = car.Images.OrderBy(i => i.Order).ToList();
 
             return View(car);
         }
 
         // GET: Cars/Create
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             ViewData["Models"] = new SelectList(_context.Models.OrderBy(m => m.Name), "Id", "Name");
@@ -66,6 +93,7 @@ namespace GTAutoWeb.Controllers
 
         // POST: Cars/Create
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CarViewModel vm)
         {
@@ -83,12 +111,20 @@ namespace GTAutoWeb.Controllers
                     Transmission = vm.Transmission,
                     Color = vm.Color,
                     Description = vm.Description,
-                    ImageUrl = vm.ImageUrl,
-                    IsReserved = vm.IsReserved,
-                    IsSold = vm.IsSold,
+                    IsReserved = false,
+                    IsSold = false,
                     IsAutomatic = vm.IsAutomatic,
-                    IsFlashOffer = vm.IsFlashOffer // ЗАПАЗВАМЕ IsFlashOffer
+                    IsFlashOffer = vm.IsFlashOffer
                 };
+
+                if (vm.FrontImage != null)
+                    car.Images.Add(new CarImage { Id = Guid.NewGuid(), ImagePath = await ProcessUploadedImage(vm.FrontImage), Order = 1 });
+
+                if (vm.BackImage != null)
+                    car.Images.Add(new CarImage { Id = Guid.NewGuid(), ImagePath = await ProcessUploadedImage(vm.BackImage), Order = 2 });
+
+                if (vm.InteriorImage != null)
+                    car.Images.Add(new CarImage { Id = Guid.NewGuid(), ImagePath = await ProcessUploadedImage(vm.InteriorImage), Order = 3 });
 
                 _context.Cars.Add(car);
                 await _context.SaveChangesAsync();
@@ -100,11 +136,12 @@ namespace GTAutoWeb.Controllers
         }
 
         // GET: Cars/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null) return NotFound();
 
-            var car = await _context.Cars.FindAsync(id);
+            var car = await _context.Cars.Include(c => c.Images).FirstOrDefaultAsync(c => c.Id == id);
             if (car == null) return NotFound();
 
             var vm = new CarViewModel
@@ -119,11 +156,10 @@ namespace GTAutoWeb.Controllers
                 Transmission = car.Transmission,
                 Color = car.Color,
                 Description = car.Description,
-                ImageUrl = car.ImageUrl,
                 IsReserved = car.IsReserved,
                 IsSold = car.IsSold,
                 IsAutomatic = car.IsAutomatic,
-                IsFlashOffer = car.IsFlashOffer // ЗАРЕЖДАМЕ IsFlashOffer
+                IsFlashOffer = car.IsFlashOffer
             };
 
             ViewData["Models"] = new SelectList(_context.Models.OrderBy(m => m.Name), "Id", "Name", car.ModelId);
@@ -132,6 +168,7 @@ namespace GTAutoWeb.Controllers
 
         // POST: Cars/Edit/5
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, CarViewModel vm)
         {
@@ -141,7 +178,7 @@ namespace GTAutoWeb.Controllers
             {
                 try
                 {
-                    var car = await _context.Cars.FindAsync(id);
+                    var car = await _context.Cars.Include(c => c.Images).FirstOrDefaultAsync(c => c.Id == id);
                     if (car == null) return NotFound();
 
                     car.ModelId = vm.ModelId;
@@ -153,11 +190,18 @@ namespace GTAutoWeb.Controllers
                     car.Transmission = vm.Transmission;
                     car.Color = vm.Color;
                     car.Description = vm.Description;
-                    car.ImageUrl = vm.ImageUrl;
                     car.IsReserved = vm.IsReserved;
                     car.IsSold = vm.IsSold;
                     car.IsAutomatic = vm.IsAutomatic;
-                    car.IsFlashOffer = vm.IsFlashOffer; // АКТУАЛИЗИРАМЕ IsFlashOffer
+                    car.IsFlashOffer = vm.IsFlashOffer;
+
+                    // Обновяване на снимка 1 (ако има нова)
+                    if (vm.FrontImage != null)
+                    {
+                        var oldImg = car.Images.FirstOrDefault(i => i.Order == 1);
+                        if (oldImg != null) _context.CarImages.Remove(oldImg);
+                        car.Images.Add(new CarImage { Id = Guid.NewGuid(), ImagePath = await ProcessUploadedImage(vm.FrontImage), Order = 1 });
+                    }
 
                     _context.Update(car);
                     await _context.SaveChangesAsync();
@@ -174,12 +218,14 @@ namespace GTAutoWeb.Controllers
         }
 
         // GET: Cars/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null) return NotFound();
 
             var car = await _context.Cars
                 .Include(c => c.Model)
+                .Include(c => c.Images)
                 .FirstOrDefaultAsync(m => m.Id == id);
 
             if (car == null) return NotFound();
@@ -189,16 +235,36 @@ namespace GTAutoWeb.Controllers
 
         // POST: Cars/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            var car = await _context.Cars.FindAsync(id);
+            var car = await _context.Cars.Include(c => c.Images).FirstOrDefaultAsync(c => c.Id == id);
             if (car != null)
             {
                 _context.Cars.Remove(car);
                 await _context.SaveChangesAsync();
             }
             return RedirectToAction(nameof(Index));
+        }
+
+        private async Task<string> ProcessUploadedImage(IFormFile imageFile)
+        {
+            if (imageFile == null || imageFile.Length == 0) return null;
+
+            string uniqueFileName = Guid.NewGuid().ToString() + "_" + imageFile.FileName;
+            string uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "cars");
+
+            if (!Directory.Exists(uploadsFolder)) Directory.CreateDirectory(uploadsFolder);
+
+            string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+            using (var fileStream = new FileStream(filePath, FileMode.Create))
+            {
+                await imageFile.CopyToAsync(fileStream);
+            }
+
+            return "/images/cars/" + uniqueFileName;
         }
 
         private bool CarExists(Guid id)
@@ -211,6 +277,7 @@ namespace GTAutoWeb.Controllers
         {
             var car = await _context.Cars
                 .Include(c => c.Model)
+                .Include(c => c.Images)
                 .FirstOrDefaultAsync(c => c.Id == id);
 
             if (car == null) return NotFound();
@@ -221,32 +288,49 @@ namespace GTAutoWeb.Controllers
                 return RedirectToAction("Details", new { id = car.Id });
             }
 
+            ViewBag.DepositAmount = car.Price * 0.05m;
             return View(car);
         }
 
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CheckoutConfirm(Guid id)
+        public async Task<IActionResult> CheckoutConfirm(Guid id, string cardNumber)
         {
-            var car = await _context.Cars.FindAsync(id);
+            var car = await _context.Cars.Include(c => c.Model).FirstOrDefaultAsync(c => c.Id == id);
             if (car == null) return NotFound();
 
-            if (car.IsReserved || car.IsSold)
-            {
-                TempData["ErrorMessage"] = "Too late! Someone else just reserved this asset.";
-                return RedirectToAction("Details", new { id = car.Id });
-            }
+            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            // Маркираме колата като резервирана
+            var reservation = new Reservation
+            {
+                Id = Guid.NewGuid(),
+                UserId = userId,
+                CarId = id,
+                DepositPaid = car.Price * 0.05m,
+                ReservationDate = DateTime.UtcNow,
+                ExpiryDate = DateTime.UtcNow.AddDays(21)
+            };
+
             car.IsReserved = true;
+
+            _context.Reservations.Add(reservation);
             _context.Update(car);
             await _context.SaveChangesAsync();
 
-            // Показваме успешно съобщение
-            TempData["SuccessMessage"] = "Asset reserved successfully! Our team will contact you to finalize the contract.";
+            return RedirectToAction("Confirmation", new { id = reservation.Id });
+        }
 
-            return RedirectToAction("Details", new { id = car.Id });
+        public async Task<IActionResult> Confirmation(Guid id)
+        {
+            var res = await _context.Reservations
+                .Include(r => r.Car)
+                .ThenInclude(c => c.Model)
+                .FirstOrDefaultAsync(r => r.Id == id);
+
+            if (res == null) return NotFound();
+
+            return View(res);
         }
     }
 }

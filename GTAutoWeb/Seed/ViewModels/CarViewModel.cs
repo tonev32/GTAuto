@@ -1,4 +1,7 @@
 ﻿using GTAuto.Data.Models;
+using Microsoft.AspNetCore.Http;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace GTAutoWeb.ViewModel
@@ -9,7 +12,6 @@ namespace GTAutoWeb.ViewModel
 
         [Required]
         public Guid ModelId { get; set; }
-        //public Model Model { get; set; }
 
         [Required]
         [Range(1950, 2100)]
@@ -38,8 +40,15 @@ namespace GTAutoWeb.ViewModel
         [Required]
         public string Description { get; set; }
 
-        [Required]
-        public string ImageUrl { get; set; }
+        // 🔥 ТУК Е ПРОМЯНАТА: ИЗТРИХМЕ ImageUrl И ДОБАВИХМЕ ТЕЗИ ТРИ ПОЛЕТА ЗА ФАЙЛОВЕ 🔥
+        [Display(Name = "Front Image")]
+        public IFormFile? FrontImage { get; set; }
+
+        [Display(Name = "Back Image")]
+        public IFormFile? BackImage { get; set; }
+
+        [Display(Name = "Interior Image")]
+        public IFormFile? InteriorImage { get; set; }
 
         public bool IsReserved { get; set; } = false;
         public bool IsSold { get; set; } = false;

@@ -1,99 +1,135 @@
 ﻿@model GTAuto.Data.Models.Car
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Confirm Deletion";
 }
 
-<h1>Delete</h1>
+<style>
+    body {
+        background-color: #000000;
+        color: white;
+    }
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Car</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Model)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Year)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Year)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.HorsePower)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.HorsePower)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Mileage)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Mileage)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FuelType)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FuelType)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Transmission)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Transmission)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Color)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Color)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ImageUrl)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ImageUrl)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IsReserved)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IsReserved)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IsSold)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IsSold)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IsAutomatic)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IsAutomatic)
-        </dd>
-    </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
-    </form>
+    .delete-wrapper {
+        min-height: 100vh;
+        padding: 60px 0;
+    }
+
+    .delete-card {
+        background-color: #0d0d0d;
+        border: 1px solid #dc3545; /* Червена рамка за предупреждение */
+        border-radius: 15px;
+        padding: 40px;
+        box-shadow: 0 0 30px rgba(220, 53, 69, 0.2);
+    }
+
+    .spec-label {
+        color: #8c8c8c;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        font-weight: 800;
+        letter-spacing: 1px;
+    }
+
+    .spec-value {
+        color: #ffffff;
+        font-weight: 600;
+        border-bottom: 1px solid #1a1a1a;
+        padding-bottom: 5px;
+        margin-bottom: 15px;
+    }
+
+    .btn-delete-confirm {
+        background-color: #dc3545;
+        color: white;
+        border: none;
+        padding: 15px 40px;
+        font-weight: 800;
+        text-transform: uppercase;
+        border-radius: 4px;
+        transition: 0.3s;
+    }
+
+    .btn-delete-confirm:hover {
+        background-color: #a71d2a;
+        transform: scale(1.02);
+        box-shadow: 0 0 20px rgba(220, 53, 69, 0.5);
+    }
+
+    .btn-cancel {
+        color: #8c8c8c;
+        text-decoration: none;
+        font-weight: 600;
+        transition: 0.3s;
+    }
+
+    .btn-cancel:hover {
+        color: white;
+    }
+</style>
+
+<div class="delete-wrapper">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 delete-card text-center">
+                <i class="bi bi-exclamation-triangle-fill text-danger mb-3" style="font-size: 3rem;"></i>
+                <h1 class="fw-bold text-uppercase mb-2">Confirm <span class="text-danger">Deletion</span></h1>
+                <p class="text-muted mb-5">Are you sure you want to permanently remove this asset from the inventory?</p>
+
+                <div class="row g-4 text-start">
+                    @* ВИЗУАЛИЗАЦИЯ НА КОЛАТА *@
+                    <div class="col-md-5">
+                        @{
+                            var mainImg = Model.Images?.OrderBy(i => i.Order).FirstOrDefault()?.ImagePath ?? "/images/no-image.png";
+                        }
+                        <img src="@mainImg" class="img-fluid rounded shadow" style="width: 100%; height: 250px; object-fit: cover; border: 1px solid #333;">
+                        <div class="mt-3 p-3 bg-black rounded border border-secondary">
+                            <div class="spec-label">Current Status</div>
+                            <div class="fw-bold @(Model.IsSold ? "text-danger" : "text-success")">
+                                @(Model.IsSold ? "SOLD" : (Model.IsReserved ? "RESERVED" : "AVAILABLE"))
+                            </div>
+                        </div>
+                    </div>
+
+                    @* ДЕТАЙЛИ *@
+                    <div class="col-md-7">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="spec-label">Model</div>
+                                <div class="spec-value">@Model.Model.Name</div>
+                            </div>
+                            <div class="col-6">
+                                <div class="spec-label">Price</div>
+                                <div class="spec-value text-danger">@Model.Price.ToString("N0") €</div>
+                            </div>
+                            <div class="col-6">
+                                <div class="spec-label">Year</div>
+                                <div class="spec-value">@Model.Year</div>
+                            </div>
+                            <div class="col-6">
+                                <div class="spec-label">Horsepower</div>
+                                <div class="spec-value">@Model.HorsePower HP</div>
+                            </div>
+                            <div class="col-6">
+                                <div class="spec-label">Fuel</div>
+                                <div class="spec-value">@Model.FuelType</div>
+                            </div>
+                            <div class="col-6">
+                                <div class="spec-label">Color</div>
+                                <div class="spec-value">@Model.Color</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-5 pt-4 border-top border-secondary d-flex align-items-center justify-content-center gap-4">
+                    <form asp-action="Delete">
+                        <input type="hidden" asp-for="Id" />
+                        <button type="submit" class="btn-delete-confirm">Delete Asset</button>
+                    </form>
+                    <a asp-action="Index" class="btn-cancel">Cancel and Go Back</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

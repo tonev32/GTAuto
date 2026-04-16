@@ -5,7 +5,7 @@
 }
 
 <style>
-    /* ГЛАВЕН КОНТЕЙНЕР - ЧИСТО ЧЕРНО */
+    /* ГЛАВЕН КОНТЕЙНЕР */
     .inventory-wrapper {
         background-color: #000000 !important;
         min-height: 100vh;
@@ -27,34 +27,88 @@
         margin-bottom: 50px;
     }
 
-    /* БУТОН ЗА СЪЗДАВАНЕ (АДМИН) */
+    /* БУТОН ЗА СЪЗДАВАНЕ */
     .btn-create-blue {
         background-color: #00d4ff;
         color: #000000;
         border: none;
-        padding: 15px 35px;
+        padding: 12px 30px;
         font-weight: 800;
         text-transform: uppercase;
         border-radius: 4px;
         transition: 0.3s;
         text-decoration: none;
         display: inline-block;
+        margin-bottom: 40px;
     }
 
-        .btn-create-blue:hover {
-            background-color: #00aacc;
-            box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
-            color: #000000;
+    /* ФИЛТРИ */
+    .filter-form-invisible {
+        background: transparent;
+        margin-bottom: 60px;
+        width: 100%;
+    }
+
+    /* ПРЕМАХВАНЕ НА СТРЕЛКИТЕ ЗА ЧИСЛА */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+
+    .search-input-noir {
+        background-color: #000000 !important;
+        border: 1px solid #222 !important;
+        color: white !important;
+        padding: 10px 15px;
+        border-radius: 4px !important;
+        box-shadow: none !important;
+        transition: 0.3s;
+    }
+
+        .search-input-noir:focus {
+            border-color: #00d4ff !important;
         }
 
-    /* КАРТИТЕ НА КОЛИТЕ */
+    /* СИНЬО ЗАГЛАВИЕ КАТО GTAUTO */
+    .filter-label {
+        color: #00d4ff;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        font-weight: 800;
+        letter-spacing: 1.5px;
+        margin-bottom: 10px;
+        display: block;
+        text-align: left;
+        text-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+    }
+
+    .btn-search-blue {
+        background-color: #00d4ff;
+        color: #000;
+        border: none;
+        font-weight: 800;
+        text-transform: uppercase;
+        padding: 10px 25px;
+        border-radius: 4px;
+        transition: 0.3s;
+    }
+
+        .btn-search-blue:hover {
+            background-color: #00aacc;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+
+    /* КАРТИТЕ */
     .car-card-noir {
         background: #0d0d0d;
         border: 1px solid #1a1a1a;
-        transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        transition: 0.4s;
         border-radius: 12px;
-        cursor: pointer;
-        /* Важно за лентата: */
         position: relative;
         overflow: hidden;
     }
@@ -62,172 +116,129 @@
         .car-card-noir:hover {
             transform: translateY(-10px);
             border-color: #00d4ff;
-            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.15);
         }
 
-    .price-text-blue {
-        color: #00d4ff;
-        font-weight: 800;
-        font-size: 1.6rem;
-    }
-
-    /* БУТОН DETAILS */
-    .btn-details-blue {
-        border: 2px solid #00d4ff;
-        color: #00d4ff;
-        font-weight: 800;
+    .corner-ribbon {
+        position: absolute;
+        top: 20px;
+        right: -35px;
+        background-color: #ff0000;
+        color: white;
+        padding: 5px 40px;
+        font-weight: bold;
         text-transform: uppercase;
-        padding: 8px 25px;
-        transition: 0.3s;
-        border-radius: 4px;
-        text-decoration: none;
-        display: inline-block;
+        transform: rotate(45deg);
+        z-index: 10;
+        font-size: 0.75rem;
     }
-
-        .btn-details-blue:hover {
-            background: #00d4ff;
-            color: #000000;
-            box-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
-        }
-
-    /* ТЪРСАЧКА */
-    .search-input-noir {
-        background-color: #0d0d0d !important;
-        border: 1px solid #333 !important;
-        color: white !important;
-        padding: 15px 20px;
-        border-radius: 4px 0 0 4px;
-        box-shadow: none !important;
-        transition: 0.3s;
-    }
-
-        .search-input-noir:focus {
-            border-color: #00d4ff !important;
-            box-shadow: 0 0 15px rgba(0, 212, 255, 0.2) !important;
-        }
-
-    .btn-search-blue {
-        background-color: #00d4ff;
-        color: #000;
-        border: none;
-        border-radius: 0 4px 4px 0;
-        transition: 0.3s;
-    }
-
-        .btn-search-blue:hover {
-            background-color: #00aacc;
-            box-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
-        }
 </style>
 
 <div class="inventory-wrapper">
     <div class="container text-center">
-        @* HEADER СЕКЦИЯ *@
+        @* HEADER *@
         <h1 class="inventory-title">Premium <span style="color: #00d4ff; text-shadow: 0 0 20px rgba(0, 212, 255, 0.4);">Inventory</span></h1>
         <p class="inventory-subtitle">Explore our curated collection of high-performance automobiles</p>
 
-        @* 🔥 СЕКЦИЯ ЗА ТЪРСЕНЕ 🔥 *@
-        <div class="row justify-content-center mb-5">
-            <div class="col-md-8 col-lg-6">
-                <form asp-controller="Cars" asp-action="Index" method="get">
+        @* ФИЛТРИ *@
+        <form asp-controller="Cars" asp-action="Index" method="get" class="filter-form-invisible">
+            <div class="row g-4 align-items-end">
+                <div class="col-md-4">
+                    <label class="filter-label">Brand / Model</label>
+                    <input type="text" name="searchString" value="@ViewData["CurrentSearch"]"
+                           class="form-control search-input-noir w-100" placeholder="e.g. BMW, M4..." />
+                </div>
+
+                <div class="col-md-4">
+                    <label class="filter-label text-start">Horsepower (HP)</label>
                     <div class="input-group">
-                        <input type="text" name="searchString" value="@ViewData["CurrentSearch"]"
-                               class="form-control search-input-noir"
-                               placeholder="Search by brand or model" />
-
-                        <button type="submit" class="btn btn-search-blue px-4">
-                            <strong style="letter-spacing: 1px;">SEARCH</strong>
-                        </button>
-
-                        @* Изчистен текст за CLEAR *@
-                        @if (!string.IsNullOrEmpty(ViewData["CurrentSearch"]?.ToString()))
-                        {
-                            <a asp-controller="Cars" asp-action="Index"
-                               class="d-flex align-items-center ms-3 fw-bold text-decoration-none"
-                               style="color: #00d4ff; transition: 0.3s;"
-                               onmouseover="this.style.textDecoration='underline'"
-                               onmouseout="this.style.textDecoration='none'">
-                                CLEAR
-                            </a>
-                        }
+                        <input type="number" name="minHP" value="@ViewData["MinHP"]" class="form-control search-input-noir" placeholder="Min HP" />
+                        <input type="number" name="maxHP" value="@ViewData["maxHP"]" class="form-control search-input-noir" placeholder="Max HP" />
                     </div>
-                </form>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="filter-label">Price Range (€)</label>
+                    <div class="d-flex gap-2">
+                        <input type="number" name="minPrice" value="@ViewData["MinPrice"]" class="form-control search-input-noir" placeholder="Min" style="width: 30%;" />
+                        <input type="number" name="maxPrice" value="@ViewData["maxPrice"]" class="form-control search-input-noir" placeholder="Max" style="width: 30%;" />
+
+                        <button type="submit" class="btn btn-search-blue flex-grow-1">
+                            APPLY
+                        </button>
+                    </div>
+                </div>
             </div>
-        </div>
+
+            @if (ViewData["CurrentSearch"] != null || ViewData["MinPrice"] != null || ViewData["MaxPrice"] != null || ViewData["MinHP"] != null || ViewData["MaxHP"] != null)
+            {
+                <div class="text-end mt-2">
+                    <a asp-action="Index" class="fw-bold text-decoration-none small"
+                       style="color: #00d4ff; font-size: 0.7rem; opacity: 0.8;"
+                       onmouseover="this.style.opacity='1'; this.style.textDecoration='underline';"
+                       onmouseout="this.style.opacity='0.8'; this.style.textDecoration='none';">
+                        RESET FILTERS [X]
+                    </a>
+                </div>
+            }
+        </form>
 
         @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
         {
-            <div class="mb-5">
-                <a asp-action="Create" class="btn-create-blue">+ Create New Listing</a>
+            <div class="text-start">
+                <a asp-action="Create" class="btn-create-blue">+ Add New Asset</a>
             </div>
         }
 
-        @* 🔥 ПРОВЕРКА ДАЛИ ИМА НАМЕРЕНИ КОЛИ 🔥 *@
+        @* RESULTS *@
         @if (!Model.Any())
         {
-            <div class="text-center py-5 mt-4" style="background-color: transparent; max-width: 800px; margin: 0 auto;">
+            <div class="text-center py-5 mt-4">
                 <h2 class="text-muted fw-bold mb-3" style="letter-spacing: 2px;">NO ASSETS FOUND</h2>
-
-                @if (ViewData["CurrentSearch"] != null)
-                {
-                    <p class="text-secondary fs-5">We couldn't find any vehicles matching "<strong class="text-white">@ViewData["CurrentSearch"]</strong>".</p>
-                }
-                else
-                {
-                    <p class="text-secondary fs-5">The inventory is currently empty.</p>
-                }
+                <p class="text-secondary fs-5">No vehicles matching your criteria were found.</p>
             </div>
         }
         else
         {
-            @* ГРИД С КОЛИ (АКО ИМА РЕЗУЛТАТИ) *@
             <div class="row row-cols-1 row-cols-md-3 g-4 text-start">
                 @foreach (var car in Model)
                 {
+                    @* ЛОГИКА ЗА ИЗВЛИЧАНЕ НА ОСНОВНАТА СНИМКА *@
+                    var mainImg = car.Images?.OrderBy(i => i.Order).FirstOrDefault()?.ImagePath ?? "/images/no-image.png";
+
                     <div class="col">
                         <div class="card car-card-noir h-100" data-bs-toggle="modal" data-bs-target="#modal-@car.Id">
-
                             @if (car.IsFlashOffer)
                             {
                                 <div class="corner-ribbon">SALE</div>
                             }
 
-                            @if (!string.IsNullOrEmpty(car.ImageUrl))
-                            {
-                                <img src="@car.ImageUrl" class="card-img-top" alt="@car.Model.Name" style="height: 250px; object-fit: cover;">
-                            }
+                            @* ПОПРАВЕНО: Използваме mainImg вместо car.ImageUrl *@
+                            <img src="@mainImg" class="card-img-top" alt="@car.Model.Name" style="height: 250px; object-fit: cover;">
 
-                            <div class="card-body">
+                            <div class="card-body p-4">
                                 <h5 class="card-title text-white fw-bold mb-1" style="font-size: 1.4rem;">@car.Model.Name</h5>
-                                <p class="card-text mb-3" style="color: #8c8c8c; font-size: 0.9rem;">
-                                    Year: @car.Year | Fuel: @car.FuelType
+                                <p class="card-text mb-3" style="color: #8c8c8c; font-size: 0.85rem;">
+                                    Year: @car.Year | HP: @car.HorsePower | Fuel: @car.FuelType
                                 </p>
 
                                 @if (car.IsFlashOffer)
                                 {
-                                    <div class="text-muted text-decoration-line-through mb-1" style="font-size: 1rem;">
-                                        @((car.Price + 15000).ToString("N0")) €
-                                    </div>
-                                    <div class="price-text-blue" style="color: #ff0000;">
-                                        @car.Price.ToString("N0") €
-                                    </div>
+                                    <div class="text-muted text-decoration-line-through small">@((car.Price + 15000).ToString("N0")) €</div>
+                                    <div style="color: #ff0000; font-weight: 800; font-size: 1.6rem;">@car.Price.ToString("N0") €</div>
                                 }
                                 else
                                 {
-                                    <div class="price-text-blue">
-                                        @car.Price.ToString("N0") €
-                                    </div>
+                                    <div style="color: #00d4ff; font-weight: 800; font-size: 1.6rem;">@car.Price.ToString("N0") €</div>
                                 }
                             </div>
 
-                            <div class="card-footer bg-transparent border-0 pb-4 text-center" onclick="event.stopPropagation();">
-                                <a asp-action="Details" asp-route-id="@car.Id" class="btn-details-blue mb-3">
-                                    Details
+                            <div class="card-footer bg-transparent border-0 pb-4 px-4 text-center" onclick="event.stopPropagation();">
+                                <a asp-action="Details" asp-route-id="@car.Id" class="btn btn-outline-info w-100 fw-bold py-2" style="border-radius: 4px; border-width: 2px;">
+                                    DETAILS
                                 </a>
-
                                 @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                                 {
-                                    <div class="d-flex gap-2 justify-content-center mt-2">
+                                    <div class="d-flex gap-2 justify-content-center mt-3">
                                         <a asp-action="Edit" asp-route-id="@car.Id" class="btn btn-sm btn-outline-warning">Edit</a>
                                         <a asp-action="Delete" asp-route-id="@car.Id" class="btn btn-sm btn-outline-danger">Delete</a>
                                     </div>
@@ -236,48 +247,30 @@
                         </div>
                     </div>
 
-                    @* MODAL ЗА ВСЯКА КОЛА *@
+                    @* MODAL *@
                     <div class="modal fade" id="modal-@car.Id" tabindex="-1" aria-hidden="true">
                         <div class="modal-dialog modal-lg modal-dialog-centered">
-                            <div class="modal-content" style="background-color: #0a0a0a; color: white; border: 1px solid #1a1a1a; box-shadow: 0 0 30px rgba(0,0,0,0.8);">
-                                <div class="modal-header border-secondary" style="border-bottom: 1px solid #1a1a1a !important;">
-                                    <h5 class="modal-title fw-bold text-uppercase">@car.Model.Name</h5>
-                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <div class="modal-content" style="background-color: #0a0a0a; color: white; border: 1px solid #1a1a1a;">
+                                <div class="modal-header border-0">
+                                    <h5 class="modal-title fw-bold">@car.Model.Name</h5>
+                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                                 </div>
-                                <div class="modal-body">
-                                    @if (!string.IsNullOrEmpty(car.ImageUrl))
-                                    {
-                                        <img src="@car.ImageUrl" class="img-fluid rounded mb-4 shadow" style="width: 100%; height: 450px; object-fit: cover;">
-                                    }
-                                    <div class="row text-center g-3">
-                                        <div class="col-4">
-                                            <div class="p-3 border rounded" style="background-color: #0d0d0d; border-color: #1a1a1a !important;">
-                                                <small class="text-uppercase text-muted" style="letter-spacing: 1px;">Year</small><br />
-                                                <strong class="fs-5 text-white">@car.Year</strong>
-                                            </div>
-                                        </div>
-                                        <div class="col-4">
-                                            <div class="p-3 border rounded" style="background-color: #0d0d0d; border-color: #1a1a1a !important;">
-                                                <small class="text-uppercase text-muted" style="letter-spacing: 1px;">Fuel</small><br />
-                                                <strong class="fs-5 text-white">@car.FuelType</strong>
-                                            </div>
-                                        </div>
-                                        <div class="col-4">
-                                            <div class="p-3 border rounded" style="background-color: #0d0d0d; border-color: #1a1a1a !important;">
-                                                <small class="text-uppercase text-muted" style="letter-spacing: 1px;">Price</small><br />
+                                <div class="modal-body p-4 text-center">
+                                    @* ПОПРАВЕНО: Тук също използваме mainImg *@
+                                    <img src="@mainImg" class="img-fluid rounded mb-4" style="width: 100%; height: 400px; object-fit: cover;">
 
-                                                @if (car.IsFlashOffer)
-                                                {
-                                                    <div class="text-muted text-decoration-line-through" style="font-size: 0.9rem;">
-                                                        @((car.Price + 15000).ToString("N0")) €
-                                                    </div>
-                                                    <strong class="fs-5" style="color: #ff0000;">@car.Price.ToString("N0") €</strong>
-                                                }
-                                                else
-                                                {
-                                                    <strong class="fs-5" style="color: #00d4ff;">@car.Price.ToString("N0") €</strong>
-                                                }
-                                            </div>
+                                    <div class="row text-center g-3">
+                                        <div class="col-4 border-end border-secondary">
+                                            <small class="text-muted d-block">YEAR</small>
+                                            <strong class="fs-5">@car.Year</strong>
+                                        </div>
+                                        <div class="col-4 border-end border-secondary">
+                                            <small class="text-muted d-block">HORSEPOWER</small>
+                                            <strong class="fs-5">@car.HorsePower HP</strong>
+                                        </div>
+                                        <div class="col-4">
+                                            <small class="text-muted d-block">PRICE</small>
+                                            <strong class="fs-5" style="color: @(car.IsFlashOffer ? "#ff0000" : "#00d4ff")">@car.Price.ToString("N0") €</strong>
                                         </div>
                                     </div>
                                 </div>
