@@ -623,3 +623,11 @@ C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAutoWeb\obj\Debug\net8.0\ref
 C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAutoWeb\obj\Debug\net8.0\GTAutoWeb.pdb
 C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAutoWeb\obj\Debug\net8.0\GTAutoWeb.genruntimeconfig.cache
 C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAutoWeb\obj\Debug\net8.0\ref\GTAutoWeb.dll
+C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAutoWeb\bin\Debug\net8.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAutoWeb\bin\Debug\net8.0\System.Drawing.Common.dll
+C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAutoWeb\bin\Debug\net8.0\System.Security.Permissions.dll
+C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAutoWeb\bin\Debug\net8.0\System.Windows.Extensions.dll
+C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAutoWeb\bin\Debug\net8.0\runtimes\win\lib\net7.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAutoWeb\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Drawing.Common.dll
+C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAutoWeb\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\Student10\Desktop\Diplomna Rabota\GTAuto\GTAutoWeb\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Windows.Extensions.dll

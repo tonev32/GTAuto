@@ -1,0 +1,36 @@
+﻿@model GTAuto.Data.Models.Reservation
+@{
+    ViewData["Title"] = "Reservation Successful";
+}
+
+<style>
+    html, body, main, .container, .pb-3, header, footer { background-color: #000000 !important; }
+    .success-container { max-width: 650px; margin: 80px auto; text-align: center; }
+    .check-icon { font-size: 5rem; color: #28a745; text-shadow: 0 0 30px rgba(40, 167, 69, 0.5); margin-bottom: 20px; }
+    .info-box { background-color: #0d0d0d; border: 1px solid #1a1a1a; border-radius: 12px; padding: 30px; margin-top: 30px; text-align: left; }
+    .btn-home { display: inline-block; background-color: transparent; color: #00d4ff; border: 2px solid #00d4ff; padding: 12px 30px; font-weight: 800; text-transform: uppercase; border-radius: 6px; transition: 0.3s; text-decoration: none; margin-top: 30px; }
+    .btn-home:hover { background-color: #00d4ff; color: #000 !important; box-shadow: 0 0 20px rgba(0, 212, 255, 0.4); }
+</style>
+
+<div class="container success-container">
+    <i class="bi bi-check-circle-fill check-icon"></i>
+
+    <h1 class="text-white fw-bold mb-3">Честито! Капарирахте колата си.</h1>
+    <h4 class="text-muted">Вашият <strong>@Model.Car.Model.Name</strong> е успешно запазен.</h4>
+
+    <div class="info-box">
+        <div class="d-flex align-items-start mb-3">
+            <i class="bi bi-info-circle text-info fs-4 me-3 mt-1"></i>
+            <div>
+                <h5 class="text-white fw-bold mb-1">Какво следва сега?</h5>
+                <p class="text-muted mb-0" style="line-height: 1.6;">
+                    Имате срок до <strong>@Model.ExpiryDate.ToString("dd.MM.yyyy")</strong> (точно 30 дни), за да посетите нашата автокъща GTAuto. Там ще можете да разгледате автомобила на живо, да подпишете документите и да доплатите остатъка от сумата.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <a asp-controller="Home" asp-action="Index" class="btn-home">
+        Към началната страница
+    </a>
+</div>

@@ -1,0 +1,57 @@
+﻿@model GTAuto.Data.Models.Car
+@{
+    ViewData["Title"] = "Secure Checkout";
+    decimal depositAmount = Model.Price * 0.05m;
+}
+
+<style>
+    html, body, main, .container, .pb-3, header, footer { background-color: #000000 !important; }
+    .checkout-container { max-width: 600px; margin: 50px auto; }
+    .payment-card { background-color: #0d0d0d; border: 1px solid #1a1a1a; border-radius: 12px; padding: 40px; }
+    .form-control-dark { background-color: #050505; border: 1px solid #1a1a1a; color: #fff; padding: 12px 15px; border-radius: 6px; }
+    .btn-pay { background-color: #28a745; color: white; border: none; padding: 16px; font-weight: 800; text-transform: uppercase; border-radius: 8px; width: 100%; margin-top: 20px; transition: 0.3s; letter-spacing: 1px; }
+    .btn-pay:hover { background-color: #218838; box-shadow: 0 0 20px rgba(40, 167, 69, 0.4); transform: translateY(-2px); }
+</style>
+
+<div class="container checkout-container">
+    <div class="text-center mb-5">
+        <h2 class="text-white fw-bold">RESERVE ASSET</h2>
+        <p class="text-muted">@Model.Model.Name</p>
+    </div>
+
+    <div class="payment-card">
+        <div class="d-flex justify-content-between align-items-center mb-4 border-bottom border-secondary pb-3">
+            <span class="text-muted text-uppercase small fw-bold">Required Deposit (5%)</span>
+            <h3 class="text-success m-0 fw-bold">@depositAmount.ToString("N0") €</h3>
+        </div>
+
+        <form asp-action="CheckoutConfirm" method="post">
+            <input type="hidden" name="id" value="@Model.Id" />
+
+            <div class="mb-3">
+                <label class="form-label text-muted small text-uppercase">Name on Card</label>
+                <input type="text" class="form-control form-control-dark" placeholder="JOHN DOE" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label text-muted small text-uppercase">Card Number</label>
+                <input type="text" name="cardNumber" class="form-control form-control-dark" placeholder="0000 0000 0000 0000" maxlength="19" required>
+            </div>
+
+            <div class="row mb-4">
+                <div class="col-6">
+                    <label class="form-label text-muted small text-uppercase">Expiry Date</label>
+                    <input type="text" class="form-control form-control-dark" placeholder="MM/YY" maxlength="5" required>
+                </div>
+                <div class="col-6">
+                    <label class="form-label text-muted small text-uppercase">CVC</label>
+                    <input type="password" class="form-control form-control-dark" placeholder="123" maxlength="3" required>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-pay">
+                <i class="bi bi-lock-fill me-2"></i> Pay @depositAmount.ToString("N0") €
+            </button>
+        </form>
+    </div>
+</div>

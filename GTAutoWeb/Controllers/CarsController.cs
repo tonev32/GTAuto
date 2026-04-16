@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using System.Text.RegularExpressions;
 using System.IO;
 using System.Security.Claims;
-using Microsoft.AspNetCore.Http; // Задължително за IFormFile
+using Microsoft.AspNetCore.Http;
 using GTAuto.Data;
 using GTAuto.Data.Models;
 using GTAutoWeb.ViewModel;
@@ -195,7 +195,6 @@ namespace GTAutoWeb.Controllers
                     car.IsAutomatic = vm.IsAutomatic;
                     car.IsFlashOffer = vm.IsFlashOffer;
 
-                    // Обновяване на снимка 1 (ако има нова)
                     if (vm.FrontImage != null)
                     {
                         var oldImg = car.Images.FirstOrDefault(i => i.Order == 1);
@@ -272,6 +271,10 @@ namespace GTAutoWeb.Controllers
             return _context.Cars.Any(e => e.Id == id);
         }
 
+        // ==========================================
+        // 🔥 ЛОГИКА ЗА ПЛАЩАНЕ И КАПАРИРАНЕ 🔥
+        // ==========================================
+
         [Authorize]
         public async Task<IActionResult> Checkout(Guid id)
         {
@@ -309,7 +312,7 @@ namespace GTAutoWeb.Controllers
                 CarId = id,
                 DepositPaid = car.Price * 0.05m,
                 ReservationDate = DateTime.UtcNow,
-                ExpiryDate = DateTime.UtcNow.AddDays(21)
+                ExpiryDate = DateTime.UtcNow.AddDays(30) 
             };
 
             car.IsReserved = true;
@@ -321,6 +324,7 @@ namespace GTAutoWeb.Controllers
             return RedirectToAction("Confirmation", new { id = reservation.Id });
         }
 
+        [Authorize]
         public async Task<IActionResult> Confirmation(Guid id)
         {
             var res = await _context.Reservations

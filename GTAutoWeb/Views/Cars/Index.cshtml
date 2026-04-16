@@ -145,22 +145,22 @@
                 <div class="col-md-4">
                     <label class="filter-label">Brand / Model</label>
                     <input type="text" name="searchString" value="@ViewData["CurrentSearch"]"
-                           class="form-control search-input-noir w-100" placeholder="e.g. BMW, M4..." />
+                           class="form-control search-input-noir w-100" placeholder="Brand/Model" />
                 </div>
 
                 <div class="col-md-4">
                     <label class="filter-label text-start">Horsepower (HP)</label>
                     <div class="input-group">
-                        <input type="number" name="minHP" value="@ViewData["MinHP"]" class="form-control search-input-noir" placeholder="Min HP" />
-                        <input type="number" name="maxHP" value="@ViewData["maxHP"]" class="form-control search-input-noir" placeholder="Max HP" />
+                        <input type="number" name="minHP" value="@ViewData["MinHP"]" class="form-control search-input-noir" placeholder="min HP" />
+                        <input type="number" name="maxHP" value="@ViewData["maxHP"]" class="form-control search-input-noir" placeholder="max HP" />
                     </div>
                 </div>
 
                 <div class="col-md-4">
                     <label class="filter-label">Price Range (€)</label>
                     <div class="d-flex gap-2">
-                        <input type="number" name="minPrice" value="@ViewData["MinPrice"]" class="form-control search-input-noir" placeholder="Min" style="width: 30%;" />
-                        <input type="number" name="maxPrice" value="@ViewData["maxPrice"]" class="form-control search-input-noir" placeholder="Max" style="width: 30%;" />
+                        <input type="number" name="minPrice" value="@ViewData["MinPrice"]" class="form-control search-input-noir" placeholder="min" style="width: 30%;" />
+                        <input type="number" name="maxPrice" value="@ViewData["maxPrice"]" class="form-control search-input-noir" placeholder="max" style="width: 30%;" />
 
                         <button type="submit" class="btn btn-search-blue flex-grow-1">
                             APPLY
@@ -189,7 +189,7 @@
             </div>
         }
 
-        @* RESULTS *@
+   
         @if (!Model.Any())
         {
             <div class="text-center py-5 mt-4">
@@ -202,7 +202,7 @@
             <div class="row row-cols-1 row-cols-md-3 g-4 text-start">
                 @foreach (var car in Model)
                 {
-                    @* ЛОГИКА ЗА ИЗВЛИЧАНЕ НА ОСНОВНАТА СНИМКА *@
+                    
                     var mainImg = car.Images?.OrderBy(i => i.Order).FirstOrDefault()?.ImagePath ?? "/images/no-image.png";
 
                     <div class="col">
@@ -212,7 +212,7 @@
                                 <div class="corner-ribbon">SALE</div>
                             }
 
-                            @* ПОПРАВЕНО: Използваме mainImg вместо car.ImageUrl *@
+                         
                             <img src="@mainImg" class="card-img-top" alt="@car.Model.Name" style="height: 250px; object-fit: cover;">
 
                             <div class="card-body p-4">
@@ -247,7 +247,6 @@
                         </div>
                     </div>
 
-                    @* MODAL *@
                     <div class="modal fade" id="modal-@car.Id" tabindex="-1" aria-hidden="true">
                         <div class="modal-dialog modal-lg modal-dialog-centered">
                             <div class="modal-content" style="background-color: #0a0a0a; color: white; border: 1px solid #1a1a1a;">
@@ -256,7 +255,6 @@
                                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                                 </div>
                                 <div class="modal-body p-4 text-center">
-                                    @* ПОПРАВЕНО: Тук също използваме mainImg *@
                                     <img src="@mainImg" class="img-fluid rounded mb-4" style="width: 100%; height: 400px; object-fit: cover;">
 
                                     <div class="row text-center g-3">
