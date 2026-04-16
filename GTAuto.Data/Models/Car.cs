@@ -43,7 +43,7 @@ namespace GTAuto.Data.Models
         public bool IsReserved { get; set; }
         public bool IsSold { get; set; }
         public bool IsAutomatic { get; set; }
-
+        public bool IsFlashOffer { get; set; } = false;
         public ICollection<CarFeature> CarFeatures { get; set; } = new List<CarFeature>();
 
         public ICollection<Order> Orders { get; set; } = new List<Order>();
