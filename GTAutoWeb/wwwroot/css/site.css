@@ -74,12 +74,12 @@ html {
     position: relative;
     min-height: 100%;
 }
+
 /* HERO SECTION */
 .about-hero {
     position: relative;
     height: 90vh;
     overflow: hidden;
-   
 }
 
 /* ВСЕКИ СЛАЙД */
@@ -127,6 +127,7 @@ html {
     .about-content p {
         font-size: 1.2rem;
     }
+
 /* Дефиниране на светкащата анимация */
 @keyframes led-flash {
     0% {
@@ -142,38 +143,22 @@ html {
     }
 }
 
-/* 1. Дефиниране на светкащата анимация (остава същото) */
-@keyframes led-flash {
-    0% {
-        box-shadow: 0 0 5px rgba(0, 191, 255, 0.4);
-    }
-
-    50% {
-        box-shadow: 0 0 25px rgba(0, 191, 255, 0.9);
-    }
-
-    100% {
-        box-shadow: 0 0 5px rgba(0, 191, 255, 0.4);
-    }
-}
-
-/* 2. Основната карта (вече НЕ светка постоянно) */
+/* Основната карта (вече НЕ светка постоянно) */
 .led-card {
     border-radius: 10px;
     background-color: #1e1e1e;
     border: none;
     cursor: pointer;
-    /* Плавен преход за повдигането, за да не "скача" рязко */
     transition: transform 0.3s ease;
 }
 
-    /* 3. Ефектът се включва САМО при посочване (hover) */
+    /* Ефектът се включва САМО при посочване (hover) */
     .led-card:hover {
-        transform: translateY(-8px) scale(1.01); /* Леко повдигане и уголемяване */
-        animation: led-flash 1.5s infinite; /* Тук стартира светкащият LED ефект */
+        transform: translateY(-8px) scale(1.01);
+        animation: led-flash 1.5s infinite;
     }
 
-/* 4. Заглавието (остава както преди) */
+/* Заглавието */
 .main-title-thick {
     font-weight: 900;
     color: #fff;
@@ -182,6 +167,7 @@ html {
     text-align: center;
     margin-bottom: 30px;
 }
+
 /* GTAuto Noir - Стил за всички карти с коли в сайта */
 .car-card-noir {
     background-color: #0d0d0d;
@@ -190,6 +176,9 @@ html {
     display: flex;
     flex-direction: column;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* НОВО ЗА ЛЕНТАТА: */
+    position: relative;
+    overflow: hidden;
 }
 
     .car-card-noir:hover {
@@ -211,3 +200,21 @@ html {
         background-color: #00b3d6;
         color: #000;
     }
+
+
+.corner-ribbon {
+    position: absolute;
+    top: 25px;
+    right: -45px;
+    background-color: #ff0000;
+    color: #fff;
+    padding: 7px 50px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    transform: rotate(45deg);
+    box-shadow: 0 4px 15px rgba(255, 0, 0, 0.4);
+    z-index: 10;
+    text-align: center;
+}

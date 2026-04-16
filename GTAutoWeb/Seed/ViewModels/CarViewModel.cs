@@ -5,7 +5,6 @@ namespace GTAutoWeb.ViewModel
 {
     public class CarViewModel
     {
-
         public Guid Id { get; set; }
 
         [Required]
@@ -43,13 +42,11 @@ namespace GTAutoWeb.ViewModel
         public string ImageUrl { get; set; }
 
         public bool IsReserved { get; set; } = false;
-
         public bool IsSold { get; set; } = false;
         public bool IsAutomatic { get; set; } = false;
+        public bool IsFlashOffer { get; set; } = false;
 
         public ICollection<CarFeature> CarFeatures { get; set; } = new List<CarFeature>();
-
         public ICollection<Order> Orders { get; set; } = new List<Order>();
     }
 }
-

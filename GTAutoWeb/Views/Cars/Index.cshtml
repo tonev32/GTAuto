@@ -30,7 +30,7 @@
     /* БУТОН ЗА СЪЗДАВАНЕ (АДМИН) */
     .btn-create-blue {
         background-color: #00d4ff;
-        color: #000000; /* Черно за по-добър контраст */
+        color: #000000;
         border: none;
         padding: 15px 35px;
         font-weight: 800;
@@ -53,8 +53,10 @@
         border: 1px solid #1a1a1a;
         transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         border-radius: 12px;
-        overflow: hidden;
         cursor: pointer;
+        /* Важно за лентата: */
+        position: relative;
+        overflow: hidden;
     }
 
         .car-card-noir:hover {
@@ -84,7 +86,7 @@
 
         .btn-details-blue:hover {
             background: #00d4ff;
-            color: #000000; /* Черно при ховър */
+            color: #000000;
             box-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
         }
 </style>
@@ -109,6 +111,11 @@
                 <div class="col">
                     <div class="card car-card-noir h-100" data-bs-toggle="modal" data-bs-target="#modal-@car.Id">
 
+                        @if (car.IsFlashOffer)
+                        {
+                            <div class="corner-ribbon">Flash Sale</div>
+                        }
+
                         @if (!string.IsNullOrEmpty(car.ImageUrl))
                         {
                             <img src="@car.ImageUrl" class="card-img-top" alt="@car.Model.Name" style="height: 250px; object-fit: cover;">
@@ -119,9 +126,22 @@
                             <p class="card-text mb-3" style="color: #8c8c8c; font-size: 0.9rem;">
                                 Year: @car.Year | Fuel: @car.FuelType
                             </p>
-                            <div class="price-text-blue">
-                                @car.Price.ToString("N0") €
-                            </div>
+
+                            @if (car.IsFlashOffer)
+                            {
+                                <div class="text-muted text-decoration-line-through mb-1" style="font-size: 1rem;">
+                                    @((car.Price + 15000).ToString("N0")) €
+                                </div>
+                                <div class="price-text-blue" style="color: #ff0000;">
+                                    @car.Price.ToString("N0") €
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="price-text-blue">
+                                    @car.Price.ToString("N0") €
+                                </div>
+                            }
                         </div>
 
                         <div class="card-footer bg-transparent border-0 pb-4 text-center" onclick="event.stopPropagation();">
@@ -169,7 +189,18 @@
                                     <div class="col-4">
                                         <div class="p-3 border rounded" style="background-color: #0d0d0d; border-color: #1a1a1a !important;">
                                             <small class="text-uppercase text-muted" style="letter-spacing: 1px;">Price</small><br />
-                                            <strong class="fs-5" style="color: #00d4ff;">@car.Price.ToString("N0") €</strong>
+
+                                            @if (car.IsFlashOffer)
+                                            {
+                                                <div class="text-muted text-decoration-line-through" style="font-size: 0.9rem;">
+                                                    @((car.Price + 15000).ToString("N0")) €
+                                                </div>
+                                                <strong class="fs-5" style="color: #ff0000;">@car.Price.ToString("N0") €</strong>
+                                            }
+                                            else
+                                            {
+                                                <strong class="fs-5" style="color: #00d4ff;">@car.Price.ToString("N0") €</strong>
+                                            }
                                         </div>
                                     </div>
                                 </div>

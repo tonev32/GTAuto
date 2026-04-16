@@ -18,12 +18,14 @@ namespace GTAutoWeb.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var featuredCars = await _context.Cars
+           
+            var flashOffers = await _context.Cars
                 .Include(c => c.Model)
-                .Take(3)
+                .Where(c => c.IsFlashOffer == true && c.IsSold == false)
+                .Take(3) // Взимаме само първите 3 (или колкото искаш), за да не се счупи дизайна на началната страница
                 .ToListAsync();
 
-            return View(featuredCars);
+            return View(flashOffers);
         }
 
         public IActionResult Privacy()
