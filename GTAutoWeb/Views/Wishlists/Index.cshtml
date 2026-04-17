@@ -1,0 +1,108 @@
+﻿@model IEnumerable<GTAuto.Data.Models.WishlistCar>
+
+@{
+    ViewData["Title"] = "My Garage";
+}
+
+<style>
+    body { background-color: #000000 !important; color: white; }
+
+    .wishlist-title {
+        font-size: 3.5rem;
+        font-weight: 900;
+        text-transform: uppercase;
+        color: #ffffff;
+        letter-spacing: -1px;
+    }
+
+    .accent-cyan {
+        color: #00e5ff;
+        text-shadow: 0 0 15px rgba(0, 229, 255, 0.4);
+    }
+
+    .car-card-wishlist {
+        background: #090909;
+        border: 1px solid #1a1a1a;
+        border-radius: 12px;
+        overflow: hidden;
+        transition: all 0.3s;
+    }
+
+    .car-card-wishlist:hover {
+        border-color: #00e5ff;
+        box-shadow: 0 5px 20px rgba(0, 229, 255, 0.15);
+        transform: translateY(-4px);
+    }
+
+    .img-container { height: 220px; overflow: hidden; }
+    .card-img { width: 100%; height: 100%; object-fit: cover; }
+
+    .price-tag {
+        color: #00e5ff;
+        font-weight: 900;
+        font-size: 1.5rem;
+    }
+
+    .btn-view {
+        background-color: #00e5ff;
+        color: #000;
+        font-weight: 900;
+        letter-spacing: 1px;
+        transition: 0.3s;
+    }
+    .btn-view:hover { background-color: #00b8cc; }
+
+    .btn-remove {
+        background-color: #1a1a1a;
+        color: #ff3333;
+        border-left: 1px solid #333;
+        transition: 0.3s;
+    }
+    .btn-remove:hover { background-color: #ff3333; color: white; }
+</style>
+
+<div class="container py-5 text-center">
+    <h1 class="wishlist-title">PERSONAL <span class="accent-cyan">GARAGE</span></h1>
+    <p class="text-muted mb-5 text-uppercase" style="letter-spacing: 3px; font-size: 0.8rem;">Saved Assets</p>
+
+    @if (!Model.Any())
+    {
+        <div class="py-5">
+            <i class="bi bi-heart text-secondary" style="font-size: 4rem;"></i>
+            <h3 class="text-secondary fw-bold mt-3">YOUR GARAGE IS EMPTY</h3>
+            <a asp-controller="Cars" asp-action="Index" class="btn btn-outline-light mt-3 fw-bold px-4" style="border-color: #00e5ff; color: #00e5ff;">BROWSE INVENTORY</a>
+        </div>
+    }
+    else
+    {
+        <div class="row row-cols-1 row-cols-md-3 g-4 text-start">
+            @foreach (var item in Model)
+            {
+                var mainImg = item.Car.Images?.OrderBy(i => i.Order).FirstOrDefault()?.ImagePath ?? "/images/no-image.png";
+
+                <div class="col">
+                    <div class="card car-card-wishlist h-100 shadow-lg">
+                        <div class="img-container">
+                            <img src="@mainImg" class="card-img" alt="Vehicle Image">
+                        </div>
+
+                        <div class="card-body p-4">
+                            <h4 class="text-white fw-bold mb-1">@item.Car.Model.Name</h4>
+                            <div class="price-tag">@item.Car.Price.ToString("N0") €</div>
+                        </div>
+
+                        <div class="card-footer bg-transparent border-0 p-0 d-flex">
+                            <a asp-controller="Cars" asp-action="Details" asp-route-id="@item.CarId" class="btn btn-view flex-grow-1 border-0 rounded-0 py-3">VIEW ASSET</a>
+
+                            <form asp-action="Remove" asp-route-carId="@item.CarId" method="post" style="width: 60px;">
+                                <button type="submit" class="btn btn-remove h-100 w-100 border-0 rounded-0" title="Remove from Garage">
+                                    <i class="bi bi-trash3-fill"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>

@@ -26,6 +26,7 @@ namespace GTAuto.Data
         // НОВИТЕ ТАБЛИЦИ
         public DbSet<CarImage> CarImages { get; set; }
         public DbSet<Reservation> Reservations { get; set; }
+        public DbSet<WishlistCar> WishlistCars { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -45,11 +46,10 @@ namespace GTAuto.Data
             // 4. НАКРАЯ: Зареждаме 3-те автоматични снимки за всяка кола
             modelBuilder.ApplyConfiguration(new CarImagesConfiguration());
 
+        // --- ENTITY RELATIONSHIPS & CONSTRAINTS ---
 
-            // --- ENTITY RELATIONSHIPS & CONSTRAINTS ---
-
-            // Конфигурация за сложната връзка между коли и екстри
-            modelBuilder.Entity<CarFeature>()
+        // Конфигурация за сложната връзка между коли и екстри
+        modelBuilder.Entity<CarFeature>()
                 .HasKey(cf => new { cf.CarId, cf.FeatureId });
 
             // Ограничаваме точността на цената за SQL Server
