@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAuto.Data\\GTAuto.Data.csproj": {}
+    "C:\\Users\\ASUSD\\source\\repos\\GTAuto\\GTAuto.Data\\GTAuto.Data.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAuto.Data\\GTAuto.Data.csproj": {
+    "C:\\Users\\ASUSD\\source\\repos\\GTAuto\\GTAuto.Data\\GTAuto.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAuto.Data\\GTAuto.Data.csproj",
+        "projectUniqueName": "C:\\Users\\ASUSD\\source\\repos\\GTAuto\\GTAuto.Data\\GTAuto.Data.csproj",
         "projectName": "GTAuto.Data",
-        "projectPath": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAuto.Data\\GTAuto.Data.csproj",
-        "packagesPath": "C:\\Users\\Student10\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAuto.Data\\obj\\",
+        "projectPath": "C:\\Users\\ASUSD\\source\\repos\\GTAuto\\GTAuto.Data\\GTAuto.Data.csproj",
+        "packagesPath": "C:\\Users\\ASUSD\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ASUSD\\source\\repos\\GTAuto\\GTAuto.Data\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Student10\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ASUSD\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,11 +26,11 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
+            "framework": "net8.0",
             "targetAlias": "net8.0",
             "projectReferences": {}
           }
@@ -40,10 +44,12 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "10.0.200"
       },
       "frameworks": {
         "net8.0": {
+          "framework": "net8.0",
           "targetAlias": "net8.0",
           "dependencies": {
             "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
@@ -84,12 +90,26 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.26, 8.0.26]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.26, 8.0.26]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[8.0.26, 8.0.26]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.202/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

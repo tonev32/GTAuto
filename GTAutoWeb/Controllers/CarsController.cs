@@ -362,6 +362,35 @@ namespace GTAutoWeb.Controllers
 
             return View(reservedAssets);
         }
+        // 🔥 ДОБАВИ ТОЗИ МЕТОД ТУК 🔥
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CancelReservation(Guid id)
+        {
+            // 1. Търсим резервацията по нейното ID
+            var reservation = await _context.Reservations
+                .Include(r => r.Car)
+                .FirstOrDefaultAsync(r => r.Id == id);
+
+            if (reservation != null)
+            {
+                if (reservation.Car != null)
+                {
+                    // 2. Освобождаваме колата (вече няма да е в Orders на клиента)
+                    reservation.Car.IsReserved = false;
+                    reservation.Car.ReservedByUserId = null;
+                    _context.Cars.Update(reservation.Car);
+                }
+
+                // 3. Изтриваме записа от таблицата на Админа
+                _context.Reservations.Remove(reservation);
+                await _context.SaveChangesAsync();
+            }
+
+            // 4. Връщаме Админа обратно в списъка
+            return RedirectToAction(nameof(ReservedCars));
+        }
 
     }
 }
