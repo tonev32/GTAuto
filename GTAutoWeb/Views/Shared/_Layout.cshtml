@@ -113,6 +113,14 @@
                         <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index">Home</a></li>
                         <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="About">About Us</a></li>
                         <li class="nav-item"><a class="nav-link" asp-controller="Cars" asp-action="Index">Inventory</a></li>
+                        @if (User.Identity.IsAuthenticated && !User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item ms-3">
+                                <a class="nav-link fw-bold text-uppercase d-flex align-items-center" asp-controller="Wishlist" asp-action="Index" style="letter-spacing: 1px; transition: 0.3s;" onmouseover="this.style.color='#00e5ff'" onmouseout="this.style.color=''">
+                                    <i class="bi bi-heart-fill me-2" style="color: #00e5ff;"></i> MY GARAGE
+                                </a>
+                            </li>
+                        }
 
                         @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                         {

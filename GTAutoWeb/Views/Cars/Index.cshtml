@@ -258,21 +258,25 @@
                                 <div class="corner-ribbon">SALE</div>
                             }
 
+
                            
-@if (User.Identity.IsAuthenticated)
-{
-    <form asp-controller="Wishlist" asp-action="Add" asp-route-carId="@car.Id" method="post" class="position-absolute" style="top: 15px; left: 15px; z-index: 40;" onclick="event.stopPropagation();">
-        <button type="submit" class="btn btn-dark bg-opacity-75 rounded-circle border-0 shadow-sm" style="width: 42px; height: 42px; transition: 0.3s; color: white; display: flex; justify-content: center; align-items: center;" onmouseover="this.style.color='#00d4ff'; this.style.transform='scale(1.1)';" onmouseout="this.style.color='white'; this.style.transform='scale(1)';" title="Add to Garage">
-            <i class="bi bi-heart-fill fs-5"></i>
-        </button>
-    </form>
-}
-else
-{
-    <a asp-area="Identity" asp-page="/Account/Login" class="btn btn-dark bg-opacity-75 rounded-circle border-0 shadow-sm position-absolute" style="top: 15px; left: 15px; z-index: 40; width: 42px; height: 42px; transition: 0.3s; color: white; display: flex; justify-content: center; align-items: center; text-decoration: none;" onmouseover="this.style.color='#00d4ff'; this.style.transform='scale(1.1)';" onmouseout="this.style.color='white'; this.style.transform='scale(1)';" title="Login to save to Garage" onclick="event.stopPropagation();">
-        <i class="bi bi-heart fs-5"></i>
-    </a>
-}
+                            @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                            {
+                            }
+                            else if (User.Identity.IsAuthenticated)
+                            {
+                                <form asp-controller="Wishlist" asp-action="Add" asp-route-carId="@car.Id" method="post" class="position-absolute" style="top: 15px; left: 15px; z-index: 40;">
+                                    <button type="submit" class="btn btn-dark bg-opacity-75 rounded-circle border-0 shadow-sm" style="width: 42px; height: 42px; transition: 0.3s; color: white; display: flex; justify-content: center; align-items: center;" onmouseover="this.style.color='#00d4ff'; this.style.transform='scale(1.1)';" onmouseout="this.style.color='white'; this.style.transform='scale(1)';" title="Add to Garage" onclick="event.stopPropagation();">
+                                        <i class="bi bi-heart-fill fs-5"></i>
+                                    </button>
+                                </form>
+                            }
+                            else
+                            {
+                                <a asp-area="Identity" asp-page="/Account/Login" class="btn btn-dark bg-opacity-75 rounded-circle border-0 shadow-sm position-absolute" style="top: 15px; left: 15px; z-index: 40; width: 42px; height: 42px; transition: 0.3s; color: white; display: flex; justify-content: center; align-items: center; text-decoration: none;" onmouseover="this.style.color='#00d4ff'; this.style.transform='scale(1.1)';" onmouseout="this.style.color='white'; this.style.transform='scale(1)';" title="Login to save" onclick="event.stopPropagation();">
+                                    <i class="bi bi-heart fs-5"></i>
+                                </a>
+                            }
 
                             <img src="@mainImg" class="card-img-top" alt="@car.Model.Name" style="height: 250px; object-fit: cover;">
 
