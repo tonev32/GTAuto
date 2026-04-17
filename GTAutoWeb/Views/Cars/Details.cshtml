@@ -195,9 +195,9 @@
             @if (User.Identity.IsAuthenticated && Model.ReservedByUserId == User.FindFirstValue(ClaimTypes.NameIdentifier))
             {
                 <div class="alert alert-success mt-4 bg-dark border-success text-success fw-bold text-center">
-                    <i class="bi bi-check-all me-2"></i> ТОВА Е ВАШАТА КОЛА (ПОРЪЧАНА)
+                    <i class="bi bi-check-all me-2"></i> THIS IS YOUR ASSET (RESERVED)
                     <br />
-                    <a asp-controller="Wishlist" asp-action="MyOrders" class="text-success small text-decoration-underline">Виж в Orders</a>
+                    <a asp-controller="Wishlist" asp-action="MyOrders" class="text-success small text-decoration-underline">View in Orders</a>
                 </div>
             }
 
