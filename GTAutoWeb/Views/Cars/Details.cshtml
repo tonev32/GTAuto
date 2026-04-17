@@ -1,14 +1,17 @@
 ﻿@model GTAuto.Data.Models.Car
+@using System.Security.Claims
 
 @{
     ViewData["Title"] = "Vehicle Details";
 }
+
 @if (TempData["ErrorMessage"] != null)
 {
     <div class="alert alert-danger text-center fw-bold text-uppercase mt-3" style="border: 2px solid #ff4d4d; background-color: #1a0000; color: #ff4d4d;">
         <i class="bi bi-exclamation-triangle-fill me-2"></i> @TempData["ErrorMessage"]
     </div>
 }
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
 <style>
@@ -71,7 +74,7 @@
         margin-top: 25px;
     }
 
-    /* 🏷️ ЦЕНА - КОМПАКТНА И СТИЛНА */
+    /* 🏷️ ЦЕНА */
     .price-section-simple {
         background-color: #050505;
         border: 1px solid #1a1a1a;
@@ -188,7 +191,17 @@
                 <h2 class="price-value-simple">@Model.Price.ToString("N0") €</h2>
             </div>
 
-            @* СИН БУТОН НАЗАД - ПРИБРАН ПЛЪТНО ПОД ЦЕНАТА *@
+            @* 🟢 СЪОБЩЕНИЕ, АКО КОЛАТА Е КУПЕНА ОТ ТЕКУЩИЯ КЛИЕНТ 🟢 *@
+            @if (User.Identity.IsAuthenticated && Model.ReservedByUserId == User.FindFirstValue(ClaimTypes.NameIdentifier))
+            {
+                <div class="alert alert-success mt-4 bg-dark border-success text-success fw-bold text-center">
+                    <i class="bi bi-check-all me-2"></i> ТОВА Е ВАШАТА КОЛА (ПОРЪЧАНА)
+                    <br />
+                    <a asp-controller="Wishlist" asp-action="MyOrders" class="text-success small text-decoration-underline">Виж в Orders</a>
+                </div>
+            }
+
+            @* СИН БУТОН НАЗАД *@
             <div class="mt-4">
                 <a asp-action="Index" class="btn-back">
                     <i class="bi bi-chevron-left me-1"></i> Return to Inventory
@@ -221,14 +234,23 @@
                 </div>
             </div>
 
-            @* ЗЕЛЕН БУТОН BUY NOW *@
+            @* 🔥 ТВОЯТ ЗЕЛЕН БУТОН - ПОКАЗВА СЕ САМО АКО КОЛАТА Е СВОБОДНА 🔥 *@
             <div class="mt-4">
-                <a asp-action="Checkout" asp-route-id="@Model.Id" class="btn-buy-now">
-                    <i class="bi bi-cart-check-fill me-2"></i> Buy Now / Reserve Asset
-                </a>
-                <p class="text-center text-muted mt-2 mb-0 small" style="font-size: 0.75rem;">
-                    Requires a 5% deposit. Asset held for 30 days for final payment at dealership.
-                </p>
+                @if (!Model.IsReserved && !Model.IsSold)
+                {
+                    <a asp-action="Checkout" asp-route-id="@Model.Id" class="btn-buy-now">
+                        <i class="bi bi-cart-check-fill me-2"></i> Buy Now / Reserve Asset
+                    </a>
+                    <p class="text-center text-muted mt-2 mb-0 small" style="font-size: 0.75rem;">
+                        Requires a 5% deposit. Asset held for 30 days for final payment at dealership.
+                    </p>
+                }
+                else if (Model.IsReserved && Model.ReservedByUserId != User.FindFirstValue(ClaimTypes.NameIdentifier))
+                {
+                    <button class="btn btn-secondary btn-lg w-100 fw-bold disabled" disabled>
+                        <i class="bi bi-lock-fill me-2"></i> CURRENTLY RESERVED
+                    </button>
+                }
             </div>
         </div>
     </div>

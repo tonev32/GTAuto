@@ -271,7 +271,7 @@ namespace GTAutoWeb.Controllers
             return _context.Cars.Any(e => e.Id == id);
         }
 
-        
+
 
         [Authorize]
         public async Task<IActionResult> Checkout(Guid id)
@@ -301,18 +301,16 @@ namespace GTAutoWeb.Controllers
             var car = await _context.Cars.Include(c => c.Model).FirstOrDefaultAsync(c => c.Id == id);
             if (car == null) return NotFound();
 
-            // ==========================================
-            // 🔥 АНТИ-ДУБЛИРАНЕ (RACE CONDITION PROTECTION) 🔥
-            // Ако някой е платил преди 1 секунда, спираме текущия потребител!
-            // ==========================================
+            // Защита: Ако колата вече е капарирана от друг
             if (car.IsReserved || car.IsSold)
             {
-                TempData["ErrorMessage"] = "ОПИТЪТ ОТХВЪРЛЕН: Този актив току-що беше капариран от друг клиент!";
+                TempData["ErrorMessage"] = "ASSET SECURED: This vehicle was just reserved by another client.";
                 return RedirectToAction("Details", new { id = car.Id });
             }
 
             string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
+            // 1. Създаваме записа за резервация (за архива на админа)
             var reservation = new Reservation
             {
                 Id = Guid.NewGuid(),
@@ -323,15 +321,16 @@ namespace GTAutoWeb.Controllers
                 ExpiryDate = DateTime.UtcNow.AddDays(30)
             };
 
-            // АВТОМАТИЧНО ЗАКЛЮЧВАНЕ НА КОЛАТА
+            // 2. 🔥 ПРАВИМ КОЛАТА "ORDERS" ЗА КЛИЕНТА 🔥
             car.IsReserved = true;
+            car.ReservedByUserId = userId; // С това колата отива в таб Orders
 
             _context.Reservations.Add(reservation);
             _context.Update(car);
 
-            // Запазваме всичко в базата
             await _context.SaveChangesAsync();
 
+            // Пренасочваме към страницата за потвърждение с успех
             return RedirectToAction("Confirmation", new { id = reservation.Id });
         }
 
@@ -347,7 +346,7 @@ namespace GTAutoWeb.Controllers
 
             return View(res);
         }
-       
+
 
         [Authorize(Roles = "Admin")]
         [Authorize(Roles = "Admin")]
@@ -364,29 +363,5 @@ namespace GTAutoWeb.Controllers
             return View(reservedAssets);
         }
 
-        [HttpPost]
-        [Authorize(Roles = "Admin")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CancelReservation(Guid id)
-        {
-            var car = await _context.Cars.FindAsync(id);
-            if (car == null) return NotFound();
-
-            // 1. Намираме резервацията в базата и я трием (за да не се трупат "мъртви" резервации)
-            var reservation = await _context.Reservations.FirstOrDefaultAsync(r => r.CarId == id);
-            if (reservation != null)
-            {
-                _context.Reservations.Remove(reservation);
-            }
-
-            // 2. Освобождаваме колата
-            car.IsReserved = false;
-
-            // Запазваме промените
-            await _context.SaveChangesAsync();
-
-            TempData["SuccessMessage"] = "ASSET UNLOCKED: Резервацията е премахната успешно!";
-            return RedirectToAction(nameof(ReservedCars));
-        }
     }
 }

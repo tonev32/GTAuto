@@ -2,10 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace GTAuto.Data.Models
 {
@@ -16,16 +12,19 @@ namespace GTAuto.Data.Models
         [Required]
         public Guid ModelId { get; set; }
         public Model Model { get; set; }
-        [Required]
 
+        [Required]
         [Range(1950, 2100)]
         public int Year { get; set; }
+
         [Required]
         [Range(50, 2000)]
         public int HorsePower { get; set; }
+
         [Required]
         [Range(0, 10000000)]
         public decimal Price { get; set; }
+
         [Required]
         public int Mileage { get; set; }
 
@@ -34,16 +33,22 @@ namespace GTAuto.Data.Models
 
         [Required]
         public string Transmission { get; set; }
+
         [Required]
         public string Color { get; set; }
+
         [Required]
         public string Description { get; set; }
+
         public bool IsReserved { get; set; }
         public bool IsSold { get; set; }
         public bool IsAutomatic { get; set; }
         public bool IsFlashOffer { get; set; } = false;
-        public ICollection<CarFeature> CarFeatures { get; set; } = new List<CarFeature>();
 
+        // 🔥 НОВОТО ПОЛЕ ТУК
+        public string? ReservedByUserId { get; set; }
+
+        public ICollection<CarFeature> CarFeatures { get; set; } = new List<CarFeature>();
         public ICollection<Order> Orders { get; set; } = new List<Order>();
         public virtual ICollection<CarImage> Images { get; set; } = new HashSet<CarImage>();
         public virtual ICollection<Reservation> Reservations { get; set; } = new HashSet<Reservation>();

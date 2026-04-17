@@ -16,7 +16,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GTAutoWeb")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+467a70502f4478782a8dbcccd175786813cadfd1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d5ecba069a11cd5f15284e8c7858fd5232ac5805")]
 [assembly: System.Reflection.AssemblyProductAttribute("GTAutoWeb")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GTAutoWeb")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
