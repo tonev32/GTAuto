@@ -185,7 +185,6 @@ namespace GTAutoWeb.Controllers
             return View(vm);
         }
 
-        // POST: Cars/Edit/5
         [HttpPost]
         [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
@@ -200,6 +199,7 @@ namespace GTAutoWeb.Controllers
                     var car = await _context.Cars.Include(c => c.Images).FirstOrDefaultAsync(c => c.Id == id);
                     if (car == null) return NotFound();
 
+                    // Обновяване на данните
                     car.ModelId = vm.ModelId;
                     car.Year = vm.Year;
                     car.HorsePower = vm.HorsePower;
@@ -209,30 +209,43 @@ namespace GTAutoWeb.Controllers
                     car.Transmission = vm.Transmission;
                     car.Color = vm.Color;
                     car.Description = vm.Description;
-                    car.IsReserved = vm.IsReserved;
-                    car.IsSold = vm.IsSold;
-                    car.IsAutomatic = vm.IsAutomatic;
                     car.IsFlashOffer = vm.IsFlashOffer;
 
-                    if (vm.FrontImage != null)
-                    {
-                        var oldImg = car.Images.FirstOrDefault(i => i.Order == 1);
-                        if (oldImg != null) _context.CarImages.Remove(oldImg);
-                        car.Images.Add(new CarImage { Id = Guid.NewGuid(), ImagePath = await ProcessUploadedImage(vm.FrontImage), Order = 1 });
-                    }
+                    // Обработка на снимките - една по една
+                    await HandleImageUpdate(car, vm.FrontImage, 1);
+                    await HandleImageUpdate(car, vm.BackImage, 2);
+                    await HandleImageUpdate(car, vm.InteriorImage, 3);
 
                     _context.Update(car);
                     await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
                 }
-                catch (DbUpdateConcurrencyException)
+                catch (Exception ex)
                 {
-                    if (!CarExists(vm.Id)) return NotFound();
-                    else throw;
+                    // Вместо да гърми, запиши грешката и я покажи на екрана
+                    ModelState.AddModelError("", "Server Error: " + ex.Message);
                 }
-                return RedirectToAction(nameof(Index));
             }
+
             ViewData["Models"] = new SelectList(_context.Models.OrderBy(m => m.Name), "Id", "Name", vm.ModelId);
             return View(vm);
+        }
+
+        // Помощен метод, за да не се повтаря код
+        private async Task HandleImageUpdate(Car car, IFormFile newFile, int order)
+        {
+            if (newFile != null && newFile.Length > 0)
+            {
+                var oldImg = car.Images.FirstOrDefault(i => i.Order == order);
+                if (oldImg != null)
+                {
+                    _context.CarImages.Remove(oldImg);
+                    car.Images.Remove(oldImg); // Махаме я от колекцията в паметта!
+                }
+
+                string path = await ProcessUploadedImage(newFile);
+                car.Images.Add(new CarImage { Id = Guid.NewGuid(), ImagePath = path, Order = order });
+            }
         }
 
         // GET: Cars/Delete/5

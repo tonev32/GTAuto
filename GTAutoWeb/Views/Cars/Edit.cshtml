@@ -5,19 +5,30 @@
 }
 
 <style>
-    /* 🔥 ФОРСИРАМЕ ЧИСТО ЧЕРНО НАВСЯКЪДЕ 🔥 */
+    /* 🔥 FORCE PURE BLACK BACKGROUND 🔥 */
     html, body, main, .container-fluid, .pb-3 {
         background-color: #000000 !important;
         color: white;
     }
 
+    /* REMOVE ARROWS FROM NUMERIC INPUTS */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+
     .edit-card {
-        background-color: #090909; /* Много тъмно сиво, почти черно, без зелено */
+        background-color: #090909;
         border: 1px solid #1a1a1a;
         border-radius: 15px;
         padding: 35px;
         margin-top: 30px;
-        box-shadow: 0 10px 30px rgba(0, 229, 255, 0.08); /* Лек cyan glow */
+        box-shadow: 0 10px 30px rgba(0, 229, 255, 0.08);
     }
 
     .form-control, .form-select {
@@ -29,12 +40,12 @@
     }
 
         .form-control:focus, .form-select:focus {
-            border-color: #00e5ff !important; /* GTAuto Cyan */
+            border-color: #00e5ff !important;
             box-shadow: 0 0 10px rgba(0, 229, 255, 0.2) !important;
         }
 
     .form-label {
-        color: #00e5ff; /* GTAuto Cyan */
+        color: #00e5ff;
         text-transform: uppercase;
         font-size: 0.75rem;
         letter-spacing: 1.5px;
@@ -45,7 +56,7 @@
     }
 
     .btn-save {
-        background-color: #00e5ff; /* GTAuto Cyan */
+        background-color: #00e5ff;
         color: #000;
         border: none;
         padding: 14px 50px;
@@ -54,6 +65,7 @@
         border-radius: 4px;
         transition: 0.3s;
         letter-spacing: 1px;
+        cursor: pointer;
     }
 
         .btn-save:hover {
@@ -63,7 +75,7 @@
         }
 
     .image-update-section {
-        background-color: #050505; /* Чисто, неутрално тъмно */
+        background-color: #050505;
         border: 1px dashed #333;
         border-radius: 10px;
         padding: 20px;
@@ -100,46 +112,63 @@
                 <input type="hidden" asp-for="Id" />
 
                 <div class="row g-4 text-start">
-                    @* МОДЕЛ *@
+                    @* VEHICLE MODEL *@
                     <div class="col-md-12">
                         <label class="form-label">Vehicle Model</label>
                         <select asp-for="ModelId" class="form-control form-select" asp-items="ViewBag.Models"></select>
                         <span asp-validation-for="ModelId" class="text-danger"></span>
                     </div>
 
-                    @* ОСНОВНИ ДАННИ *@
+                    @* CORE DATA *@
                     <div class="col-md-3">
                         <label asp-for="Year" class="form-label">Year</label>
-                        <input asp-for="Year" class="form-control" />
+                        <input asp-for="Year" type="number" class="form-control" placeholder="YYYY" />
+                        <span asp-validation-for="Year" class="text-danger"></span>
                     </div>
                     <div class="col-md-3">
                         <label asp-for="HorsePower" class="form-label">Power (HP)</label>
-                        <input asp-for="HorsePower" class="form-control" />
+                        <input asp-for="HorsePower" type="number" class="form-control" placeholder="HP" />
+                        <span asp-validation-for="HorsePower" class="text-danger"></span>
                     </div>
                     <div class="col-md-3">
                         <label asp-for="Price" class="form-label">Price (€)</label>
                         <input asp-for="Price" class="form-control" />
+                        <span asp-validation-for="Price" class="text-danger"></span>
                     </div>
                     <div class="col-md-3">
                         <label asp-for="Mileage" class="form-label">Mileage (km)</label>
-                        <input asp-for="Mileage" class="form-control" />
+                        <input asp-for="Mileage" type="number" class="form-control" placeholder="KM" />
+                        <span asp-validation-for="Mileage" class="text-danger"></span>
                     </div>
 
-                    @* ТЕХНИЧЕСКИ ДАННИ *@
+                    @* TECHNICAL SPECIFICATIONS *@
                     <div class="col-md-4">
                         <label asp-for="FuelType" class="form-label">Fuel Type</label>
-                        <input asp-for="FuelType" class="form-control" />
+                        <select asp-for="FuelType" class="form-control form-select">
+                            <option value="Petrol">Petrol</option>
+                            <option value="Diesel">Diesel</option>
+                            <option value="Gas">Gas</option>
+                            <option value="Hybrid">Hybrid</option>
+                            <option value="Electric">Electric</option>
+                        </select>
+                        <span asp-validation-for="FuelType" class="text-danger"></span>
                     </div>
                     <div class="col-md-4">
                         <label asp-for="Transmission" class="form-label">Transmission</label>
-                        <input asp-for="Transmission" class="form-control" />
+                        <select asp-for="Transmission" class="form-control form-select">
+                            <option value="Automatic">Automatic</option>
+                            <option value="Manual">Manual</option>
+                            <option value="Semiautomatic">Semi-Аutomatic</option>
+                        </select>
+                        <span asp-validation-for="Transmission" class="text-danger"></span>
                     </div>
                     <div class="col-md-4">
                         <label asp-for="Color" class="form-label">Color</label>
-                        <input asp-for="Color" class="form-control" />
+                        <input asp-for="Color" class="form-control" placeholder="e.g. Matte Black" />
+                        <span asp-validation-for="Color" class="text-danger"></span>
                     </div>
 
-                    @* СНИМКИ *@
+                    @* PHOTOGRAPHY *@
                     <div class="col-12">
                         <div class="image-update-section">
                             <h5 class="text-white small fw-bold text-uppercase mb-1">Update Photography</h5>
@@ -161,13 +190,14 @@
                         </div>
                     </div>
 
-                    @* ОПИСАНИЕ *@
+                    @* DESCRIPTION *@
                     <div class="col-12">
                         <label asp-for="Description" class="form-label">Description</label>
-                        <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+                        <textarea asp-for="Description" class="form-control" rows="4" placeholder="Enter vehicle details..."></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
                     </div>
 
-                    @* СТАТУСИ *@
+                    @* STATUS & OFFERS *@
                     <div class="col-12">
                         <div class="d-flex flex-wrap gap-4 mt-2">
                             <div class="form-check">
@@ -180,7 +210,7 @@
                     </div>
                 </div>
 
-                @* БУТОНИ *@
+                @* ACTION BUTTONS *@
                 <div class="text-center mt-5">
                     <button type="submit" class="btn btn-save">Save Changes</button>
                     <div class="mt-4">

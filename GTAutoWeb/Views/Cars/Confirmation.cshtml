@@ -5,8 +5,17 @@
 
 <style>
     /* 🔥 GTAUTO NOIR CONFIRMATION STYLE 🔥 */
-    html, body, main, .container, .pb-3, header, footer {
+    /* ПЪЛНО ПРЕМАХВАНЕ НА СИВОТО ПОЛЕ ГОРЕ И ДОЛУ */
+    html, body, main, header, nav, .navbar, footer, .container, .pb-3 {
         background-color: #000000 !important;
+        background: #000000 !important;
+        border: none !important;
+        box-shadow: none !important;
+    }
+
+    /* Махаме всякакви линии под навигацията */
+    header, .navbar {
+        border-bottom: none !important;
     }
 
     .success-wrapper {
@@ -143,7 +152,7 @@
     <div class="success-card">
         <i class="bi bi-check-all check-icon-glow"></i>
 
-        <h1 class="main-title">CONGRATS! <br /> <span class="accent-blue">CAR SECURED</span></h1>
+        <h1 class="main-title">CONGRATS! <br /> <span class="accent-blue">ASSET SECURED</span></h1>
         <p class="sub-title">Your <span class="highlight-white">@Model.Car.Model.Name</span> has been successfully reserved.</p>
 
         <div class="info-box-noir shadow-lg">
@@ -151,9 +160,9 @@
                 <i class="bi bi-shield-check me-2 fs-5"></i> Official Notice
             </div>
             <p class="info-text">
-                The car has been successfully <span class="highlight-white">reserved</span>.
-                Within a period of <span class="highlight-white text-decoration-underline">30 days</span> (until @Model.ExpiryDate.ToString("dd.MM.yyyy")),
-                the client must go to <span class="accent-blue fw-bold">GTAuto</span> and pay the remaining balance to finalize the acquisition.
+                The asset is now under <span class="highlight-white">temporary reservation</span>.
+                You have a period of <span class="highlight-white text-decoration-underline">30 days</span> (until @Model.ExpiryDate.ToString("dd.MM.yyyy"))
+                to visit the <span class="accent-blue fw-bold">GTAuto Showroom</span> and finalize the remaining balance to complete the acquisition.
             </p>
         </div>
 

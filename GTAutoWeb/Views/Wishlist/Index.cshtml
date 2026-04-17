@@ -69,7 +69,7 @@
                         </div>
 
                         <div class="card-footer bg-transparent border-0 p-0 d-flex">
-                            <a asp-controller="Cars" asp-action="Details" asp-route-id="@item.CarId" class="btn flex-grow-1 rounded-0 py-3 fw-bold" style="background-color: #00e5ff; color: #000; transition: 0.3s;" onmouseover="this.style.backgroundColor='#00b8cc'" onmouseout="this.style.backgroundColor='#00e5ff'">VIEW ASSET</a>
+                            <a asp-controller="Cars" asp-action="Details" asp-route-id="@item.CarId" class="btn flex-grow-1 rounded-0 py-3 fw-bold" style="background-color: #00e5ff; color: #000; transition: 0.3s;" onmouseover="this.style.backgroundColor='#00b8cc'" onmouseout="this.style.backgroundColor='#00e5ff'">VIEW VEHICLE</a>
 
                             <form asp-action="Remove" asp-route-carId="@item.CarId" method="post" style="width: 60px;">
                                 <button type="submit" class="btn h-100 w-100 rounded-0" style="background-color: #1a1a1a; color: #ff3333; border-left: 1px solid #333; transition: 0.3s;" title="Remove from Garage" onmouseover="this.style.backgroundColor='#ff3333'; this.style.color='white';" onmouseout="this.style.backgroundColor='#1a1a1a'; this.style.color='#ff3333';">

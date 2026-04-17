@@ -225,14 +225,14 @@
         @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
         {
             <div class="text-start">
-                <a asp-action="Create" class="btn-create-blue">+ Add New Asset</a>
+                <a asp-action="Create" class="btn-create-blue">+ Add New Car</a>
             </div>
         }
 
         @if (!Model.Any())
         {
             <div class="text-center py-5 mt-4">
-                <h2 class="text-muted fw-bold mb-3" style="letter-spacing: 2px;">NO ASSETS FOUND</h2>
+                <h2 class="text-muted fw-bold mb-3" style="letter-spacing: 2px;">NO CARS FOUND</h2>
                 <p class="text-secondary fs-5">No vehicles matching your criteria were found.</p>
             </div>
         }
