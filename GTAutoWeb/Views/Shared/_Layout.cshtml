@@ -116,8 +116,8 @@
                         @if (User.Identity.IsAuthenticated && !User.IsInRole("Admin"))
                         {
                             <li class="nav-item ms-3">
-                                <a class="nav-link fw-bold text-uppercase d-flex align-items-center" asp-controller="Wishlist" asp-action="Index" style="letter-spacing: 1px; transition: 0.3s;" onmouseover="this.style.color='#00e5ff'" onmouseout="this.style.color=''">
-                                    <i class="bi bi-heart-fill me-2" style="color: #00e5ff;"></i> MY GARAGE
+                                <a class="nav-link fw-bold text-uppercase" asp-controller="Wishlist" asp-action="Index" style="letter-spacing: 1px; transition: 0.3s;" onmouseover="this.style.color='#00e5ff'" onmouseout="this.style.color=''">
+                                    MY GARAGE
                                 </a>
                             </li>
                         }
