@@ -1,10 +1,14 @@
 ﻿@model IEnumerable<GTAuto.Data.Models.Reservation>
 
 @{
-    ViewData["Title"] = "Reserved Assets Management";
+    ViewData["Title"] = "Locked Assets Management";
 }
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <style>
+    /* 🔥 RED NEON ADMIN THEME 🔥 */
     .admin-wrapper {
         background-color: #000000 !important;
         min-height: 100vh;
@@ -12,71 +16,140 @@
     }
 
     .admin-title {
-        font-size: 3rem;
+        font-size: 3.5rem;
         font-weight: 900;
         text-transform: uppercase;
         color: #ffffff;
+        letter-spacing: -1px;
     }
 
+    .accent-red {
+        color: #ff3333;
+        text-shadow: 0 0 15px rgba(255, 51, 51, 0.5);
+    }
+
+    /* 🔥 КАРТАТА С ЛЕК ХОВЪР 🔥 */
     .car-card-admin {
         background: #0d0d0d;
-        border: 1px solid #333;
-        border-radius: 10px;
+        border: 1px solid #1a1a1a;
+        border-radius: 12px;
         overflow: hidden;
         position: relative;
+        transition: all 0.4s ease-out;
     }
 
-    /* Инфо бутон за датата */
+        .car-card-admin:hover {
+            transform: translateY(-4px);
+            border-color: #ff3333 !important;
+            box-shadow: 0 5px 20px rgba(255, 51, 51, 0.2);
+        }
+
+    .img-container {
+        position: relative;
+        height: 220px;
+        overflow: hidden;
+    }
+
+    .card-img-admin {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: grayscale(0%);
+        transition: transform 0.6s ease-in-out;
+    }
+
+    .car-card-admin:hover .card-img-admin {
+        transform: scale(1.03);
+    }
+
     .date-info-btn {
         position: absolute;
-        top: 10px;
-        left: 10px;
-        background: rgba(0, 212, 255, 0.2);
-        color: #00d4ff;
-        border: 1px solid #00d4ff;
+        top: 15px;
+        left: 15px;
+        background: rgba(0, 0, 0, 0.7);
+        color: #ff3333;
+        border: 1px solid #ff3333;
         border-radius: 50%;
-        width: 35px;
-        height: 35px;
+        width: 38px;
+        height: 38px;
         display: flex;
         align-items: center;
         justify-content: center;
         cursor: pointer;
         z-index: 30;
         transition: 0.3s;
+        backdrop-filter: blur(5px);
     }
 
         .date-info-btn:hover {
-            background: #00d4ff;
-            color: #000;
+            background: #ff3333;
+            color: #fff;
+            box-shadow: 0 0 10px #ff3333;
         }
+
+    .price-tag {
+        color: #ff3333;
+        font-weight: 900;
+        font-size: 1.5rem;
+        margin-top: 10px;
+    }
 
     .btn-unlock {
         background-color: #ff3333;
         color: white;
         border: none;
-        padding: 12px;
-        font-weight: 800;
+        padding: 15px;
+        font-weight: 900;
         text-transform: uppercase;
         width: 100%;
         transition: 0.3s;
+        letter-spacing: 1px;
     }
 
         .btn-unlock:hover {
             background-color: #cc0000;
-            box-shadow: 0 0 15px rgba(255, 51, 51, 0.5);
         }
+
+    .badge-locked {
+        background-color: rgba(255, 51, 51, 0.1);
+        color: #ff3333;
+        border: 1px solid #ff3333;
+        font-size: 0.7rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        padding: 5px 10px;
+    }
+
+    /* Персонализиране на SweetAlert за Noir тема */
+    .swal2-popup {
+        background: #0d0d0d !important;
+        border: 1px solid #ff3333 !important;
+        border-radius: 15px !important;
+        color: #fff !important;
+    }
+
+    .swal2-title {
+        color: #fff !important;
+        text-transform: uppercase;
+        font-weight: 900;
+    }
+
+    .swal2-html-container {
+        color: #aaa !important;
+    }
 </style>
 
 <div class="admin-wrapper">
     <div class="container text-center">
-        <h1 class="admin-title">LOCKED <span style="color: #ff3333;">ASSETS</span></h1>
-        <p class="text-muted mb-5">Admin Control Panel: Expiry & Unlock Management</p>
+        <h1 class="admin-title">LOCKED <span class="accent-red">ASSETS</span></h1>
+        <p class="text-muted mb-5 text-uppercase" style="letter-spacing: 3px; font-size: 0.8rem;">Security Protocol: Authorized Access Only</p>
 
         @if (!Model.Any())
         {
             <div class="py-5">
-                <h3 class="text-secondary fw-bold">NO RESERVED ASSETS</h3>
-                <a asp-action="Index" class="btn btn-outline-info mt-3 fw-bold">BACK TO INVENTORY</a>
+                <i class="bi bi-shield-lock text-secondary" style="font-size: 4rem;"></i>
+                <h3 class="text-secondary fw-bold mt-3">NO RESERVED ASSETS FOUND</h3>
+                <a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary mt-3 fw-bold px-4">RETURN TO SHOWROOM</a>
             </div>
         }
         else
@@ -88,29 +161,34 @@
                     var daysLeft = (res.ExpiryDate - DateTime.UtcNow).Days;
 
                     <div class="col">
-                        <div class="card car-card-admin h-100">
+                        <div class="card car-card-admin h-100 shadow-lg">
+
                             <div class="date-info-btn"
                                  data-bs-toggle="popover"
-                                 title="Deadline Details"
-                                 data-bs-content="Client must arrive by: @res.ExpiryDate.ToString("dd MMM yyyy") (@daysLeft days remaining)">
+                                 data-bs-trigger="hover focus"
+                                 title="Reservation Details"
+                                 data-bs-content="Deadline: @res.ExpiryDate.ToString("dd MMM yyyy"). Status: @daysLeft days until automatic release.">
                                 <i class="bi bi-info-lg"></i>
                             </div>
 
-                            <img src="@mainImg" class="card-img-top" style="height: 200px; object-fit: cover; filter: grayscale(50%);">
+                            <div class="img-container">
+                                <img src="@mainImg" class="card-img-admin" alt="Vehicle Image">
+                            </div>
 
-                            <div class="card-body">
-                                <h5 class="text-white fw-bold">@res.Car.Model.Name</h5>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <span class="text-muted small">ID: @res.CarId.ToString().Substring(0, 8)</span>
-                                    <span class="badge @(daysLeft < 5 ? "bg-danger" : "bg-dark border border-secondary")">
+                            <div class="card-body p-4">
+                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                    <h4 class="text-white fw-bold mb-0">@res.Car.Model.Name</h4>
+                                    <span class="badge badge-locked">
                                         @daysLeft Days Left
                                     </span>
                                 </div>
-                                <div class="text-danger fw-bold fs-5 mt-2">@res.Car.Price.ToString("N0") €</div>
+                                <p class="text-muted small mb-0">ASSET ID: @res.CarId.ToString().ToUpper().Substring(0, 8)</p>
+
+                                <div class="price-tag">@res.Car.Price.ToString("N0") €</div>
                             </div>
 
                             <div class="card-footer bg-transparent border-0 p-0">
-                                <form asp-action="CancelReservation" asp-route-id="@res.CarId" method="post" onsubmit="return confirm('Unlock this asset?');">
+                                <form asp-action="CancelReservation" asp-route-id="@res.CarId" method="post" onsubmit="return confirmUnlock(this);">
                                     <button type="submit" class="btn-unlock">
                                         <i class="bi bi-unlock-fill me-2"></i> UNLOCK ASSET
                                     </button>
@@ -126,9 +204,33 @@
 
 @section Scripts {
     <script>
+        // Инициализация на поповерите
         var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
         var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
             return new bootstrap.Popover(popoverTriggerEl)
         })
+
+        // 🔥 ФУНКЦИЯ ЗА ЯКАТА НОТИФИКАЦИЯ
+        function confirmUnlock(form) {
+            Swal.fire({
+                title: 'SECURITY PROTOCOL',
+                text: "Are you sure you want to release this asset back to the showroom?",
+                icon: 'warning',
+                iconColor: '#ff3333',
+                showCancelButton: true,
+                confirmButtonColor: '#ff3333',
+                cancelButtonColor: '#333',
+                confirmButtonText: 'CONFIRM UNLOCK',
+                cancelButtonText: 'CANCEL',
+                background: '#0d0d0d',
+                color: '#fff'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    
+                    form.submit();
+                }
+            });
+            return false; 
+        }
     </script>
 }

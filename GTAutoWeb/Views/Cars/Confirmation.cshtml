@@ -4,33 +4,137 @@
 }
 
 <style>
-    html, body, main, .container, .pb-3, header, footer { background-color: #000000 !important; }
-    .success-container { max-width: 650px; margin: 80px auto; text-align: center; }
-    .check-icon { font-size: 5rem; color: #28a745; text-shadow: 0 0 30px rgba(40, 167, 69, 0.5); margin-bottom: 20px; }
-    .info-box { background-color: #0d0d0d; border: 1px solid #1a1a1a; border-radius: 12px; padding: 30px; margin-top: 30px; text-align: left; }
-    .btn-home { display: inline-block; background-color: transparent; color: #00d4ff; border: 2px solid #00d4ff; padding: 12px 30px; font-weight: 800; text-transform: uppercase; border-radius: 6px; transition: 0.3s; text-decoration: none; margin-top: 30px; }
-    .btn-home:hover { background-color: #00d4ff; color: #000 !important; box-shadow: 0 0 20px rgba(0, 212, 255, 0.4); }
+    /* 🔥 GTAUTO NOIR CONFIRMATION STYLE 🔥 */
+    html, body, main, .container, .pb-3, header, footer {
+        background-color: #000000 !important;
+    }
+
+    .success-wrapper {
+        min-height: 80vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 0;
+    }
+
+    .success-card {
+        max-width: 650px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .check-icon-glow {
+        font-size: 6rem;
+        color: #28a745;
+        filter: drop-shadow(0 0 20px rgba(40, 167, 69, 0.4));
+        margin-bottom: 25px;
+    }
+
+    .main-title {
+        color: white;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+    }
+
+    .accent-blue {
+        color: #00d4ff;
+        text-shadow: 0 0 10px rgba(0, 212, 255, 0.4);
+    }
+
+    .sub-title {
+        color: #888;
+        font-size: 1.2rem;
+        margin-bottom: 40px;
+    }
+
+    .info-box-noir {
+        background-color: #0d0d0d;
+        border: 1px solid #1a1a1a;
+        border-radius: 12px;
+        padding: 35px;
+        text-align: left;
+        position: relative;
+        overflow: hidden;
+    }
+
+        .info-box-noir::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: #00d4ff;
+        }
+
+    .info-header {
+        color: #00d4ff;
+        font-weight: 800;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+        letter-spacing: 1.5px;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+    }
+
+    .info-text {
+        color: #bbb;
+        line-height: 1.7;
+        font-size: 1rem;
+        margin-bottom: 0;
+    }
+
+    .highlight-white {
+        color: white;
+        font-weight: bold;
+    }
+
+    .btn-home {
+        display: inline-block;
+        background-color: transparent;
+        color: #00d4ff;
+        border: 2px solid #00d4ff;
+        padding: 15px 40px;
+        font-weight: 800;
+        text-transform: uppercase;
+        border-radius: 4px;
+        transition: 0.3s;
+        text-decoration: none;
+        margin-top: 50px;
+        letter-spacing: 1px;
+    }
+
+        .btn-home:hover {
+            background-color: #00d4ff;
+            color: #000 !important;
+            box-shadow: 0 0 25px rgba(0, 212, 255, 0.5);
+            transform: translateY(-2px);
+        }
 </style>
 
-<div class="container success-container">
-    <i class="bi bi-check-circle-fill check-icon"></i>
+<div class="success-wrapper">
+    <div class="success-card">
+        <i class="bi bi-check-all check-icon-glow"></i>
 
-    <h1 class="text-white fw-bold mb-3">Честито! Капарирахте колата си.</h1>
-    <h4 class="text-muted">Вашият <strong>@Model.Car.Model.Name</strong> е успешно запазен.</h4>
+        <h1 class="main-title">CONGRATS! <br /> <span class="accent-blue">CAR SECURED</span></h1>
+        <p class="sub-title">Your <span class="highlight-white">@Model.Car.Model.Name</span> has been successfully reserved.</p>
 
-    <div class="info-box">
-        <div class="d-flex align-items-start mb-3">
-            <i class="bi bi-info-circle text-info fs-4 me-3 mt-1"></i>
-            <div>
-                <h5 class="text-white fw-bold mb-1">Какво следва сега?</h5>
-                <p class="text-muted mb-0" style="line-height: 1.6;">
-                    Имате срок до <strong>@Model.ExpiryDate.ToString("dd.MM.yyyy")</strong> (точно 30 дни), за да посетите нашата автокъща GTAuto. Там ще можете да разгледате автомобила на живо, да подпишете документите и да доплатите остатъка от сумата.
-                </p>
+        <div class="info-box-noir shadow-lg">
+            <div class="info-header">
+                <i class="bi bi-info-circle-fill me-2 fs-5"></i> What's next?
             </div>
+            <p class="info-text">
+                You have until <span class="highlight-white text-decoration-underline">@Model.ExpiryDate.ToString("dd.MM.yyyy")</span> (exactly 30 days) to visit our <strong>GTAuto</strong> dealership.
+                Our team will be waiting for you to inspect the vehicle, sign the necessary paperwork, and finalize the payment.
+            </p>
         </div>
-    </div>
 
-    <a asp-controller="Home" asp-action="Index" class="btn-home">
-        Към началната страница
-    </a>
+        <a asp-controller="Home" asp-action="Index" class="btn-home">
+            <i class="bi bi-house-door me-2"></i> Back to Showroom
+        </a>
+    </div>
 </div>

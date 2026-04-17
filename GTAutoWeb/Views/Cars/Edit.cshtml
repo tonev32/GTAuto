@@ -5,18 +5,19 @@
 }
 
 <style>
-    body {
-        background-color: #000000;
+    /* 🔥 ФОРСИРАМЕ ЧИСТО ЧЕРНО НАВСЯКЪДЕ 🔥 */
+    html, body, main, .container-fluid, .pb-3 {
+        background-color: #000000 !important;
         color: white;
     }
 
     .edit-card {
-        background-color: #0d0d0d;
+        background-color: #090909; /* Много тъмно сиво, почти черно, без зелено */
         border: 1px solid #1a1a1a;
         border-radius: 15px;
         padding: 35px;
         margin-top: 30px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        box-shadow: 0 10px 30px rgba(0, 229, 255, 0.08); /* Лек cyan glow */
     }
 
     .form-control, .form-select {
@@ -27,13 +28,13 @@
         padding: 10px 15px;
     }
 
-    .form-control:focus {
-        border-color: #ffc107 !important;
-        box-shadow: 0 0 10px rgba(255, 193, 7, 0.2) !important;
-    }
+        .form-control:focus, .form-select:focus {
+            border-color: #00e5ff !important; /* GTAuto Cyan */
+            box-shadow: 0 0 10px rgba(0, 229, 255, 0.2) !important;
+        }
 
     .form-label {
-        color: #ffc107;
+        color: #00e5ff; /* GTAuto Cyan */
         text-transform: uppercase;
         font-size: 0.75rem;
         letter-spacing: 1.5px;
@@ -44,40 +45,56 @@
     }
 
     .btn-save {
-        background-color: #ffc107;
+        background-color: #00e5ff; /* GTAuto Cyan */
         color: #000;
         border: none;
         padding: 14px 50px;
-        font-weight: 800;
+        font-weight: 900;
         text-transform: uppercase;
         border-radius: 4px;
         transition: 0.3s;
+        letter-spacing: 1px;
     }
 
-    .btn-save:hover {
-        background-color: #e0a800;
-        transform: translateY(-2px);
-        box-shadow: 0 0 20px rgba(255, 193, 7, 0.4);
-    }
+        .btn-save:hover {
+            background-color: #00b8cc;
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(0, 229, 255, 0.4);
+        }
 
     .image-update-section {
-        background-color: #080808;
+        background-color: #050505; /* Чисто, неутрално тъмно */
         border: 1px dashed #333;
         border-radius: 10px;
         padding: 20px;
         margin: 25px 0;
     }
+
+    input[type=file]::file-selector-button {
+        background-color: #1a1a1a;
+        color: white;
+        border: 1px solid #333;
+        padding: 8px 15px;
+        border-radius: 4px;
+        margin-right: 15px;
+        transition: 0.3s;
+    }
+
+        input[type=file]::file-selector-button:hover {
+            background-color: #00e5ff;
+            color: black;
+            border-color: #00e5ff;
+        }
 </style>
 
 <div class="container pb-5">
     <div class="row justify-content-center">
         <div class="col-lg-10 edit-card">
             <h2 class="text-white fw-bold mb-4 text-uppercase" style="letter-spacing: 2px;">
-                Edit <span style="color: #ffc107;">Asset Details</span>
+                Edit <span style="color: #00e5ff;">Asset Details</span>
             </h2>
             <hr style="border-color: #1a1a1a;" />
 
-            @* ⚠️ enctype="multipart/form-data" е ЗАДЪЛЖИТЕЛЕН тук *@
             <form asp-action="Edit" method="post" enctype="multipart/form-data">
                 <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
                 <input type="hidden" asp-for="Id" />
@@ -86,7 +103,7 @@
                     @* МОДЕЛ *@
                     <div class="col-md-12">
                         <label class="form-label">Vehicle Model</label>
-                        <select asp-for="ModelId" class="form-control" asp-items="ViewBag.Models"></select>
+                        <select asp-for="ModelId" class="form-control form-select" asp-items="ViewBag.Models"></select>
                         <span asp-validation-for="ModelId" class="text-danger"></span>
                     </div>
 
@@ -122,11 +139,11 @@
                         <input asp-for="Color" class="form-control" />
                     </div>
 
-                    @* 🔥 СЕКЦИЯ ЗА ОБНОВЯВАНЕ НА СНИМКИ 🔥 *@
+                    @* СНИМКИ *@
                     <div class="col-12">
                         <div class="image-update-section">
                             <h5 class="text-white small fw-bold text-uppercase mb-1">Update Photography</h5>
-                            <p class="text-muted small mb-4 italic">Leave empty to keep the current images stored in the system.</p>
+                            <p class="text-muted small mb-4 fst-italic">Leave empty to keep the current images stored in the system.</p>
                             <div class="row g-3">
                                 <div class="col-md-4">
                                     <label class="form-label" style="color: #666;">Front View</label>
@@ -154,20 +171,10 @@
                     <div class="col-12">
                         <div class="d-flex flex-wrap gap-4 mt-2">
                             <div class="form-check">
-                                <input class="form-check-input" asp-for="IsReserved" style="border-color: #333;">
-                                <label class="form-check-label text-muted" asp-for="IsReserved">Reserved</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" asp-for="IsSold" style="border-color: #333;">
-                                <label class="form-check-label text-muted" asp-for="IsSold">Sold</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" asp-for="IsFlashOffer" style="border-color: #333;">
-                                <label class="form-check-label text-danger fw-bold" asp-for="IsFlashOffer">🔥 FLASH OFFER</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" asp-for="IsAutomatic" style="border-color: #333;">
-                                <label class="form-check-label text-muted" asp-for="IsAutomatic">Automatic</label>
+                                <input class="form-check-input" type="checkbox" asp-for="IsFlashOffer" style="border-color: #333; cursor: pointer;">
+                                <label class="form-check-label fw-bold" asp-for="IsFlashOffer" style="cursor: pointer; letter-spacing: 1px; color: #00e5ff;">
+                                    🔥 FLASH OFFER
+                                </label>
                             </div>
                         </div>
                     </div>
@@ -177,8 +184,8 @@
                 <div class="text-center mt-5">
                     <button type="submit" class="btn btn-save">Save Changes</button>
                     <div class="mt-4">
-                        <a asp-action="Index" class="text-muted text-decoration-none small" onmouseover="this.style.color='white'">
-                            Cancel and Back to List
+                        <a asp-action="Index" class="text-muted text-decoration-none small fw-bold" style="letter-spacing: 1px; transition: 0.3s;" onmouseover="this.style.color='#00e5ff'" onmouseout="this.style.color='#6c757d'">
+                            CANCEL AND BACK TO LIST
                         </a>
                     </div>
                 </div>
