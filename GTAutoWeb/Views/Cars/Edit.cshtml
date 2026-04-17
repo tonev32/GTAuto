@@ -97,6 +97,42 @@
             color: black;
             border-color: #00e5ff;
         }
+   
+    input[type=file] {
+        color: transparent; 
+    }
+
+        input[type=file]::file-selector-button {
+            display: none; 
+        }
+
+        input[type=file]::before {
+            content: 'CHOOSE IMAGE'; 
+            display: inline-block;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 4px;
+            padding: 8px 15px;
+            color: white;
+            font-weight: 700;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            cursor: pointer;
+            margin-right: 10px;
+            transition: 0.3s;
+        }
+
+        input[type=file]:hover::before {
+            background-color: #00e5ff;
+            color: black;
+            border-color: #00e5ff;
+        }
+
+        
+        input[type=file]:not(:empty) {
+            color: #888 !important;
+            font-size: 0.8rem;
+        }
 </style>
 
 <div class="container pb-5">
@@ -112,7 +148,7 @@
                 <input type="hidden" asp-for="Id" />
 
                 <div class="row g-4 text-start">
-                    @* VEHICLE MODEL *@
+                    
                     <div class="col-md-12">
                         <label class="form-label">Vehicle Model</label>
                         <select asp-for="ModelId" class="form-control form-select" asp-items="ViewBag.Models"></select>
@@ -171,19 +207,19 @@
                     @* PHOTOGRAPHY *@
                     <div class="col-12">
                         <div class="image-update-section">
-                            <h5 class="text-white small fw-bold text-uppercase mb-1">Update Photography</h5>
-                            <p class="text-muted small mb-4 fst-italic">Leave empty to keep the current images stored in the system.</p>
+                            <h5 class="text-white small fw-bold text-uppercase mb-1">Vehicle Photography (Local Upload)</h5>
+                            <p class="text-muted small mb-4 fst-italic">Upload new assets to replace current imagery.</p>
                             <div class="row g-3">
                                 <div class="col-md-4">
-                                    <label class="form-label" style="color: #666;">Front View</label>
+                                    <label class="form-label" style="color: #00e5ff; font-size: 0.65rem;">1. FRONT VIEW</label>
                                     <input type="file" asp-for="FrontImage" class="form-control" accept="image/*" />
                                 </div>
                                 <div class="col-md-4">
-                                    <label class="form-label" style="color: #666;">Rear View</label>
+                                    <label class="form-label" style="color: #00e5ff; font-size: 0.65rem;">2. REAR VIEW</label>
                                     <input type="file" asp-for="BackImage" class="form-control" accept="image/*" />
                                 </div>
                                 <div class="col-md-4">
-                                    <label class="form-label" style="color: #666;">Interior</label>
+                                    <label class="form-label" style="color: #00e5ff; font-size: 0.65rem;">3. INTERIOR</label>
                                     <input type="file" asp-for="InteriorImage" class="form-control" accept="image/*" />
                                 </div>
                             </div>
