@@ -3,16 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3ACB988C-BC6C-4AD1-99E4-EDB5EA3F3145}|GTAutoWeb\\GTAutoWeb.csproj|c:\\users\\student10\\desktop\\diplomna rabota\\gtauto\\gtautoweb\\views\\cars\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{3ACB988C-BC6C-4AD1-99E4-EDB5EA3F3145}|GTAutoWeb\\GTAutoWeb.csproj|solutionrelative:gtautoweb\\views\\cars\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{3ACB988C-BC6C-4AD1-99E4-EDB5EA3F3145}|GTAutoWeb\\GTAutoWeb.csproj|c:\\users\\student10\\desktop\\diplomna rabota\\gtauto\\gtautoweb\\views\\cars\\reservedcars.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{3ACB988C-BC6C-4AD1-99E4-EDB5EA3F3145}|GTAutoWeb\\GTAutoWeb.csproj|solutionrelative:gtautoweb\\views\\cars\\reservedcars.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3ACB988C-BC6C-4AD1-99E4-EDB5EA3F3145}|GTAutoWeb\\GTAutoWeb.csproj|c:\\users\\student10\\desktop\\diplomna rabota\\gtauto\\gtautoweb\\controllers\\wishlistcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3ACB988C-BC6C-4AD1-99E4-EDB5EA3F3145}|GTAutoWeb\\GTAutoWeb.csproj|solutionrelative:gtautoweb\\controllers\\wishlistcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3ACB988C-BC6C-4AD1-99E4-EDB5EA3F3145}|GTAutoWeb\\GTAutoWeb.csproj|c:\\users\\student10\\desktop\\diplomna rabota\\gtauto\\gtautoweb\\views\\cars\\confirmation.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{3ACB988C-BC6C-4AD1-99E4-EDB5EA3F3145}|GTAutoWeb\\GTAutoWeb.csproj|solutionrelative:gtautoweb\\views\\cars\\confirmation.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3ACB988C-BC6C-4AD1-99E4-EDB5EA3F3145}|GTAutoWeb\\GTAutoWeb.csproj|c:\\users\\student10\\desktop\\diplomna rabota\\gtauto\\gtautoweb\\controllers\\carscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3ACB988C-BC6C-4AD1-99E4-EDB5EA3F3145}|GTAutoWeb\\GTAutoWeb.csproj|solutionrelative:gtautoweb\\controllers\\carscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3ACB988C-BC6C-4AD1-99E4-EDB5EA3F3145}|GTAutoWeb\\GTAutoWeb.csproj|c:\\users\\student10\\desktop\\diplomna rabota\\gtauto\\gtautoweb\\controllers\\wishlistcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3ACB988C-BC6C-4AD1-99E4-EDB5EA3F3145}|GTAutoWeb\\GTAutoWeb.csproj|solutionrelative:gtautoweb\\controllers\\wishlistcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3ACB988C-BC6C-4AD1-99E4-EDB5EA3F3145}|GTAutoWeb\\GTAutoWeb.csproj|c:\\users\\student10\\desktop\\diplomna rabota\\gtauto\\gtautoweb\\views\\cars\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{3ACB988C-BC6C-4AD1-99E4-EDB5EA3F3145}|GTAutoWeb\\GTAutoWeb.csproj|solutionrelative:gtautoweb\\views\\cars\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3ACB988C-BC6C-4AD1-99E4-EDB5EA3F3145}|GTAutoWeb\\GTAutoWeb.csproj|c:\\users\\student10\\desktop\\diplomna rabota\\gtauto\\gtautoweb\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -55,10 +63,6 @@
       "RelativeMoniker": "D:0:0:{3ACB988C-BC6C-4AD1-99E4-EDB5EA3F3145}|GTAutoWeb\\GTAutoWeb.csproj|solutionrelative:gtautoweb\\views\\cars\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3ACB988C-BC6C-4AD1-99E4-EDB5EA3F3145}|GTAutoWeb\\GTAutoWeb.csproj|c:\\users\\student10\\desktop\\diplomna rabota\\gtauto\\gtautoweb\\views\\cars\\reservedcars.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{3ACB988C-BC6C-4AD1-99E4-EDB5EA3F3145}|GTAutoWeb\\GTAutoWeb.csproj|solutionrelative:gtautoweb\\views\\cars\\reservedcars.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAuto.Data\\Migrations\\20260417102240_AddWishlistTable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:GTAuto.Data\\Migrations\\20260417102240_AddWishlistTable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -93,10 +97,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{3ACB988C-BC6C-4AD1-99E4-EDB5EA3F3145}|GTAutoWeb\\GTAutoWeb.csproj|c:\\users\\student10\\desktop\\diplomna rabota\\gtauto\\gtautoweb\\controllers\\brandscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3ACB988C-BC6C-4AD1-99E4-EDB5EA3F3145}|GTAutoWeb\\GTAutoWeb.csproj|solutionrelative:gtautoweb\\controllers\\brandscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3ACB988C-BC6C-4AD1-99E4-EDB5EA3F3145}|GTAutoWeb\\GTAutoWeb.csproj|c:\\users\\student10\\desktop\\diplomna rabota\\gtauto\\gtautoweb\\views\\cars\\confirmation.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{3ACB988C-BC6C-4AD1-99E4-EDB5EA3F3145}|GTAutoWeb\\GTAutoWeb.csproj|solutionrelative:gtautoweb\\views\\cars\\confirmation.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3ACB988C-BC6C-4AD1-99E4-EDB5EA3F3145}|GTAutoWeb\\GTAutoWeb.csproj|c:\\users\\student10\\desktop\\diplomna rabota\\gtauto\\gtautoweb\\areas\\identity\\pages\\account\\register.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -280,6 +280,123 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "FeaturesController.cs",
+              "DocumentMoniker": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\Controllers\\FeaturesController.cs",
+              "RelativeDocumentMoniker": "GTAutoWeb\\Controllers\\FeaturesController.cs",
+              "ToolTip": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\Controllers\\FeaturesController.cs",
+              "RelativeToolTip": "GTAutoWeb\\Controllers\\FeaturesController.cs",
+              "ViewState": "AgIAACwAAAAAAAAAAAAgwDcAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-15T07:41:45.506Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "GTAutoWeb\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "GTAutoWeb\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAGwAAAAAAAAAAAAAAIIAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-26T13:22:41.476Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "WishlistController.cs",
+              "DocumentMoniker": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\Controllers\\WishlistController.cs",
+              "RelativeDocumentMoniker": "GTAutoWeb\\Controllers\\WishlistController.cs",
+              "ToolTip": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\Controllers\\WishlistController.cs",
+              "RelativeToolTip": "GTAutoWeb\\Controllers\\WishlistController.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAAYwC4AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-17T10:23:46.919Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\Views\\Cars\\Details.cshtml",
+              "RelativeDocumentMoniker": "GTAutoWeb\\Views\\Cars\\Details.cshtml",
+              "ToolTip": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\Views\\Cars\\Details.cshtml",
+              "RelativeToolTip": "GTAutoWeb\\Views\\Cars\\Details.cshtml",
+              "ViewState": "AgIAAOIAAAAAAAAAAAAowAABAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-27T09:29:58.374Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CarsController.cs",
+              "DocumentMoniker": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\Controllers\\CarsController.cs",
+              "RelativeDocumentMoniker": "GTAutoWeb\\Controllers\\CarsController.cs",
+              "ToolTip": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\Controllers\\CarsController.cs",
+              "RelativeToolTip": "GTAutoWeb\\Controllers\\CarsController.cs",
+              "ViewState": "AgIAAC4BAAAAAAAAAAAowE4BAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-26T12:43:04.266Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Confirmation.cshtml",
+              "DocumentMoniker": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\Views\\Cars\\Confirmation.cshtml",
+              "RelativeDocumentMoniker": "GTAutoWeb\\Views\\Cars\\Confirmation.cshtml",
+              "ToolTip": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\Views\\Cars\\Confirmation.cshtml",
+              "RelativeToolTip": "GTAutoWeb\\Views\\Cars\\Confirmation.cshtml",
+              "ViewState": "AgIAAIsAAAAAAAAAAAAowKsAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-16T12:00:58.096Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ReservedCars.cshtml",
+              "DocumentMoniker": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\Views\\Cars\\ReservedCars.cshtml",
+              "RelativeDocumentMoniker": "GTAutoWeb\\Views\\Cars\\ReservedCars.cshtml",
+              "ToolTip": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\Views\\Cars\\ReservedCars.cshtml*",
+              "RelativeToolTip": "GTAutoWeb\\Views\\Cars\\ReservedCars.cshtml*",
+              "ViewState": "AgIAAMEAAAAAAAAAAAAowOEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-17T05:09:45.552Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ModelsController.cs",
+              "DocumentMoniker": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\Controllers\\ModelsController.cs",
+              "RelativeDocumentMoniker": "GTAutoWeb\\Controllers\\ModelsController.cs",
+              "ToolTip": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\Controllers\\ModelsController.cs",
+              "RelativeToolTip": "GTAutoWeb\\Controllers\\ModelsController.cs",
+              "ViewState": "AgIAAF4AAAAAAAAAAAAowF0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-27T09:05:49.325Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "About.cshtml",
+              "DocumentMoniker": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\Views\\Home\\About.cshtml",
+              "RelativeDocumentMoniker": "GTAutoWeb\\Views\\Home\\About.cshtml",
+              "ToolTip": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\Views\\Home\\About.cshtml",
+              "RelativeToolTip": "GTAutoWeb\\Views\\Home\\About.cshtml",
+              "ViewState": "AgIAAI4AAAAAAAAAAAAowKwAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-15T08:44:47.292Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 26,
               "Title": "Register.cshtml",
               "DocumentMoniker": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\Areas\\Identity\\Pages\\Account\\Register.cshtml",
@@ -293,98 +410,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "About.cshtml",
-              "DocumentMoniker": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\Views\\Home\\About.cshtml",
-              "RelativeDocumentMoniker": "GTAutoWeb\\Views\\Home\\About.cshtml",
-              "ToolTip": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\Views\\Home\\About.cshtml",
-              "RelativeToolTip": "GTAutoWeb\\Views\\Home\\About.cshtml",
-              "ViewState": "AgIAAI4AAAAAAAAAAAAowKwAAAAGAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-15T08:44:47.292Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "ModelsController.cs",
-              "DocumentMoniker": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\Controllers\\ModelsController.cs",
-              "RelativeDocumentMoniker": "GTAutoWeb\\Controllers\\ModelsController.cs",
-              "ToolTip": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\Controllers\\ModelsController.cs",
-              "RelativeToolTip": "GTAutoWeb\\Controllers\\ModelsController.cs",
-              "ViewState": "AgIAAF4AAAAAAAAAAAAowF0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-27T09:05:49.325Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 7,
-              "Title": "FeaturesController.cs",
-              "DocumentMoniker": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\Controllers\\FeaturesController.cs",
-              "RelativeDocumentMoniker": "GTAutoWeb\\Controllers\\FeaturesController.cs",
-              "ToolTip": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\Controllers\\FeaturesController.cs",
-              "RelativeToolTip": "GTAutoWeb\\Controllers\\FeaturesController.cs",
-              "ViewState": "AgIAACwAAAAAAAAAAAAgwDcAAAAiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-15T07:41:45.506Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "GTAutoWeb\\Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "GTAutoWeb\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAGwAAAAAAAAAAAAAAIIAAAAZAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-03-26T13:22:41.476Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "WishlistController.cs",
-              "DocumentMoniker": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\Controllers\\WishlistController.cs",
-              "RelativeDocumentMoniker": "GTAutoWeb\\Controllers\\WishlistController.cs",
-              "ToolTip": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\Controllers\\WishlistController.cs",
-              "RelativeToolTip": "GTAutoWeb\\Controllers\\WishlistController.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAYwC4AAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-17T10:23:46.919Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Details.cshtml",
-              "DocumentMoniker": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\Views\\Cars\\Details.cshtml",
-              "RelativeDocumentMoniker": "GTAutoWeb\\Views\\Cars\\Details.cshtml",
-              "ToolTip": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\Views\\Cars\\Details.cshtml*",
-              "RelativeToolTip": "GTAutoWeb\\Views\\Cars\\Details.cshtml*",
-              "ViewState": "AgIAAOAAAAAAAAAAAAAowAABAAAGAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-03-27T09:29:58.374Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "CarsController.cs",
-              "DocumentMoniker": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\Controllers\\CarsController.cs",
-              "RelativeDocumentMoniker": "GTAutoWeb\\Controllers\\CarsController.cs",
-              "ToolTip": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\Controllers\\CarsController.cs",
-              "RelativeToolTip": "GTAutoWeb\\Controllers\\CarsController.cs",
-              "ViewState": "AgIAADUBAAAAAAAAAAAowFMBAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-26T12:43:04.266Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
               "Title": "20260417113306_AddReservedByUserId.cs",
               "DocumentMoniker": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAuto.Data\\Migrations\\20260417113306_AddReservedByUserId.cs",
               "RelativeDocumentMoniker": "GTAuto.Data\\Migrations\\20260417113306_AddReservedByUserId.cs",
@@ -397,7 +423,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "MyOrders.cshtml",
               "DocumentMoniker": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\Views\\Wishlist\\MyOrders.cshtml",
               "RelativeDocumentMoniker": "GTAutoWeb\\Views\\Wishlist\\MyOrders.cshtml",
@@ -410,20 +436,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "Confirmation.cshtml",
-              "DocumentMoniker": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\Views\\Cars\\Confirmation.cshtml",
-              "RelativeDocumentMoniker": "GTAutoWeb\\Views\\Cars\\Confirmation.cshtml",
-              "ToolTip": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\Views\\Cars\\Confirmation.cshtml",
-              "RelativeToolTip": "GTAutoWeb\\Views\\Cars\\Confirmation.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAIsAAAAGAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-16T12:00:58.096Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "Car.cs",
               "DocumentMoniker": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAuto.Data\\Models\\Car.cs",
               "RelativeDocumentMoniker": "GTAuto.Data\\Models\\Car.cs",
@@ -436,7 +449,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 14,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\Views\\Cars\\Edit.cshtml",
               "RelativeDocumentMoniker": "GTAutoWeb\\Views\\Cars\\Edit.cshtml",
@@ -450,19 +463,6 @@
             {
               "$type": "Document",
               "DocumentIndex": 13,
-              "Title": "ReservedCars.cshtml",
-              "DocumentMoniker": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\Views\\Cars\\ReservedCars.cshtml",
-              "RelativeDocumentMoniker": "GTAutoWeb\\Views\\Cars\\ReservedCars.cshtml",
-              "ToolTip": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\Views\\Cars\\ReservedCars.cshtml",
-              "RelativeToolTip": "GTAutoWeb\\Views\\Cars\\ReservedCars.cshtml",
-              "ViewState": "AgIAAM4AAAAAAAAAAAAAAOgAAAAaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-17T05:09:45.552Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\Views\\Cars\\Index.cshtml",
               "RelativeDocumentMoniker": "GTAutoWeb\\Views\\Cars\\Index.cshtml",
@@ -475,7 +475,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "WishlistCar.cs",
               "DocumentMoniker": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAuto.Data\\Models\\WishlistCar.cs",
               "RelativeDocumentMoniker": "GTAuto.Data\\Models\\WishlistCar.cs",
@@ -488,7 +488,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "20260417102240_AddWishlistTable.cs",
               "DocumentMoniker": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAuto.Data\\Migrations\\20260417102240_AddWishlistTable.cs",
               "RelativeDocumentMoniker": "GTAuto.Data\\Migrations\\20260417102240_AddWishlistTable.cs",
@@ -501,7 +501,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 12,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\Views\\Wishlist\\Index.cshtml",
               "RelativeDocumentMoniker": "GTAutoWeb\\Views\\Wishlist\\Index.cshtml",
@@ -527,7 +527,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 22,
               "Title": "CarsSeeder.cs",
               "DocumentMoniker": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\Seed\\CarsSeeder.cs",
               "RelativeDocumentMoniker": "GTAutoWeb\\Seed\\CarsSeeder.cs",
@@ -540,7 +540,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 21,
               "Title": "DataSeeder.cs",
               "DocumentMoniker": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\Seed\\DataSeeder.cs",
               "RelativeDocumentMoniker": "GTAutoWeb\\Seed\\DataSeeder.cs",
@@ -553,7 +553,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "GTAutoDbContext.cs",
               "DocumentMoniker": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAuto.Data\\GTAutoDbContext.cs",
               "RelativeDocumentMoniker": "GTAuto.Data\\GTAutoDbContext.cs",
@@ -566,7 +566,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 18,
               "Title": "20260417100900_ConfigureSaleCars.cs",
               "DocumentMoniker": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAuto.Data\\Migrations\\20260417100900_ConfigureSaleCars.cs",
               "RelativeDocumentMoniker": "GTAuto.Data\\Migrations\\20260417100900_ConfigureSaleCars.cs",
@@ -592,7 +592,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 20,
               "Title": "HomeController.cs",
               "DocumentMoniker": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "GTAutoWeb\\Controllers\\HomeController.cs",
@@ -605,7 +605,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 19,
               "Title": "CarsConfiguration.cs",
               "DocumentMoniker": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAuto.Data\\Configurations\\CarsConfiguration.cs",
               "RelativeDocumentMoniker": "GTAuto.Data\\Configurations\\CarsConfiguration.cs",
@@ -618,7 +618,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 23,
               "Title": "BrandsController.cs",
               "DocumentMoniker": "C:\\Users\\Student10\\Desktop\\Diplomna Rabota\\GTAuto\\GTAutoWeb\\Controllers\\BrandsController.cs",
               "RelativeDocumentMoniker": "GTAutoWeb\\Controllers\\BrandsController.cs",
