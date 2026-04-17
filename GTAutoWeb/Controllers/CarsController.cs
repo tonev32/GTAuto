@@ -26,6 +26,7 @@ namespace GTAutoWeb.Controllers
         }
 
         // GET: Cars
+        // GET: Cars
         public async Task<IActionResult> Index(string searchString, decimal? minPrice, decimal? maxPrice, int? minHP, int? maxHP)
         {
             var carsQuery = _context.Cars
@@ -61,6 +62,24 @@ namespace GTAutoWeb.Controllers
                 .OrderByDescending(c => c.IsFlashOffer)
                 .ThenByDescending(c => c.Year)
                 .ToListAsync();
+
+            // =========================================================
+            // 🔥 ДОБАВЕНО: ВЗИМАМЕ ЛЮБИМИТЕ КОЛИ САМО ЗА ТОЗИ КЛИЕНТ
+            // =========================================================
+            var favoriteCarIds = new List<Guid>();
+            if (User.Identity.IsAuthenticated)
+            {
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+                favoriteCarIds = await _context.WishlistCars
+                    .Where(w => w.UserId == userId)
+                    .Select(w => w.CarId)
+                    .ToListAsync();
+            }
+
+            // Пращаме ги към HTML-а (към Index.cshtml)
+            ViewBag.FavoriteCars = favoriteCarIds;
+            // =========================================================
 
             return View(cars);
         }

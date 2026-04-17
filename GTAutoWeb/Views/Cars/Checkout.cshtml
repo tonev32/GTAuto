@@ -5,12 +5,49 @@
 }
 
 <style>
-    html, body, main, .container, .pb-3, header, footer { background-color: #000000 !important; }
-    .checkout-container { max-width: 600px; margin: 50px auto; }
-    .payment-card { background-color: #0d0d0d; border: 1px solid #1a1a1a; border-radius: 12px; padding: 40px; }
-    .form-control-dark { background-color: #050505; border: 1px solid #1a1a1a; color: #fff; padding: 12px 15px; border-radius: 6px; }
-    .btn-pay { background-color: #28a745; color: white; border: none; padding: 16px; font-weight: 800; text-transform: uppercase; border-radius: 8px; width: 100%; margin-top: 20px; transition: 0.3s; letter-spacing: 1px; }
-    .btn-pay:hover { background-color: #218838; box-shadow: 0 0 20px rgba(40, 167, 69, 0.4); transform: translateY(-2px); }
+    html, body, main, .container, .pb-3, header, footer {
+        background-color: #000000 !important;
+    }
+
+    .checkout-container {
+        max-width: 600px;
+        margin: 50px auto;
+    }
+
+    .payment-card {
+        background-color: #0d0d0d;
+        border: 1px solid #1a1a1a;
+        border-radius: 12px;
+        padding: 40px;
+    }
+
+    .form-control-dark {
+        background-color: #050505;
+        border: 1px solid #1a1a1a;
+        color: #fff;
+        padding: 12px 15px;
+        border-radius: 6px;
+    }
+
+    .btn-pay {
+        background-color: #28a745;
+        color: white;
+        border: none;
+        padding: 16px;
+        font-weight: 800;
+        text-transform: uppercase;
+        border-radius: 8px;
+        width: 100%;
+        margin-top: 20px;
+        transition: 0.3s;
+        letter-spacing: 1px;
+    }
+
+        .btn-pay:hover {
+            background-color: #218838;
+            box-shadow: 0 0 20px rgba(40, 167, 69, 0.4);
+            transform: translateY(-2px);
+        }
 </style>
 
 <div class="container checkout-container">
@@ -20,32 +57,32 @@
     </div>
 
     <div class="payment-card">
-        <div class="d-flex justify-content-between align-items-center mb-4 border-bottom border-secondary pb-3">
-            <span class="text-muted text-uppercase small fw-bold">Required Deposit (5%)</span>
-            <h3 class="text-success m-0 fw-bold">@depositAmount.ToString("N0") €</h3>
+        <div class="text-center mb-4">
+            <span class="text-muted text-uppercase small fw-bold d-block mb-1">Required Deposit (5%)</span>
+            <h2 class="text-success m-0 fw-bold" style="text-shadow: 0 0 15px rgba(40,167,69,0.3);">@depositAmount.ToString("N0") €</h2>
         </div>
 
-        <form asp-action="CheckoutConfirm" method="post">
+        <form id="checkoutForm" asp-action="CheckoutConfirm" method="post" onsubmit="return validatePayment(event);">
             <input type="hidden" name="id" value="@Model.Id" />
 
             <div class="mb-3">
                 <label class="form-label text-muted small text-uppercase">Name on Card</label>
-                <input type="text" class="form-control form-control-dark" placeholder="JOHN DOE" required>
+                <input type="text" id="cardName" class="form-control form-control-dark" placeholder="JOHN DOE" required>
             </div>
 
             <div class="mb-3">
                 <label class="form-label text-muted small text-uppercase">Card Number</label>
-                <input type="text" name="cardNumber" class="form-control form-control-dark" placeholder="0000 0000 0000 0000" maxlength="19" required>
+                <input type="text" id="cardNumber" name="cardNumber" class="form-control form-control-dark" placeholder="0000 0000 0000 0000" maxlength="19" required>
             </div>
 
             <div class="row mb-4">
                 <div class="col-6">
                     <label class="form-label text-muted small text-uppercase">Expiry Date</label>
-                    <input type="text" class="form-control form-control-dark" placeholder="MM/YY" maxlength="5" required>
+                    <input type="text" id="cardExpiry" class="form-control form-control-dark" placeholder="MM/YY" maxlength="5" required>
                 </div>
                 <div class="col-6">
                     <label class="form-label text-muted small text-uppercase">CVC</label>
-                    <input type="password" class="form-control form-control-dark" placeholder="123" maxlength="3" required>
+                    <input type="password" id="cardCvc" class="form-control form-control-dark" placeholder="123" maxlength="3" required>
                 </div>
             </div>
 
@@ -55,3 +92,107 @@
         </form>
     </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    // 1. Форматиране на Името (разрешава само букви и интервали)
+    document.getElementById('cardName').addEventListener('input', function (e) {
+    e.target.value = e.target.value.replace(/[^a-zA-Z\s]/g, '');
+    });
+
+    // 2. Форматиране на Картата (слага интервали на всеки 4 цифри)
+    document.getElementById('cardNumber').addEventListener('input', function (e) {
+    let value = e.target.value.replace(/\D/g, '');
+    value = value.replace(/(.{4})/g, '$1 ').trim();
+    e.target.value = value;
+    });
+
+    // 3. Форматиране на Датата (слага наклонена черта автоматично)
+    document.getElementById('cardExpiry').addEventListener('input', function (e) {
+    let value = e.target.value.replace(/\D/g, '');
+    if (value.length > 2) {
+    value = value.substring(0, 2) + '/' + value.substring(2, 4);
+    }
+    e.target.value = value;
+    });
+
+    // 4. Форматиране на CVC (само цифри)
+    document.getElementById('cardCvc').addEventListener('input', function (e) {
+    e.target.value = e.target.value.replace(/\D/g, '');
+    });
+
+
+    // ГЛАВНАТА ПРОВЕРКА ПРЕДИ ПЛАЩАНЕ
+    function validatePayment(event) {
+    let isValid = true;
+    let errorMessage = "";
+
+    // Проверка 1: Име на картата
+    let cardName = document.getElementById('cardName').value.trim();
+    let nameRegex = /^[a-zA-Z\s]+$/;
+    if (!nameRegex.test(cardName) || cardName.length < 3) {
+    isValid = false;
+    errorMessage = "Invalid Name on Card. Please use only letters.";
+    }
+
+    // Проверка 2: Номер на карта
+    if (isValid) {
+    let cardNum = document.getElementById('cardNumber').value.replace(/\s/g, '');
+    if (cardNum.length !== 16) {
+    isValid = false;
+    errorMessage = "Invalid Card Number. It must contain exactly 16 digits.";
+    }
+    }
+
+    // Проверка 3: Валидност на датата
+    if (isValid) {
+    let expiry = document.getElementById('cardExpiry').value;
+    if (expiry.length === 5 && expiry.includes('/')) {
+    let parts = expiry.split('/');
+    let month = parseInt(parts[0], 10);
+    let year = parseInt("20" + parts[1], 10);
+
+    let today = new Date();
+    let currentMonth = today.getMonth() + 1;
+    let currentYear = today.getFullYear();
+
+    if (month < 1 || month > 12) {
+    isValid = false;
+    errorMessage = "Invalid Expiry Month. Must be between 01 and 12.";
+    } else if (year < currentYear || (year === currentYear && month < currentMonth)) {
+    isValid = false;
+    errorMessage = "Card Expired. Please use a valid credit card.";
+    }
+    } else {
+    isValid = false;
+    errorMessage = "Invalid Expiry Date format. Please use MM/YY.";
+    }
+    }
+
+    // Проверка 4: CVC код
+    if (isValid) {
+    let cvc = document.getElementById('cardCvc').value;
+    if (cvc.length !== 3) {
+    isValid = false;
+    errorMessage = "Invalid CVC. It must contain exactly 3 digits.";
+    }
+    }
+
+    // АКО ИМА ГРЕШКА -> Показваме SweetAlert и спираме плащането
+    if (!isValid) {
+    event.preventDefault();
+    Swal.fire({
+    icon: 'error',
+    title: 'Transaction Failed',
+    text: errorMessage,
+    background: '#0d0d0d',
+    color: '#fff',
+    confirmButtonColor: '#ff3333'
+    });
+    return false;
+    }
+
+    return true;
+    }
+</script>
