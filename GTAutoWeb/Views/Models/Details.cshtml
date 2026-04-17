@@ -1,24 +1,35 @@
 ﻿@model GTAuto.Data.Models.Model
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Model Details";
 }
 
-<h1>Details</h1>
+<div class="d-flex justify-content-center align-items-center" style="min-height: 100vh; padding: 40px 0; background-color: #000 !important;">
+    <div class="card p-5 shadow-lg" style="background: #0d0d0d; border: 1px solid #1a1a1a; border-radius: 12px; width: 100%; max-width: 500px;">
+        <div class="text-center mb-5">
+            <h2 class="text-white fw-bold mb-1">MODEL <span style="color: #00d4ff; text-shadow: 0 0 10px rgba(0,212,255,0.4);">DETAILS</span></h2>
+            <p class="text-muted small">Database record information</p>
+        </div>
 
-<div>
-    <h4>Model</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+        <div class="mb-4">
+            <div class="p-3 mb-3" style="background: #000; border-left: 3px solid #00d4ff; border-radius: 4px;">
+                <span class="d-block" style="color: #666; font-size: 0.7rem; text-transform: uppercase; font-weight: 800; letter-spacing: 1px;">Brand / Model Name</span>
+                <span class="text-white fw-bold fs-5">@Html.DisplayFor(model => model.Name)</span>
+            </div>
+
+            <div class="p-3" style="background: #000; border-left: 3px solid #333; border-radius: 4px;">
+                <span class="d-block" style="color: #666; font-size: 0.7rem; text-transform: uppercase; font-weight: 800; letter-spacing: 1px;">Database ID</span>
+                <span class="text-muted" style="font-family: monospace;">@Html.DisplayFor(model => model.Id)</span>
+            </div>
+        </div>
+
+        <div class="d-flex gap-3 mt-5">
+            <a asp-action="Index" class="btn btn-outline-info w-50 fw-bold text-uppercase py-2" style="border-radius: 4px;">
+                <i class="bi bi-list-ul me-1"></i> Back to List
+            </a>
+            <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-outline-warning w-50 fw-bold text-uppercase py-2" style="border-radius: 4px;">
+                <i class="bi bi-pencil-square me-1"></i> Edit
+            </a>
+        </div>
+    </div>
 </div>

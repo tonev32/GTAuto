@@ -1,34 +1,39 @@
 ﻿@model GTAuto.Data.Models.Model
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Edit Model";
 }
 
-<h1>Edit</h1>
+<div class="d-flex justify-content-center align-items-center" style="min-height: 100vh; padding: 40px 0; background-color: #000 !important;">
+    <div class="card p-5 shadow-lg" style="background: #0d0d0d; border: 1px solid #1a1a1a; border-radius: 12px; width: 100%; max-width: 500px;">
+        <div class="text-center mb-4">
+            <h2 class="text-white fw-bold mb-1">EDIT <span style="color: #00d4ff; text-shadow: 0 0 10px rgba(0,212,255,0.4);">MODEL</span></h2>
+            <p class="text-muted small">Update listing data for the selected brand/model</p>
+        </div>
 
-<h4>Model</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <form asp-action="Edit" asp-route-id="@Model.Id" method="post">
+            <div asp-validation-summary="All" class="text-danger mb-3 fw-bold bg-dark p-2 rounded" style="display: @(ViewData.ModelState.IsValid ? "none" : "block")"></div>
             <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
+            <div class="mb-4">
+                <label asp-for="Name" class="form-label" style="color: #00d4ff; font-weight: 800; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px;">Brand / Model Name</label>
+                <input asp-for="Name" class="form-control" style="background-color: #000; color: #fff; border: 1px solid #333; padding: 12px; border-radius: 4px;" autocomplete="off" />
+                <span asp-validation-for="Name" class="text-danger small mt-1 d-block"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+
+            <div class="d-flex gap-3 mt-5">
+                <a asp-action="Index" class="btn btn-outline-secondary w-50 fw-bold text-uppercase py-2" style="border-radius: 4px;">
+                    <i class="bi bi-arrow-left me-1"></i> Cancel
+                </a>
+                <button type="submit" class="btn w-50 fw-bold text-uppercase py-2" style="background-color: #00d4ff; color: #000; border-radius: 4px; transition: 0.3s;" onmouseover="this.style.boxShadow='0 0 15px rgba(0,212,255,0.5)'" onmouseout="this.style.boxShadow='none'">
+                    <i class="bi bi-check2-circle me-1"></i> Save
+                </button>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

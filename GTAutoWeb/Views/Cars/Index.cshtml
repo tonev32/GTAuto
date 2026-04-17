@@ -49,7 +49,6 @@
         width: 100%;
     }
 
-    /* ПРЕМАХВАНЕ НА СТРЕЛКИТЕ ЗА ЧИСЛА */
     input::-webkit-outer-spin-button,
     input::-webkit-inner-spin-button {
         -webkit-appearance: none;
@@ -74,7 +73,6 @@
             border-color: #00d4ff !important;
         }
 
-    /* СИНЬО ЗАГЛАВИЕ КАТО GTAUTO */
     .filter-label {
         color: #00d4ff;
         font-size: 0.75rem;
@@ -130,6 +128,48 @@
         transform: rotate(45deg);
         z-index: 10;
         font-size: 0.75rem;
+    }
+
+    /* ==========================================
+           🔥 СТИЛОВЕ ЗА КАПАРИРАНА КОЛА 🔥
+           ========================================== */
+    .reserved-card {
+        filter: grayscale(100%) brightness(50%); /* Черно-бяла и тъмна */
+        border-color: #222 !important;
+    }
+
+        /* Спираме ефекта на повдигане при посочване */
+        .reserved-card:hover {
+            transform: none !important;
+            border-color: #222 !important;
+        }
+
+    /* Червеният диагонален печат */
+    .reserved-badge {
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(-15deg);
+        background-color: rgba(15, 0, 0, 0.9);
+        color: #ff3333;
+        padding: 10px 40px;
+        font-weight: 900;
+        text-transform: uppercase;
+        font-size: 2rem;
+        letter-spacing: 5px;
+        border: 3px solid #ff3333;
+        z-index: 20;
+        white-space: nowrap;
+        pointer-events: none; /* За да не пречи на кликове (ако има) */
+    }
+
+    /* Сив блокиран бутон */
+    .btn-disabled-noir {
+        background-color: #1a1a1a !important;
+        color: #555 !important;
+        border: 2px solid #333 !important;
+        cursor: not-allowed !important;
+        border-radius: 4px;
     }
 </style>
 
@@ -189,7 +229,6 @@
             </div>
         }
 
-   
         @if (!Model.Any())
         {
             <div class="text-center py-5 mt-4">
@@ -202,17 +241,23 @@
             <div class="row row-cols-1 row-cols-md-3 g-4 text-start">
                 @foreach (var car in Model)
                 {
-                    
                     var mainImg = car.Images?.OrderBy(i => i.Order).FirstOrDefault()?.ImagePath ?? "/images/no-image.png";
 
                     <div class="col">
-                        <div class="card car-card-noir h-100" data-bs-toggle="modal" data-bs-target="#modal-@car.Id">
-                            @if (car.IsFlashOffer)
+                        @* ДОБАВЯМЕ КЛАСА reserved-card. АКО Е КАПАРИРАНА, МАХАМЕ ТРИГЕРА ЗА МОДАЛА *@
+                        <div class="card car-card-noir h-100 @(car.IsReserved ? "reserved-card" : "")"
+                        @(car.IsReserved ? "" : $"data-bs-toggle=\"modal\" data-bs-target=\"#modal-{car.Id}\"")>
+
+                            @* ПРОВЕРКА ЗА ЕТИКЕТИ *@
+                            @if (car.IsReserved)
+                            {
+                                <div class="reserved-badge">RESERVED</div>
+                            }
+                            else if (car.IsFlashOffer)
                             {
                                 <div class="corner-ribbon">SALE</div>
                             }
 
-                         
                             <img src="@mainImg" class="card-img-top" alt="@car.Model.Name" style="height: 250px; object-fit: cover;">
 
                             <div class="card-body p-4">
@@ -221,7 +266,7 @@
                                     Year: @car.Year | HP: @car.HorsePower | Fuel: @car.FuelType
                                 </p>
 
-                                @if (car.IsFlashOffer)
+                                @if (car.IsFlashOffer && !car.IsReserved)
                                 {
                                     <div class="text-muted text-decoration-line-through small">@((car.Price + 15000).ToString("N0")) €</div>
                                     <div style="color: #ff0000; font-weight: 800; font-size: 1.6rem;">@car.Price.ToString("N0") €</div>
@@ -233,9 +278,22 @@
                             </div>
 
                             <div class="card-footer bg-transparent border-0 pb-4 px-4 text-center" onclick="event.stopPropagation();">
-                                <a asp-action="Details" asp-route-id="@car.Id" class="btn btn-outline-info w-100 fw-bold py-2" style="border-radius: 4px; border-width: 2px;">
-                                    DETAILS
-                                </a>
+
+                                @* АКО Е КАПАРИРАНА - БЛОКИРАН БУТОН. АКО НЕ Е - БУТОН DETAILS *@
+                                @if (car.IsReserved)
+                                {
+                                    <button class="btn btn-disabled-noir w-100 fw-bold py-2" disabled>
+                                        UNAVAILABLE
+                                    </button>
+                                }
+                                else
+                                {
+                                    <a asp-action="Details" asp-route-id="@car.Id" class="btn btn-outline-info w-100 fw-bold py-2" style="border-radius: 4px; border-width: 2px;">
+                                        DETAILS
+                                    </a>
+                                }
+
+                                @* АДМИН БУТОНИТЕ СИ ОСТАВАТ АКТИВНИ *@
                                 @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                                 {
                                     <div class="d-flex gap-2 justify-content-center mt-3">
@@ -247,34 +305,38 @@
                         </div>
                     </div>
 
-                    <div class="modal fade" id="modal-@car.Id" tabindex="-1" aria-hidden="true">
-                        <div class="modal-dialog modal-lg modal-dialog-centered">
-                            <div class="modal-content" style="background-color: #0a0a0a; color: white; border: 1px solid #1a1a1a;">
-                                <div class="modal-header border-0">
-                                    <h5 class="modal-title fw-bold">@car.Model.Name</h5>
-                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-                                </div>
-                                <div class="modal-body p-4 text-center">
-                                    <img src="@mainImg" class="img-fluid rounded mb-4" style="width: 100%; height: 400px; object-fit: cover;">
+                    @* Модалът се рендира само ако колата НЕ е капарирана *@
+                    @if (!car.IsReserved)
+                    {
+                        <div class="modal fade" id="modal-@car.Id" tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog modal-lg modal-dialog-centered">
+                                <div class="modal-content" style="background-color: #0a0a0a; color: white; border: 1px solid #1a1a1a;">
+                                    <div class="modal-header border-0">
+                                        <h5 class="modal-title fw-bold">@car.Model.Name</h5>
+                                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                                    </div>
+                                    <div class="modal-body p-4 text-center">
+                                        <img src="@mainImg" class="img-fluid rounded mb-4" style="width: 100%; height: 400px; object-fit: cover;">
 
-                                    <div class="row text-center g-3">
-                                        <div class="col-4 border-end border-secondary">
-                                            <small class="text-muted d-block">YEAR</small>
-                                            <strong class="fs-5">@car.Year</strong>
-                                        </div>
-                                        <div class="col-4 border-end border-secondary">
-                                            <small class="text-muted d-block">HORSEPOWER</small>
-                                            <strong class="fs-5">@car.HorsePower HP</strong>
-                                        </div>
-                                        <div class="col-4">
-                                            <small class="text-muted d-block">PRICE</small>
-                                            <strong class="fs-5" style="color: @(car.IsFlashOffer ? "#ff0000" : "#00d4ff")">@car.Price.ToString("N0") €</strong>
+                                        <div class="row text-center g-3">
+                                            <div class="col-4 border-end border-secondary">
+                                                <small class="text-muted d-block">YEAR</small>
+                                                <strong class="fs-5">@car.Year</strong>
+                                            </div>
+                                            <div class="col-4 border-end border-secondary">
+                                                <small class="text-muted d-block">HORSEPOWER</small>
+                                                <strong class="fs-5">@car.HorsePower HP</strong>
+                                            </div>
+                                            <div class="col-4">
+                                                <small class="text-muted d-block">PRICE</small>
+                                                <strong class="fs-5" style="color: @(car.IsFlashOffer ? "#ff0000" : "#00d4ff")">@car.Price.ToString("N0") €</strong>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    }
                 }
             </div>
         }

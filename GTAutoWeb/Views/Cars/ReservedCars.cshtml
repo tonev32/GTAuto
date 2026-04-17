@@ -1,0 +1,134 @@
+﻿@model IEnumerable<GTAuto.Data.Models.Reservation>
+
+@{
+    ViewData["Title"] = "Reserved Assets Management";
+}
+
+<style>
+    .admin-wrapper {
+        background-color: #000000 !important;
+        min-height: 100vh;
+        padding: 60px 0;
+    }
+
+    .admin-title {
+        font-size: 3rem;
+        font-weight: 900;
+        text-transform: uppercase;
+        color: #ffffff;
+    }
+
+    .car-card-admin {
+        background: #0d0d0d;
+        border: 1px solid #333;
+        border-radius: 10px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    /* Инфо бутон за датата */
+    .date-info-btn {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background: rgba(0, 212, 255, 0.2);
+        color: #00d4ff;
+        border: 1px solid #00d4ff;
+        border-radius: 50%;
+        width: 35px;
+        height: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 30;
+        transition: 0.3s;
+    }
+
+        .date-info-btn:hover {
+            background: #00d4ff;
+            color: #000;
+        }
+
+    .btn-unlock {
+        background-color: #ff3333;
+        color: white;
+        border: none;
+        padding: 12px;
+        font-weight: 800;
+        text-transform: uppercase;
+        width: 100%;
+        transition: 0.3s;
+    }
+
+        .btn-unlock:hover {
+            background-color: #cc0000;
+            box-shadow: 0 0 15px rgba(255, 51, 51, 0.5);
+        }
+</style>
+
+<div class="admin-wrapper">
+    <div class="container text-center">
+        <h1 class="admin-title">LOCKED <span style="color: #ff3333;">ASSETS</span></h1>
+        <p class="text-muted mb-5">Admin Control Panel: Expiry & Unlock Management</p>
+
+        @if (!Model.Any())
+        {
+            <div class="py-5">
+                <h3 class="text-secondary fw-bold">NO RESERVED ASSETS</h3>
+                <a asp-action="Index" class="btn btn-outline-info mt-3 fw-bold">BACK TO INVENTORY</a>
+            </div>
+        }
+        else
+        {
+            <div class="row row-cols-1 row-cols-md-3 g-4 text-start">
+                @foreach (var res in Model)
+                {
+                    var mainImg = res.Car.Images?.OrderBy(i => i.Order).FirstOrDefault()?.ImagePath ?? "/images/no-image.png";
+                    var daysLeft = (res.ExpiryDate - DateTime.UtcNow).Days;
+
+                    <div class="col">
+                        <div class="card car-card-admin h-100">
+                            <div class="date-info-btn"
+                                 data-bs-toggle="popover"
+                                 title="Deadline Details"
+                                 data-bs-content="Client must arrive by: @res.ExpiryDate.ToString("dd MMM yyyy") (@daysLeft days remaining)">
+                                <i class="bi bi-info-lg"></i>
+                            </div>
+
+                            <img src="@mainImg" class="card-img-top" style="height: 200px; object-fit: cover; filter: grayscale(50%);">
+
+                            <div class="card-body">
+                                <h5 class="text-white fw-bold">@res.Car.Model.Name</h5>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="text-muted small">ID: @res.CarId.ToString().Substring(0, 8)</span>
+                                    <span class="badge @(daysLeft < 5 ? "bg-danger" : "bg-dark border border-secondary")">
+                                        @daysLeft Days Left
+                                    </span>
+                                </div>
+                                <div class="text-danger fw-bold fs-5 mt-2">@res.Car.Price.ToString("N0") €</div>
+                            </div>
+
+                            <div class="card-footer bg-transparent border-0 p-0">
+                                <form asp-action="CancelReservation" asp-route-id="@res.CarId" method="post" onsubmit="return confirm('Unlock this asset?');">
+                                    <button type="submit" class="btn-unlock">
+                                        <i class="bi bi-unlock-fill me-2"></i> UNLOCK ASSET
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+        var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+            return new bootstrap.Popover(popoverTriggerEl)
+        })
+    </script>
+}

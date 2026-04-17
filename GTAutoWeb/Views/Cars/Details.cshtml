@@ -3,7 +3,12 @@
 @{
     ViewData["Title"] = "Vehicle Details";
 }
-
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger text-center fw-bold text-uppercase mt-3" style="border: 2px solid #ff4d4d; background-color: #1a0000; color: #ff4d4d;">
+        <i class="bi bi-exclamation-triangle-fill me-2"></i> @TempData["ErrorMessage"]
+    </div>
+}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
 <style>

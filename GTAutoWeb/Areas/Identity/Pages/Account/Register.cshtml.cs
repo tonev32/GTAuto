@@ -112,20 +112,28 @@ namespace GTAutoWeb.Areas.Identity.Pages.Account
         {
             returnUrl ??= Url.Content("~/");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+
             if (ModelState.IsValid)
             {
-                var user = new User
-                {
-                    FullName = Input.FullName
-                };
+                // 1. Използваме вградения метод CreateUser()
+                var user = CreateUser();
 
+                // 2. Задаваме името, което потребителят е написал
+                user.FullName = Input.FullName;
+
+                // 3. Настройваме Email и Username през Store-овете (стандарт за Identity)
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
+
+                // 4. Създаваме потребителя в базата
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
+
+                    // 5. Добавяме роля "Client" по подразбиране
+                    await _userManager.AddToRoleAsync(user, "Client");
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
@@ -133,18 +141,19 @@ namespace GTAutoWeb.Areas.Identity.Pages.Account
                     }
                     else
                     {
-                        await _userManager.AddToRoleAsync(user, "Client");
                         await _signInManager.SignInAsync(user, isPersistent: false);
                         return LocalRedirect(returnUrl);
                     }
                 }
+
+                // Ако има грешки (напр. слаба парола), ги добавяме към модела
                 foreach (var error in result.Errors)
                 {
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
             }
 
-            // If we got this far, something failed, redisplay form
+            // Ако стигнем до тук, значи нещо е фейлнало, показваме формата пак
             return Page();
         }
 

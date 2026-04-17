@@ -1,39 +1,157 @@
 ﻿@model IEnumerable<GTAuto.Data.Models.Model>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Listing Data Management";
 }
 
-<h1>Index</h1>
+<style>
+    .admin-wrapper {
+        background-color: #000000 !important;
+        min-height: 100vh;
+        padding: 60px 0;
+    }
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th style="color:white">
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-                <td style="color:white">
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id"
-                       class="btn btn-white"
-                       style="background-color:#19719c; border:none;">
-                        Edit
-                    </a> |
-                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-warning">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    .admin-title {
+        font-size: 3rem;
+        font-weight: 900;
+        text-transform: uppercase;
+        color: #ffffff;
+        margin-bottom: 0;
+    }
+
+    /* БУТОН ЗА СЪЗДАВАНЕ */
+    .btn-create-blue {
+        background-color: #00d4ff;
+        color: #000000;
+        border: none;
+        padding: 12px 30px;
+        font-weight: 800;
+        text-transform: uppercase;
+        border-radius: 4px;
+        transition: 0.3s;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+    }
+
+        .btn-create-blue:hover {
+            background-color: #00aacc;
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
+            color: #000000;
+        }
+
+    /* ТЪМНА ТАБЛИЦА (NOIR STYLE) */
+    .table-container {
+        background-color: #0d0d0d;
+        border-radius: 12px;
+        border: 1px solid #1a1a1a;
+        overflow: hidden;
+        margin-top: 30px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .table-noir {
+        margin-bottom: 0;
+    }
+
+        .table-noir thead th {
+            background-color: #1a1a1a;
+            color: #00d4ff;
+            text-transform: uppercase;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            border-bottom: 2px solid #00d4ff;
+            padding: 18px 25px;
+            font-size: 0.85rem;
+        }
+
+        .table-noir tbody td {
+            background-color: transparent;
+            color: #cccccc;
+            border-bottom: 1px solid #1a1a1a;
+            padding: 18px 25px;
+            vertical-align: middle;
+            transition: 0.2s;
+        }
+
+        .table-noir tbody tr:hover td {
+            background-color: #141414;
+            color: #ffffff;
+        }
+
+        /* Премахване на долния бордер на последния ред */
+        .table-noir tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+    /* ЕЛЕГАНТНИ ACTION БУТОНИ */
+    .action-btn {
+        font-weight: 800;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        letter-spacing: 0.5px;
+        padding: 8px 15px;
+        border-radius: 4px;
+        margin-left: 8px;
+        transition: 0.3s;
+    }
+</style>
+
+<div class="admin-wrapper">
+    <div class="container">
+
+        <div class="d-flex justify-content-between align-items-end mb-4">
+            <div>
+                <h1 class="admin-title">LISTING <span style="color: #00d4ff; text-shadow: 0 0 15px rgba(0,212,255,0.4);">DATA</span></h1>
+                <p class="text-muted mb-0 mt-2" style="font-style: italic;">Admin Control Panel: Manage vehicle brands and models</p>
+            </div>
+
+            <a asp-action="Create" class="btn-create-blue">
+                <i class="bi bi-plus-lg me-2 fw-bold"></i> ADD NEW MODEL
+            </a>
+        </div>
+
+        <div class="table-container">
+            <div class="table-responsive">
+                <table class="table table-borderless table-noir">
+                    <thead>
+                        <tr>
+                            <th>Brand / Model Name</th>
+                            <th class="text-end">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="fw-bold text-white fs-5">
+                                    <i class="bi bi-car-front-fill me-3" style="color: #333;"></i> @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+                                <td class="text-end">
+                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-warning action-btn">
+                                        <i class="bi bi-pencil-square me-1"></i> Edit
+                                    </a>
+                                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-info action-btn">
+                                        <i class="bi bi-eye-fill me-1"></i> Details
+                                    </a>
+                                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger action-btn">
+                                        <i class="bi bi-trash3-fill me-1"></i> Delete
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        @if (!Model.Any())
+        {
+            <div class="text-center py-5 mt-4">
+                <h4 class="text-secondary fw-bold">NO MODELS FOUND IN THE DATABASE</h4>
+                <p class="text-muted">Click the "Add New Model" button to create your first entry.</p>
+            </div>
+        }
+
+    </div>
+</div>

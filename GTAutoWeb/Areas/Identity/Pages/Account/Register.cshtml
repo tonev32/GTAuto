@@ -7,19 +7,11 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
 <style>
-    /* 🔥 GTAUTO NOIR ТЕМА 🔥 */
     html, body, main, .container, .pb-3, header, footer {
         background-color: #000000 !important;
-        background: #000000 !important;
         color: white;
     }
 
-    /* Премахваме линиите на стандартния шаблон */
-    .border-top, header, footer {
-        border-color: #111 !important;
-    }
-
-    /* ЦЕНТРАЛНА КАРТА */
     .register-box {
         max-width: 500px;
         margin: 60px auto;
@@ -39,7 +31,9 @@
         letter-spacing: -1px;
     }
 
-    .accent-blue { color: #00d4ff; }
+    .accent-blue {
+        color: #00d4ff;
+    }
 
     .gt-status {
         color: #666;
@@ -51,7 +45,6 @@
         margin-bottom: 30px;
     }
 
-    /* БЕЛИТЕ ПОЛЕТА */
     .form-control-gt {
         background-color: #ffffff !important;
         color: #000000 !important;
@@ -60,14 +53,13 @@
         border-radius: 8px;
         font-weight: 600;
         transition: 0.3s;
-        height: auto;
     }
 
-    .form-control-gt:focus {
-        border-color: #28a745; /* Зелено при фокус */
-        box-shadow: 0 0 15px rgba(40, 167, 69, 0.3);
-        outline: none;
-    }
+        .form-control-gt:focus {
+            border-color: #28a745;
+            box-shadow: 0 0 15px rgba(40, 167, 69, 0.3);
+            outline: none;
+        }
 
     .form-label-gt {
         color: #888;
@@ -78,7 +70,6 @@
         letter-spacing: 1px;
     }
 
-    /* ЗЕЛЕНИЯТ БУТОН */
     .btn-gt-submit {
         background-color: #28a745;
         color: white;
@@ -91,32 +82,18 @@
         margin-top: 10px;
         transition: 0.3s;
         font-size: 1.2rem;
-        letter-spacing: 1px;
     }
 
-    .btn-gt-submit:hover {
-        background-color: #218838;
-        box-shadow: 0 0 25px rgba(40, 167, 69, 0.5);
-        transform: translateY(-2px);
-    }
-
-    .gt-footer-links {
-        margin-top: 25px;
-        text-align: center;
-        border-top: 1px solid #1a1a1a;
-        padding-top: 20px;
-    }
+        .btn-gt-submit:hover {
+            background-color: #218838;
+            box-shadow: 0 0 25px rgba(40, 167, 69, 0.5);
+            transform: translateY(-2px);
+        }
 
     .gt-link {
         color: #00d4ff;
         text-decoration: none;
-        font-size: 0.85rem;
         font-weight: 600;
-    }
-
-    .gt-link:hover {
-        color: white;
-        text-decoration: underline;
     }
 </style>
 
@@ -125,38 +102,37 @@
     <span class="gt-status">Create New Identity</span>
 
     <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
-        <div asp-validation-summary="ModelOnly" class="text-danger small mb-3" role="alert"></div>
+        <div asp-validation-summary="All" class="text-danger small fw-bold mb-3"></div>
+
+        <div class="mb-3">
+            <label asp-for="Input.FullName" class="form-label-gt">Full Name</label>
+            <input asp-for="Input.FullName" class="form-control form-control-gt" placeholder="Enter your full name" />
+            <span asp-validation-for="Input.FullName" class="text-danger small"></span>
+        </div>
 
         <div class="mb-3">
             <label asp-for="Input.Email" class="form-label-gt">User Email</label>
-            <input asp-for="Input.Email" class="form-control form-control-gt" autocomplete="username" aria-required="true" placeholder="Enter your email" />
-            <span asp-validation-for="Input.Email" class="text-danger small"></span>
+            <input asp-for="Input.Email" class="form-control form-control-gt" autocomplete="username" placeholder="Enter your email" />
         </div>
 
         <div class="mb-3">
             <label asp-for="Input.Password" class="form-label-gt">Create Password</label>
-            <input asp-for="Input.Password" class="form-control form-control-gt" autocomplete="new-password" aria-required="true" placeholder="••••••••" />
-            <span asp-validation-for="Input.Password" class="text-danger small"></span>
+            <input asp-for="Input.Password" class="form-control form-control-gt" autocomplete="new-password" placeholder="••••••••" />
         </div>
 
         <div class="mb-4">
             <label asp-for="Input.ConfirmPassword" class="form-label-gt">Confirm Password</label>
-            <input asp-for="Input.ConfirmPassword" class="form-control form-control-gt" autocomplete="new-password" aria-required="true" placeholder="••••••••" />
-            <span asp-validation-for="Input.ConfirmPassword" class="text-danger small"></span>
+            <input asp-for="Input.ConfirmPassword" class="form-control form-control-gt" autocomplete="new-password" placeholder="••••••••" />
         </div>
 
         <button id="registerSubmit" type="submit" class="btn-gt-submit">
             <i class="bi bi-person-plus-fill me-2"></i> Register Account
         </button>
 
-        <div class="gt-footer-links">
+        <div class="text-center mt-4 pt-3 border-top border-secondary">
             <p class="mb-0 text-muted small">
                 Already have an identity? <a asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl" class="gt-link">Login here</a>
             </p>
         </div>
     </form>
 </div>
-
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-}
