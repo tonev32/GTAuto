@@ -949,7 +949,6 @@ C:\Users\ASUSD\source\repos\GTAuto\GTAutoWeb\obj\Debug\net8.0\staticwebassets.bu
 C:\Users\ASUSD\source\repos\GTAuto\GTAutoWeb\obj\Debug\net8.0\staticwebassets.development.json
 C:\Users\ASUSD\source\repos\GTAuto\GTAutoWeb\obj\Debug\net8.0\staticwebassets.build.endpoints.json
 C:\Users\ASUSD\source\repos\GTAuto\GTAutoWeb\obj\Debug\net8.0\swae.build.ex.cache
-C:\Users\ASUSD\source\repos\GTAuto\GTAutoWeb\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 C:\Users\ASUSD\source\repos\GTAuto\GTAutoWeb\obj\Debug\net8.0\GTAutoWeb.csproj.Up2Date
 C:\Users\ASUSD\source\repos\GTAuto\GTAutoWeb\obj\Debug\net8.0\GTAutoWeb.dll
 C:\Users\ASUSD\source\repos\GTAuto\GTAutoWeb\obj\Debug\net8.0\refint\GTAutoWeb.dll
