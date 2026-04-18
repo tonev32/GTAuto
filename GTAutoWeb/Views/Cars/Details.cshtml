@@ -236,7 +236,7 @@
 
             @* 🔥 ТВОЯТ ЗЕЛЕН БУТОН - ПОКАЗВА СЕ САМО АКО КОЛАТА Е СВОБОДНА 🔥 *@
             <div class="mt-4">
-                @if (!Model.IsReserved && !Model.IsSold)
+                @if (!Model.IsReserved && !Model.IsSold && User.IsInRole("Client"))
                 {
                     <a asp-action="Checkout" asp-route-id="@Model.Id" class="btn-buy-now">
                         <i class="bi bi-cart-check-fill me-2"></i> Buy Now

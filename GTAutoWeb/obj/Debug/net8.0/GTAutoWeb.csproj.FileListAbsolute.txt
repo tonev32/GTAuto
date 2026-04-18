@@ -955,3 +955,4 @@ C:\Users\ASUSD\source\repos\GTAuto\GTAutoWeb\obj\Debug\net8.0\refint\GTAutoWeb.d
 C:\Users\ASUSD\source\repos\GTAuto\GTAutoWeb\obj\Debug\net8.0\GTAutoWeb.pdb
 C:\Users\ASUSD\source\repos\GTAuto\GTAutoWeb\obj\Debug\net8.0\GTAutoWeb.genruntimeconfig.cache
 C:\Users\ASUSD\source\repos\GTAuto\GTAutoWeb\obj\Debug\net8.0\ref\GTAutoWeb.dll
+C:\Users\ASUSD\source\repos\GTAuto\GTAutoWeb\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
