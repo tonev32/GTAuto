@@ -92,6 +92,81 @@ namespace GTAuto.UnitTests.Controllers
             var result = await _controller.Details(null);
             Assert.That(result, Is.InstanceOf<NotFoundResult>());
         }
+        // 1. Тест за Details: Когато подадем реално ID, трябва да върне View с колата
+        [Test]
+        public async Task Details_ReturnsViewWithCar_WhenIdIsValid()
+        {
+            // Взимаме ID-то на първата кола от виртуалната база (тази от SeedDatabase)
+            var carId = _context.Cars.First().Id;
+
+            var result = await _controller.Details(carId) as ViewResult;
+
+            Assert.That(result, Is.Not.Null);
+            var model = result.Model as Car;
+            Assert.That(model, Is.Not.Null);
+            Assert.That(model.Id, Is.EqualTo(carId));
+        }
+
+        // 2. Тест за Details: Когато подадем ID, което не съществува в базата
+        [Test]
+        public async Task Details_ReturnsNotFound_WhenCarDoesNotExist()
+        {
+            // Подаваме напълно произволно/несъществуващо ID
+            var result = await _controller.Details(Guid.NewGuid());
+
+            Assert.That(result, Is.InstanceOf<NotFoundResult>());
+        }
+
+        // 3. Тест за Create (GET): Просто отваряне на страницата за добавяне
+        [Test]
+        public void Create_ReturnsView()
+        {
+            // Забележка: Ако твоят метод Create е асинхронен (Task), смени void на async Task и добави await
+            var result = _controller.Create() as ViewResult;
+
+            Assert.That(result, Is.Not.Null);
+        }
+
+        // 4. Тест за Delete (GET): Отваряне на страницата за изтриване с валидно ID
+        [Test]
+        public async Task Delete_ReturnsViewWithCar_WhenIdIsValid()
+        {
+            var carId = _context.Cars.First().Id;
+
+            var result = await _controller.Delete(carId) as ViewResult;
+
+            Assert.That(result, Is.Not.Null);
+            var model = result.Model as Car;
+            Assert.That(model?.Id, Is.EqualTo(carId));
+        }
+
+        // 5. Тест за Delete (GET): Когато ID е null (същото като при Details)
+        [Test]
+        public async Task Delete_ReturnsNotFound_WhenIdIsNull()
+        {
+            var result = await _controller.Delete(null);
+
+            Assert.That(result, Is.InstanceOf<NotFoundResult>());
+        }
+
+        // 6. Тест за DeleteConfirmed (POST): Реалното изтриване на колата от базата
+        [Test]
+        public async Task DeleteConfirmed_DeletesCar_AndRedirectsToIndex()
+        {
+            // Взимаме кола, за да я изтрием
+            var carId = _context.Cars.First().Id;
+
+            // Извикваме POST метода, който реално трие
+            var result = await _controller.DeleteConfirmed(carId) as RedirectToActionResult;
+
+            // Проверяваме дали ни е препратило към страницата Index (списъка с коли)
+            Assert.That(result, Is.Not.Null);
+            Assert.That(result.ActionName, Is.EqualTo("Index"));
+
+            // Проверяваме дали колата наистина е изчезнала от базата данни
+            var deletedCar = await _context.Cars.FindAsync(carId);
+            Assert.That(deletedCar, Is.Null);
+        }
         [Test]
         public async Task Details_ReturnsView_WhenCarExists()
         {
@@ -107,12 +182,7 @@ namespace GTAuto.UnitTests.Controllers
             Assert.That(model?.Id, Is.EqualTo(carId));
         }
 
-        [Test]
-        public async Task Details_ReturnsNotFound_WhenCarDoesNotExist()
-        {
-            var result = await _controller.Details(Guid.NewGuid());
-            Assert.That(result, Is.InstanceOf<NotFoundResult>());
-        }
+       
 
         [Test]
         public void Create_Get_ReturnsView()
