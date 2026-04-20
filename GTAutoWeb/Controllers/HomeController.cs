@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using GTAuto.Data;
 using GTAutoWeb.ViewModel;
-using GTAutoWeb.Models; // Увери се, че това е твоят namespace за ErrorViewModel
+using GTAutoWeb.Models; 
 
 namespace GTAutoWeb.Controllers
 {

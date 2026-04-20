@@ -15,7 +15,6 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
 <style>
-    /* 🔥 ТОТАЛНО ЗАТЪМНЯВАНЕ 🔥 */
     html, body, main, .container, .container-fluid, .pb-3,
     header, footer, .footer, .navbar, nav {
         background-color: #000000 !important;
@@ -32,7 +31,6 @@
         margin-bottom: 60px;
     }
 
-    /* КАРТИ ЗА СПЕЦИФИКАЦИИ */
     .spec-card {
         background-color: #0d0d0d;
         border: 1px solid #1a1a1a;
@@ -65,7 +63,6 @@
         font-weight: 700;
     }
 
-    /* ОПИСАНИЕ */
     .desc-card {
         background-color: transparent;
         border: 1px solid #1a1a1a;
@@ -74,7 +71,6 @@
         margin-top: 25px;
     }
 
-    /* 🏷️ ЦЕНА */
     .price-section-simple {
         background-color: #050505;
         border: 1px solid #1a1a1a;
@@ -94,7 +90,6 @@
         letter-spacing: -1px;
     }
 
-    /* ГАЛЕРИЯ */
     .gallery-container {
         border-radius: 12px;
         overflow: hidden;
@@ -106,7 +101,7 @@
         object-fit: cover;
     }
 
-    /* 🔥 ЗЕЛЕН БУТОН ЗА ПОКУПКА 🔥 */
+    
     .btn-buy-now {
         background-color: #28a745;
         color: white;
@@ -129,7 +124,6 @@
             color: white;
         }
 
-    /* 🔥 СИН БУТОН ЗА НАЗАД 🔥 */
     .btn-back {
         display: inline-block;
         color: #00d4ff;
@@ -164,7 +158,7 @@
     </div>
 
     <div class="row g-5">
-        @* ЛЯВА КОЛОНА *@
+       
         <div class="col-lg-5">
             <h3 class="text-muted mb-4 fw-bold border-bottom border-secondary pb-2 small text-uppercase">Specifications</h3>
 
@@ -177,7 +171,6 @@
                 <div class="col-6"><div class="spec-card"><div class="spec-label"><i class="bi bi-palette spec-icon"></i> Color</div><div class="spec-value">@Model.Color</div></div></div>
             </div>
 
-            @* ТЕХНИЧЕСКО ОПИСАНИЕ *@
             <div class="desc-card">
                 <div class="spec-label mb-2">Technical Description</div>
                 <p class="text-white small m-0" style="line-height: 1.6; opacity: 0.8;">
@@ -185,13 +178,12 @@
                 </p>
             </div>
 
-            @* ЦЕНА *@
             <div class="price-section-simple">
                 <span class="spec-label">Asking Price</span>
                 <h2 class="price-value-simple">@Model.Price.ToString("N0") €</h2>
             </div>
 
-            @* 🟢 СЪОБЩЕНИЕ, АКО КОЛАТА Е КУПЕНА ОТ ТЕКУЩИЯ КЛИЕНТ 🟢 *@
+           
             @if (User.Identity.IsAuthenticated && Model.ReservedByUserId == User.FindFirstValue(ClaimTypes.NameIdentifier))
             {
                 <div class="alert alert-success mt-4 bg-dark border-success text-success fw-bold text-center">
@@ -201,7 +193,6 @@
                 </div>
             }
 
-            @* СИН БУТОН НАЗАД *@
             <div class="mt-4">
                 <a asp-action="Index" class="btn-back">
                     <i class="bi bi-chevron-left me-1"></i> Return to Inventory
@@ -209,7 +200,6 @@
             </div>
         </div>
 
-        @* ДЯСНА КОЛОНА *@
         <div class="col-lg-7">
             <h3 class="text-muted mb-4 fw-bold border-bottom border-secondary pb-2 small text-uppercase">Vehicle Gallery</h3>
             <div class="gallery-container">
@@ -234,7 +224,7 @@
                 </div>
             </div>
 
-            @* 🔥 ТВОЯТ ЗЕЛЕН БУТОН - ПОКАЗВА СЕ САМО АКО КОЛАТА Е СВОБОДНА 🔥 *@
+          
             <div class="mt-4">
                 @if (!Model.IsReserved && !Model.IsSold && User.IsInRole("Client"))
                 {

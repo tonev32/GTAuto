@@ -63,9 +63,7 @@ namespace GTAutoWeb.Controllers
                 .ThenByDescending(c => c.Year)
                 .ToListAsync();
 
-            // =========================================================
-            // 🔥 ДОБАВЕНО: ВЗИМАМЕ ЛЮБИМИТЕ КОЛИ САМО ЗА ТОЗИ КЛИЕНТ
-            // =========================================================
+           
             var favoriteCarIds = new List<Guid>();
             if (User.Identity.IsAuthenticated)
             {
@@ -77,10 +75,9 @@ namespace GTAutoWeb.Controllers
                     .ToListAsync();
             }
 
-            // Пращаме ги към HTML-а (към Index.cshtml)
+           
             ViewBag.FavoriteCars = favoriteCarIds;
-            // =========================================================
-
+           
             return View(cars);
         }
 
@@ -199,7 +196,7 @@ namespace GTAutoWeb.Controllers
                     var car = await _context.Cars.Include(c => c.Images).FirstOrDefaultAsync(c => c.Id == id);
                     if (car == null) return NotFound();
 
-                    // Обновяване на данните
+                   
                     car.ModelId = vm.ModelId;
                     car.Year = vm.Year;
                     car.HorsePower = vm.HorsePower;
@@ -211,7 +208,7 @@ namespace GTAutoWeb.Controllers
                     car.Description = vm.Description;
                     car.IsFlashOffer = vm.IsFlashOffer;
 
-                    // Обработка на снимките - една по една
+                    
                     await HandleImageUpdate(car, vm.FrontImage, 1);
                     await HandleImageUpdate(car, vm.BackImage, 2);
                     await HandleImageUpdate(car, vm.InteriorImage, 3);
@@ -222,7 +219,7 @@ namespace GTAutoWeb.Controllers
                 }
                 catch (Exception ex)
                 {
-                    // Вместо да гърми, запиши грешката и я покажи на екрана
+                   
                     ModelState.AddModelError("", "Server Error: " + ex.Message);
                 }
             }
@@ -231,7 +228,6 @@ namespace GTAutoWeb.Controllers
             return View(vm);
         }
 
-        // Помощен метод, за да не се повтаря код
         private async Task HandleImageUpdate(Car car, IFormFile newFile, int order)
         {
             if (newFile != null && newFile.Length > 0)
@@ -240,7 +236,7 @@ namespace GTAutoWeb.Controllers
                 if (oldImg != null)
                 {
                     _context.CarImages.Remove(oldImg);
-                    car.Images.Remove(oldImg); // Махаме я от колекцията в паметта!
+                    car.Images.Remove(oldImg); 
                 }
 
                 string path = await ProcessUploadedImage(newFile);
@@ -332,8 +328,6 @@ namespace GTAutoWeb.Controllers
         {
             var car = await _context.Cars.Include(c => c.Model).FirstOrDefaultAsync(c => c.Id == id);
             if (car == null) return NotFound();
-
-            // Защита: Ако колата вече е капарирана от друг
             if (car.IsReserved || car.IsSold)
             {
                 TempData["ErrorMessage"] = "ASSET SECURED: This vehicle was just reserved by another client.";
@@ -342,7 +336,7 @@ namespace GTAutoWeb.Controllers
 
             string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            // 1. Създаваме записа за резервация (за архива на админа)
+            
             var reservation = new Reservation
             {
                 Id = Guid.NewGuid(),
@@ -353,16 +347,16 @@ namespace GTAutoWeb.Controllers
                 ExpiryDate = DateTime.UtcNow.AddDays(30)
             };
 
-            // 2. 🔥 ПРАВИМ КОЛАТА "ORDERS" ЗА КЛИЕНТА 🔥
+           
             car.IsReserved = true;
-            car.ReservedByUserId = userId; // С това колата отива в таб Orders
+            car.ReservedByUserId = userId; 
 
             _context.Reservations.Add(reservation);
             _context.Update(car);
 
             await _context.SaveChangesAsync();
 
-            // Пренасочваме към страницата за потвърждение с успех
+           
             return RedirectToAction("Confirmation", new { id = reservation.Id });
         }
 
@@ -384,23 +378,21 @@ namespace GTAutoWeb.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> ReservedCars()
         {
-            // Тук правим Join с таблицата Reservations, за да вземем датите
+            
             var reservedAssets = await _context.Reservations
                 .Include(r => r.Car)
                 .ThenInclude(c => c.Model)
                 .Include(r => r.Car.Images)
-                .OrderBy(r => r.ExpiryDate) // Подреждаме ги по най-скоро изтичащите
+                .OrderBy(r => r.ExpiryDate) 
                 .ToListAsync();
 
             return View(reservedAssets);
         }
-        // 🔥 ДОБАВИ ТОЗИ МЕТОД ТУК 🔥
         [HttpPost]
         [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CancelReservation(Guid id)
         {
-            // 1. Търсим резервацията по нейното ID
             var reservation = await _context.Reservations
                 .Include(r => r.Car)
                 .FirstOrDefaultAsync(r => r.Id == id);
@@ -409,18 +401,15 @@ namespace GTAutoWeb.Controllers
             {
                 if (reservation.Car != null)
                 {
-                    // 2. Освобождаваме колата (вече няма да е в Orders на клиента)
                     reservation.Car.IsReserved = false;
                     reservation.Car.ReservedByUserId = null;
                     _context.Cars.Update(reservation.Car);
                 }
 
-                // 3. Изтриваме записа от таблицата на Админа
                 _context.Reservations.Remove(reservation);
                 await _context.SaveChangesAsync();
             }
 
-            // 4. Връщаме Админа обратно в списъка
             return RedirectToAction(nameof(ReservedCars));
         }
 

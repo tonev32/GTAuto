@@ -17,7 +17,6 @@ namespace GTAutoWeb.Controllers
             _context = context;
         }
 
-        // 1. ПОКАЗВА ЛЮБИМИТЕ КОЛИ (GARAGE)
         public async Task<IActionResult> Index()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -36,7 +35,7 @@ namespace GTAutoWeb.Controllers
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            // Взимаме само колите, които текущият клиент е капарирал
+          
             var myOrders = await _context.Cars
                 .Where(c => c.IsReserved && c.ReservedByUserId == userId)
                 .Include(c => c.Model)
@@ -46,7 +45,6 @@ namespace GTAutoWeb.Controllers
             return View(myOrders);
         }
 
-        // 3. МЕТОД ЗА ПОКУПКА (BUY) - Добави го тук
         [HttpPost]
         public async Task<IActionResult> Buy(Guid carId)
         {
@@ -56,7 +54,7 @@ namespace GTAutoWeb.Controllers
             if (car != null && !car.IsReserved)
             {
                 car.IsReserved = true;
-                car.ReservedByUserId = userId; // Записваме ID-то на купувача
+                car.ReservedByUserId = userId; 
 
                 _context.Cars.Update(car);
                 await _context.SaveChangesAsync();
@@ -67,7 +65,7 @@ namespace GTAutoWeb.Controllers
             return RedirectToAction("MyOrders");
         }
 
-        // 4. ДОБАВЯНЕ В ЛЮБИМИ
+       
         [HttpPost]
         public async Task<IActionResult> Add(Guid carId)
         {
@@ -90,7 +88,6 @@ namespace GTAutoWeb.Controllers
             return !string.IsNullOrEmpty(referer) ? Redirect(referer) : RedirectToAction("Index", "Cars");
         }
 
-        // 5. ПРЕМАХВАНЕ ОТ ЛЮБИМИ
         [HttpPost]
         public async Task<IActionResult> Remove(Guid carId)
         {

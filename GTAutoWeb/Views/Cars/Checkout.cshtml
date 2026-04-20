@@ -5,7 +5,6 @@
 }
 
 <style>
-    /* 1. ПЪЛНО ПРЕМАХВАНЕ НА СИВОТО ПОЛЕ ГОРЕ */
     html, body, main, header, nav, .navbar, footer {
         background-color: #000000 !important;
         background: #000000 !important;
@@ -13,7 +12,6 @@
         box-shadow: none !important;
     }
 
-    /* Махаме всякакви линии под навигацията */
     header, .navbar {
         border-bottom: none !important;
     }
@@ -66,7 +64,7 @@
     </div>
 
     <div class="payment-card">
-        @* Изчистена горна част без черни полета *@
+       
         <div class="text-center mb-4">
             <span class="text-muted text-uppercase small fw-bold d-block mb-1">Required Deposit (5%)</span>
             <h2 class="text-success m-0 fw-bold" style="text-shadow: 0 0 15px rgba(40,167,69,0.3);">@depositAmount.ToString("N0") €</h2>
@@ -77,7 +75,7 @@
 
             <div class="mb-3">
                 <label class="form-label text-muted small text-uppercase">Name on Card</label>
-                @* Премахнато агресивното триене на символи, за да може да се пише нормално *@
+                
                 <input type="text" id="cardName" class="form-control form-control-dark" placeholder="JOHN DOE" required>
             </div>
 
@@ -107,17 +105,12 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
-    // 1. Позволяваме писане в Името, но проверяваме за символи чак накрая
-    // Махаме автоматичното replace, за да не "забива" полето
-
-    // 2. Форматиране на Картата
     document.getElementById('cardNumber').addEventListener('input', function (e) {
     let value = e.target.value.replace(/\D/g, '');
     value = value.replace(/(.{4})/g, '$1 ').trim();
     e.target.value = value;
     });
 
-    // 3. Форматиране на Датата
     document.getElementById('cardExpiry').addEventListener('input', function (e) {
     let value = e.target.value.replace(/\D/g, '');
     if (value.length > 2) {
@@ -126,7 +119,6 @@
     e.target.value = value;
     });
 
-    // 4. Само цифри за CVC
     document.getElementById('cardCvc').addEventListener('input', function (e) {
     e.target.value = e.target.value.replace(/\D/g, '');
     });
@@ -135,7 +127,6 @@
     let isValid = true;
     let errorMessage = "";
 
-    // Валидация име (само букви на латиница/кирилица и интервали)
     let cardName = document.getElementById('cardName').value.trim();
     let nameRegex = /^[a-zA-Zа-яА-Я\s\-]+$/;
     if (cardName.length < 3 || !nameRegex.test(cardName)) {
@@ -143,7 +134,6 @@
     errorMessage = "Invalid Name. Please use only letters (min. 3 characters).";
     }
 
-    // Валидация Карта
     if (isValid) {
     let cardNum = document.getElementById('cardNumber').value.replace(/\s/g, '');
     if (cardNum.length !== 16) {
@@ -152,7 +142,6 @@
     }
     }
 
-    // Валидация Дата
     if (isValid) {
     let expiry = document.getElementById('cardExpiry').value;
     if (expiry.length === 5 && expiry.includes('/')) {
@@ -177,7 +166,6 @@
     }
     }
 
-    // Валидация CVC
     if (isValid) {
     let cvc = document.getElementById('cardCvc').value;
     if (cvc.length !== 3) {

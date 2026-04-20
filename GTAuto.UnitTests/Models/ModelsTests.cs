@@ -35,7 +35,7 @@ namespace GTAuto.UnitTests.Models
             var brand = new Brand { Name = "Audi" };
             var results = ValidateModel(brand);
             Assert.That(results.Count, Is.EqualTo(0));
-            Assert.That(brand.Models, Is.Not.Null); // Check collection init
+            Assert.That(brand.Models, Is.Not.Null); 
         }
 
         [Test]
@@ -62,9 +62,9 @@ namespace GTAuto.UnitTests.Models
             var car = new Car
             {
                 ModelId = Guid.NewGuid(),
-                Year = 1900, // Invalid range
-                HorsePower = 10, // Invalid range
-                Price = -10, // Invalid range
+                Year = 1900, 
+                HorsePower = 10, 
+                Price = -10, 
                 Mileage = 10000,
                 FuelType = "Petrol",
                 Transmission = "Automatic",
@@ -111,7 +111,7 @@ namespace GTAuto.UnitTests.Models
             {
                 UserId = Guid.NewGuid(),
                 CarId = Guid.NewGuid(),
-                DepositAmount = -50 // Invalid deposit range
+                DepositAmount = -50 
             };
 
             var results = ValidateModel(order);

@@ -9,7 +9,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using GTAuto.Data;
 using GTAuto.Data.Models;
-using Hospital.WebProject.Controllers; // based on original file namespace
+using Hospital.WebProject.Controllers; 
 using GTAutoWeb.ViewModels.User;
 
 namespace GTAuto.UnitTests.Controllers

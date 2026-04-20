@@ -70,39 +70,38 @@ namespace GTAutoWeb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ModelViewModel model)
         {
-            // 1. Игнорираме всички грешки свързани с липсващи марки в модела
+           
             ModelState.Remove("Brand");
             ModelState.Remove("Cars");
-            ModelState.Remove("BrandId"); // Махаме и това, за да не гърми валидацията
+            ModelState.Remove("BrandId"); 
 
             if (ModelState.IsValid)
             {
-                // 2. Намираме първата налична марка в базата. 
-                // Ако базата е напълно празна, създаваме една служебна марка "General".
+                
                 var defaultBrand = await _context.Brands.FirstOrDefaultAsync();
                 if (defaultBrand == null)
                 {
                     defaultBrand = new Brand { Id = Guid.NewGuid(), Name = "General" };
                     _context.Brands.Add(defaultBrand);
-                    await _context.SaveChangesAsync(); // Запазваме служебната марка веднага
+                    await _context.SaveChangesAsync(); 
                 }
 
-                // 3. Създаваме твоя нов запис и му закачаме твърдо валидно BrandId!
+               
                 Model newModel = new Model
                 {
                     Id = Guid.NewGuid(),
-                    BrandId = defaultBrand.Id, // 🔥 ТУК Е МАГИЯТА: Сървърът сам слага валидно ID! 🔥
-                    Name = model.Name // Това е текстът от полето (напр. "BMW M5 CS")
+                    BrandId = defaultBrand.Id, 
+                    Name = model.Name 
                 };
 
                 _context.Models.Add(newModel);
-                await _context.SaveChangesAsync(); // Край! Записано успешно в базата!
+                await _context.SaveChangesAsync(); 
 
-                // Връщаме те обратно в красивия списък Listing Data
+                
                 return RedirectToAction(nameof(Index));
             }
 
-            // Ако все пак има някаква друга грешка, връщаме формата
+            
             return View(model);
         }
 
@@ -132,7 +131,6 @@ namespace GTAutoWeb.Controllers
                 return NotFound();
             }
 
-            // 🔥 1. ИГНОРИРАМЕ ЛИПСВАЩИ СВЪРЗАНИ ДАННИ ВЪВ ФОРМАТА 🔥
             ModelState.Remove("Brand");
             ModelState.Remove("Cars");
 
@@ -140,8 +138,7 @@ namespace GTAutoWeb.Controllers
             {
                 try
                 {
-                    // 🔥 2. ВЗИМАМЕ ОРИГИНАЛА ОТ БАЗАТА 🔥
-                    // Правим го, за да не презапишем BrandId с празни нули!
+                    
                     var existingDbModel = await _context.Models.FindAsync(id);
 
                     if (existingDbModel == null)
@@ -149,7 +146,6 @@ namespace GTAutoWeb.Controllers
                         return NotFound();
                     }
 
-                    // 🔥 3. ОБНОВЯВАМЕ САМО ИМЕТО 🔥
                     existingDbModel.Name = model.Name;
 
                     _context.Update(existingDbModel);

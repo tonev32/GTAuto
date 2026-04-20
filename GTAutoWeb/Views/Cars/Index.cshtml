@@ -5,7 +5,6 @@
 }
 
 <style>
-    /* ГЛАВЕН КОНТЕЙНЕР */
     .inventory-wrapper {
         background-color: #000000 !important;
         min-height: 100vh;
@@ -27,7 +26,6 @@
         margin-bottom: 50px;
     }
 
-    /* БУТОН ЗА СЪЗДАВАНЕ */
     .btn-create-blue {
         background-color: #00d4ff;
         color: #000000;
@@ -42,7 +40,6 @@
         margin-bottom: 40px;
     }
 
-    /* ФИЛТРИ */
     .filter-form-invisible {
         background: transparent;
         margin-bottom: 60px;
@@ -101,7 +98,6 @@
             box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
         }
 
-    /* КАРТИТЕ */
     .car-card-noir {
         background: #0d0d0d;
         border: 1px solid #1a1a1a;
@@ -130,21 +126,18 @@
         font-size: 0.75rem;
     }
 
-    /* ==========================================
-                    🔥 СТИЛОВЕ ЗА КАПАРИРАНА КОЛА 🔥
-                    ========================================== */
     .reserved-card {
-        filter: grayscale(100%) brightness(50%); /* Черно-бяла и тъмна */
+        filter: grayscale(100%) brightness(50%); 
         border-color: #222 !important;
     }
 
-        /* Спираме ефекта на повдигане при посочване */
+       
         .reserved-card:hover {
             transform: none !important;
             border-color: #222 !important;
         }
 
-    /* Червеният диагонален печат */
+  
     .reserved-badge {
         position: absolute;
         top: 40%;
@@ -160,10 +153,10 @@
         border: 3px solid #ff3333;
         z-index: 20;
         white-space: nowrap;
-        pointer-events: none; /* За да не пречи на кликове (ако има) */
+        pointer-events: none; 
     }
 
-    /* Сив блокиран бутон */
+    
     .btn-disabled-noir {
         background-color: #1a1a1a !important;
         color: #555 !important;
@@ -175,11 +168,11 @@
 
 <div class="inventory-wrapper">
     <div class="container text-center">
-        @* HEADER *@
+       
         <h1 class="inventory-title">Premium <span style="color: #00d4ff; text-shadow: 0 0 20px rgba(0, 212, 255, 0.4);">Inventory</span></h1>
         <p class="inventory-subtitle">Explore our curated collection of high-performance automobiles</p>
 
-        @* ФИЛТРИ *@
+       
         <form asp-controller="Cars" asp-action="Index" method="get" class="filter-form-invisible">
             <div class="row g-4 align-items-end">
                 <div class="col-md-4">
@@ -244,11 +237,9 @@
                     var mainImg = car.Images?.OrderBy(i => i.Order).FirstOrDefault()?.ImagePath ?? "/images/no-image.png";
 
                     <div class="col">
-                        @* ДОБАВЯМЕ КЛАСА reserved-card. АКО Е КАПАРИРАНА, МАХАМЕ ТРИГЕРА ЗА МОДАЛА *@
                         <div class="card car-card-noir h-100 @(car.IsReserved ? "reserved-card" : "")"
                             @(car.IsReserved ? "" : $"data-bs-toggle=\"modal\" data-bs-target=\"#modal-{car.Id}\"")>
 
-                            @* ПРОВЕРКА ЗА ЕТИКЕТИ *@
                             @if (car.IsReserved)
                             {
                                 <div class="reserved-badge">RESERVED</div>
@@ -258,12 +249,10 @@
                                 <div class="corner-ribbon">SALE</div>
                             }
 
-                            @* ========================================================= *@
-                            @* 🔥 ИНТЕЛИГЕНТНОТО СЪРЦЕ *@
-                            @* ========================================================= *@
+                          
                             @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                             {
-                                @* Админите нямат нужда от любими *@
+                                
                             }
                             else if (User.Identity.IsAuthenticated)
                             {
@@ -272,7 +261,7 @@
 
                                 if (isAlreadyFavorite)
                                 {
-                                    @* 🔥 ЧЕРВЕНО СЪРЦЕ (Колата Е в любими) -> Бутон за премахване *@
+                                    
                                     <form asp-controller="Wishlist" asp-action="Remove" asp-route-carId="@car.Id" method="post" class="position-absolute" style="top: 15px; left: 15px; z-index: 40;">
                                         <button type="submit" class="btn btn-dark bg-opacity-75 rounded-circle border-0 shadow-sm"
                                                 style="width: 42px; height: 42px; transition: 0.3s; color: #ff3333; display: flex; justify-content: center; align-items: center;"
@@ -285,7 +274,7 @@
                                 }
                                 else
                                 {
-                                    @* 🤍 БЯЛО СЪРЦЕ (Колата НЕ Е в любими) -> Бутон за добавяне *@
+                                    
                                     <form asp-controller="Wishlist" asp-action="Add" asp-route-carId="@car.Id" method="post" class="position-absolute" style="top: 15px; left: 15px; z-index: 40;">
                                         <button type="submit" class="btn btn-dark bg-opacity-75 rounded-circle border-0 shadow-sm"
                                                 style="width: 42px; height: 42px; transition: 0.3s; color: white; display: flex; justify-content: center; align-items: center;"
@@ -299,7 +288,7 @@
                             }
                             else
                             {
-                                @* БУТОН ЗА НЕЛОГНАТИ ПОТРЕБИТЕЛИ *@
+                                
                                 <a asp-area="Identity" asp-page="/Account/Login" class="btn btn-dark bg-opacity-75 rounded-circle border-0 shadow-sm position-absolute"
                                        style="top: 15px; left: 15px; z-index: 40; width: 42px; height: 42px; transition: 0.3s; color: white; display: flex; justify-content: center; align-items: center; text-decoration: none;"
                                        onmouseover="this.style.color='#ff3333'; this.style.transform='scale(1.1)';"
@@ -308,7 +297,7 @@
                                     <i class="bi bi-heart fs-5"></i>
                                 </a>
                             }
-                            @* ========================================================= *@
+                          
 
                             <img src="@mainImg" class="card-img-top" alt="@car.Model.Name" style="height: 250px; object-fit: cover;">
 
@@ -331,7 +320,7 @@
 
                             <div class="card-footer bg-transparent border-0 pb-4 px-4 text-center" onclick="event.stopPropagation();">
 
-                                @* АКО Е КАПАРИРАНА - БЛОКИРАН БУТОН. АКО НЕ Е - БУТОН DETAILS *@
+                             
                                 @if (car.IsReserved)
                                 {
                                     <button class="btn btn-disabled-noir w-100 fw-bold py-2" disabled>
@@ -345,7 +334,7 @@
                                     </a>
                                 }
 
-                                @* АДМИН БУТОНИТЕ СИ ОСТАВАТ АКТИВНИ *@
+                                
                                 @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                                 {
                                     <div class="d-flex gap-2 justify-content-center mt-3">
@@ -357,7 +346,7 @@
                         </div>
                     </div>
 
-                    @* Модалът се рендира само ако колата НЕ е капарирана *@
+                    
                     @if (!car.IsReserved)
                     {
                         <div class="modal fade" id="modal-@car.Id" tabindex="-1" aria-hidden="true">

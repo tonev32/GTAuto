@@ -5,13 +5,12 @@
 }
 
 <style>
-    /* 🔥 FORCE PURE BLACK BACKGROUND 🔥 */
+   
     html, body, main, .container-fluid, .pb-3 {
         background-color: #000000 !important;
         color: white;
     }
 
-    /* REMOVE ARROWS FROM NUMERIC INPUTS */
     input::-webkit-outer-spin-button,
     input::-webkit-inner-spin-button {
         -webkit-appearance: none;
@@ -155,7 +154,6 @@
                         <span asp-validation-for="ModelId" class="text-danger"></span>
                     </div>
 
-                    @* CORE DATA *@
                     <div class="col-md-3">
                         <label asp-for="Year" class="form-label">Year</label>
                         <input asp-for="Year" type="number" class="form-control" placeholder="YYYY" />
@@ -177,7 +175,6 @@
                         <span asp-validation-for="Mileage" class="text-danger"></span>
                     </div>
 
-                    @* TECHNICAL SPECIFICATIONS *@
                     <div class="col-md-4">
                         <label asp-for="FuelType" class="form-label">Fuel Type</label>
                         <select asp-for="FuelType" class="form-control form-select">
@@ -204,7 +201,6 @@
                         <span asp-validation-for="Color" class="text-danger"></span>
                     </div>
 
-                    @* PHOTOGRAPHY *@
                     <div class="col-12">
                         <div class="image-update-section">
                             <h5 class="text-white small fw-bold text-uppercase mb-1">Vehicle Photography (Local Upload)</h5>
@@ -226,14 +222,12 @@
                         </div>
                     </div>
 
-                    @* DESCRIPTION *@
                     <div class="col-12">
                         <label asp-for="Description" class="form-label">Description</label>
                         <textarea asp-for="Description" class="form-control" rows="4" placeholder="Enter vehicle details..."></textarea>
                         <span asp-validation-for="Description" class="text-danger"></span>
                     </div>
 
-                    @* STATUS & OFFERS *@
                     <div class="col-12">
                         <div class="d-flex flex-wrap gap-4 mt-2">
                             <div class="form-check">
@@ -246,7 +240,6 @@
                     </div>
                 </div>
 
-                @* ACTION BUTTONS *@
                 <div class="text-center mt-5">
                     <button type="submit" class="btn btn-save">Save Changes</button>
                     <div class="mt-4">

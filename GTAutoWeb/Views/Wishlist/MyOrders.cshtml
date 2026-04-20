@@ -5,7 +5,7 @@
 }
 
 <style>
-    /* ГЛАВЕН КОНТЕЙНЕР - NOIR THEME */
+    
     body, main, .container-fluid, .pb-3 {
         background-color: #000000 !important;
         color: white;
@@ -29,7 +29,7 @@
         text-shadow: 0 0 20px rgba(0, 229, 255, 0.4);
     }
 
-    /* КАРТИ ЗА ПОРЪЧКИ */
+   
     .order-card-noir {
         background: #090909;
         border: 1px solid #1a1a1a;
@@ -44,7 +44,7 @@
         box-shadow: 0 0 30px rgba(0, 229, 255, 0.1);
     }
 
-    /* СЕКЦИЯ ЗА ОТМЯНА */
+    
     .cancel-warning-box {
         background-color: rgba(255, 51, 51, 0.05);
         border: 1px dashed #ff3333;
@@ -87,7 +87,7 @@
 
 <div class="order-wrapper">
     <div class="container">
-        @* HEADER *@
+        
         <div class="text-center mb-5">
             <h1 class="order-title">Active <span class="accent-cyan">Orders</span></h1>
             <p class="text-muted text-uppercase small" style="letter-spacing: 3px;">Track your officially secured premium assets</p>
@@ -114,14 +114,14 @@
                     <div class="col-lg-10">
                         <div class="card order-card-noir p-3">
                             <div class="row align-items-center">
-                                @* СНИМКА НА КОЛАТА *@
+                               
                                 <div class="col-md-4">
                                     <div class="position-relative">
                                         <img src="@mainImg" class="img-fluid rounded" alt="@car.Model.Name" style="width: 100%; height: 200px; object-fit: cover;">
                                     </div>
                                 </div>
 
-                                @* ДЕТАЙЛИ ЗА КОЛАТА *@
+                              
                                 <div class="col-md-4">
                                     <div class="ps-md-3 mt-3 mt-md-0">
                                         <span class="status-badge">Payment Confirmed</span>
@@ -133,7 +133,7 @@
                                     </div>
                                 </div>
 
-                                @* СЕКЦИЯ ЗА ОТМЯНА (ПО ТЕЛЕФОН) *@
+                              
                                 <div class="col-md-4">
                                     <div class="cancel-warning-box text-center">
                                         <i class="bi bi-exclamation-octagon-fill d-block mb-2 fs-4"></i>
@@ -154,7 +154,7 @@
                 }
             </div>
 
-            @* ДОПЪЛНИТЕЛНА ИНФОРМАЦИЯ НАЙ-ОТДОЛУ *@
+          
             <div class="text-center mt-5">
                 <p class="text-secondary small">
                     All reservations are legally binding. Our logistics team will contact you shortly for delivery arrangements.

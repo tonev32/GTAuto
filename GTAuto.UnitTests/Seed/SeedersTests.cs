@@ -86,8 +86,8 @@ namespace GTAuto.UnitTests.Seed
             var roleManagerMock = new Mock<RoleManager<IdentityRole<Guid>>>(roleStoreMock.Object, null, null, null, null);
 
             roleManagerMock.SetupSequence(r => r.RoleExistsAsync(It.IsAny<string>()))
-                .ReturnsAsync(false) // Admin
-                .ReturnsAsync(false); // Client
+                .ReturnsAsync(false) 
+                .ReturnsAsync(false); 
 
             roleManagerMock.Setup(r => r.CreateAsync(It.IsAny<IdentityRole<Guid>>()))
                 .ReturnsAsync(IdentityResult.Success);

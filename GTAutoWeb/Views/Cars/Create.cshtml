@@ -5,7 +5,6 @@
 }
 
 <style>
-    /* Дизайн на фона и контейнера */
     .create-wrapper {
         background-color: #000000 !important;
         min-height: 100vh;
@@ -25,7 +24,6 @@
         max-width: 900px;
     }
 
-    /* Стилизиране на полетата за писане */
     .form-control, .form-select {
         background-color: #000000 !important;
         border: 1px solid #333 !important;
@@ -40,7 +38,6 @@
             box-shadow: 0 0 10px rgba(0, 212, 255, 0.2) !important;
         }
 
-    /* Етикети (Labels) */
     .form-label {
         color: #00d4ff;
         text-transform: uppercase;
@@ -52,7 +49,6 @@
         text-align: left;
     }
 
-    /* Бутонът */
     .btn-submit {
         background-color: #00d4ff;
         color: #000;
@@ -70,7 +66,6 @@
             box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
         }
 
-    /* Секция за снимки */
     .image-upload-section {
         background-color: #080808;
         border: 1px dashed #333;
@@ -79,7 +74,6 @@
         margin: 25px 0;
     }
 
-    /* Персонализирани тъмни чекбоксове */
     .form-check-input {
         background-color: #1a1a1a;
         border: 1px solid #444;
@@ -91,7 +85,6 @@
             box-shadow: 0 0 8px #00d4ff;
         }
 
-    /* Файловите инпути да изглеждат добре на черно */
     input[type="file"]::-webkit-file-upload-button {
         background: #1a1a1a;
         color: #00d4ff;
@@ -110,7 +103,6 @@
             color: #000;
         }
 
-    /* 🔥 Премахване на грозните стрелки от числовите полета 🔥 */
     input::-webkit-outer-spin-button,
     input::-webkit-inner-spin-button {
         -webkit-appearance: none;
@@ -133,7 +125,7 @@
             <div asp-validation-summary="All" class="text-danger mb-4 fw-bold bg-dark p-3 rounded" style="display: @(ViewData.ModelState.IsValid ? "none" : "block")"></div>
 
             <div class="row g-4 text-start">
-                @* МОДЕЛ *@
+               
                 <div class="col-md-12">
                     <label class="form-label">Vehicle Model</label>
                     <select asp-for="ModelId" class="form-select" asp-items="ViewBag.Models">
@@ -142,7 +134,7 @@
                     <span asp-validation-for="ModelId" class="text-danger small"></span>
                 </div>
 
-                @* ОСНОВНИ ДАННИ (Ръчно писане с type="number") *@
+              
                 <div class="col-md-3">
                     <label asp-for="Year" class="form-label">Production Year</label>
                     <input asp-for="Year" type="number" class="form-control" placeholder="e.g. 2023" />
@@ -164,7 +156,7 @@
                     <span asp-validation-for="Mileage" class="text-danger small"></span>
                 </div>
 
-                @* ТЕХНИЧЕСКИ ДАННИ (Падащи менюта) *@
+               
                 <div class="col-md-4">
                     <label asp-for="FuelType" class="form-label">Fuel Type</label>
                     <select asp-for="FuelType" class="form-select">
@@ -193,7 +185,7 @@
                     <span asp-validation-for="Color" class="text-danger small"></span>
                 </div>
 
-                @* 🔥 СЕКЦИЯ ЗА СНИМКИ 🔥 *@
+               
                 <div class="col-12">
                     <div class="image-upload-section">
                         <h5 class="text-white small fw-bold text-uppercase mb-4" style="letter-spacing: 1px;">Vehicle Photography (Local Upload)</h5>
@@ -214,14 +206,13 @@
                     </div>
                 </div>
 
-                @* ОПИСАНИЕ *@
+               
                 <div class="col-12">
                     <label asp-for="Description" class="form-label">Technical Description</label>
                     <textarea asp-for="Description" class="form-control" rows="4" placeholder="Enter detailed description..."></textarea>
                     <span asp-validation-for="Description" class="text-danger small"></span>
                 </div>
 
-                @* ОПЦИИ (Само FLASH OFFER остана тук) *@
                 <div class="col-12">
                     <div class="d-flex flex-wrap gap-4 mt-2 p-3" style="background-color: #111; border-radius: 8px; border: 1px solid #222;">
                         <div class="form-check form-switch">
@@ -232,7 +223,6 @@
                 </div>
             </div>
 
-            @* БУТОНИ *@
             <div class="text-center mt-5">
                 <button type="submit" class="btn btn-submit w-100 fs-5"><i class="bi bi-cloud-arrow-up-fill me-2"></i> Create Listing</button>
                 <div class="mt-4">

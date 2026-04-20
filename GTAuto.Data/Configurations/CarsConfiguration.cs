@@ -25,12 +25,11 @@ namespace GTAuto.Data.Configurations
         public void Configure(EntityTypeBuilder<Car> builder)
         {
             builder.HasData(
-                // 🔥 ТРИТЕ "SALE" КОЛИ (IsFlashOffer = true)
+              
                 new Car { Id = M4Id, ModelId = ModelsConfiguration.M4Id, Year = 2022, HorsePower = 510, Price = 145000, Mileage = 8500, FuelType = "Petrol", Transmission = "Automatic", Color = "Green", Description = "M-Track Package, Carbon Seats, Laser Lights, Like new!", IsAutomatic = true, IsFlashOffer = true, IsReserved = false, IsSold = false },
                 new Car { Id = RS7Id, ModelId = ModelsConfiguration.RS7Id, Year = 2023, HorsePower = 600, Price = 178000, Mileage = 1200, FuelType = "Petrol", Transmission = "Automatic", Color = "Grey", Description = "Ceramic Brakes, RS Dynamic Plus, Bang & Olufsen.", IsAutomatic = true, IsFlashOffer = true, IsReserved = false, IsSold = false },
                 new Car { Id = GClassId, ModelId = ModelsConfiguration.GClassId, Year = 2022, HorsePower = 585, Price = 235000, Mileage = 12000, FuelType = "Petrol", Transmission = "Automatic", Color = "Matte Black", Description = "G63 AMG, Night Package, Carbon interior.", IsAutomatic = true, IsFlashOffer = true, IsReserved = false, IsSold = false },
 
-                // 🚗 ОСТАНАЛИТЕ КОЛИ (IsFlashOffer = false)
                 new Car { Id = AMGGTId, ModelId = ModelsConfiguration.AMGGTId, Year = 2021, HorsePower = 530, Price = 155000, Mileage = 14000, FuelType = "Petrol", Transmission = "Automatic", Color = "Black", Description = "AMG Night Package, Performance Exhaust.", IsAutomatic = true, IsFlashOffer = false, IsReserved = false, IsSold = false },
                 new Car { Id = Golf6Id, ModelId = ModelsConfiguration.Golf6Id, Year = 2012, HorsePower = 211, Price = 18000, Mileage = 155000, FuelType = "Petrol", Transmission = "Manual", Color = "White", Description = "Stage 1, Akrapovic tips, Edition 35 wheels.", IsAutomatic = false, IsFlashOffer = false, IsReserved = false, IsSold = false },
                 new Car { Id = TeslaSId, ModelId = ModelsConfiguration.TeslaSId, Year = 2022, HorsePower = 1020, Price = 95000, Mileage = 10000, FuelType = "Electric", Transmission = "Automatic", Color = "Red", Description = "Plaid version, Ludicrous mode, Full self-driving.", IsAutomatic = true, IsFlashOffer = false, IsReserved = false, IsSold = false },

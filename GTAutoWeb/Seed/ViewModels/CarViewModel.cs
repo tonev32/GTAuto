@@ -39,8 +39,6 @@ namespace GTAutoWeb.ViewModel
 
         [Required]
         public string Description { get; set; }
-
-        // 🔥 ТУК Е ПРОМЯНАТА: ИЗТРИХМЕ ImageUrl И ДОБАВИХМЕ ТЕЗИ ТРИ ПОЛЕТА ЗА ФАЙЛОВЕ 🔥
         [Display(Name = "Front Image")]
         public IFormFile? FrontImage { get; set; }
 

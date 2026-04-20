@@ -145,7 +145,7 @@ namespace GTAuto.UnitTests.Controllers
             var brandId = Guid.Parse("11111111-1111-1111-1111-111111111111");
             var brand = new Brand { Id = brandId, Name = "Audi Updated" };
             
-            // Detach local entities to allow update
+           
             _context.ChangeTracker.Clear();
 
             var result = await _controller.Edit(brandId, brand) as RedirectToActionResult;

@@ -45,7 +45,6 @@ namespace GTAuto.Data.Models
         public bool IsAutomatic { get; set; }
         public bool IsFlashOffer { get; set; } = false;
 
-        // 🔥 НОВОТО ПОЛЕ ТУК
         public string? ReservedByUserId { get; set; }
 
         public ICollection<CarFeature> CarFeatures { get; set; } = new List<CarFeature>();

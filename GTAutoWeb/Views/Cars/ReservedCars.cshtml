@@ -8,7 +8,7 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <style>
-    /* 🔥 RED NEON ADMIN THEME 🔥 */
+    
     .admin-wrapper {
         background-color: #000000 !important;
         min-height: 100vh;
@@ -28,7 +28,6 @@
         text-shadow: 0 0 15px rgba(255, 51, 51, 0.5);
     }
 
-    /* 🔥 КАРТАТА С ЛЕК ХОВЪР 🔥 */
     .car-card-admin {
         background: #0d0d0d;
         border: 1px solid #1a1a1a;
@@ -119,7 +118,7 @@
         padding: 5px 10px;
     }
 
-    /* Персонализиране на SweetAlert */
+    
     .swal2-popup {
         background: #0d0d0d !important;
         border: 1px solid #ff3333 !important;
@@ -177,7 +176,7 @@
                             </div>
 
                             <div class="card-footer bg-transparent border-0 p-0">
-                                @* 🔥 КОРЕКЦИЯ ТУК: Пращаме res.Id (ID на резервацията) 🔥 *@
+                             
                                 <form asp-action="CancelReservation" asp-route-id="@res.Id" method="post" onsubmit="return confirmUnlock(this);">
                                     @Html.AntiForgeryToken()
                                     <button type="submit" class="btn-unlock">
@@ -195,13 +194,13 @@
 
 @section Scripts {
     <script>
-        // Инициализация на поповерите
+       
         var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
         var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
             return new bootstrap.Popover(popoverTriggerEl)
         })
 
-        // 🔥 ФУНКЦИЯ ЗА ЯКАТА НОТИФИКАЦИЯ
+      
         function confirmUnlock(form) {
             Swal.fire({
                 title: 'SECURITY PROTOCOL',

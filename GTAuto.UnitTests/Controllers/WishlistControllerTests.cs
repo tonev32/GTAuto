@@ -34,7 +34,7 @@ namespace GTAuto.UnitTests.Controllers
             var claims = new[] { new Claim(ClaimTypes.NameIdentifier, "test-user-id") };
             httpContext.User = new ClaimsPrincipal(new ClaimsIdentity(claims, "TestAuth"));
 
-            // Mock Referer for Add redirect
+            
             httpContext.Request.Headers["Referer"] = "http://test.com/referer";
 
             var tempData = new TempDataDictionary(httpContext, Mock.Of<ITempDataProvider>());
